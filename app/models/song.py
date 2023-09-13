@@ -7,12 +7,11 @@ class Song(db.Model):
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
 
-
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
     artist = db.Column(db.String, nullable=False)
     genre = db.Column(db.String, nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id'), nullable=False))
+    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     file_path = db.Column(db.String, nullable=False)
     cover_photo = db.Column(db.String, nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.now)
@@ -21,11 +20,11 @@ class Song(db.Model):
     user = db.relationship('User', back_populates='songs')
     playlist_songs = db.relationship('Playlist_Song', back_populates='song', cascade='all, delete-orphan')
     comments = db.relationship('Comment', back_populates='song', cascade='all, delete-orphan')
-    song_likes = db.relationship(
-        "User",
+    liked_songs= db.relationship(
+        'User',
         secondary=likes,
-        back_populates="user_likes"
-  )
+        back_populates='user_likes'
+    )
     def to_dict(self):
         return {
             'id': self.id,
@@ -36,3 +35,8 @@ class Song(db.Model):
             'filePath': self.file_path,
             'coverPhoto': self.cover_photo
         }
+
+
+    # When accessing liked_songs, it triggers a SELECT query to load the related songs immediately.
+# user = User.query.get(user_id)
+# liked_songs = user.liked_songs  # This executes a query to fetch the liked songs.

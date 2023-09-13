@@ -4,5 +4,5 @@ from .playlist import Playlist
 from .song import Song
 from .playlist_song import Playlist_Song
 from .comment import Comment
-from .like import Like
+from .like import likes
 from .db import environment, SCHEMA

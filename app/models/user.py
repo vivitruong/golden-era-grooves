@@ -17,18 +17,19 @@ class User(db.Model, UserMixin):
     first_name = db.Column(db.String(50), nullable=False)
     last_name = db.Column(db.String(50), nullable=False)
     bio = db.Column(db.String(2000))
-    image_url = db.Column(db.String(1000), nullable=True, unique=True)
+    image_url = db.Column(db.String(1000), nullable=True)
     hashed_password = db.Column(db.String(255), nullable=False)
-    created_at = db.Column(db.DateTime, default=datetime.now)
-    updated_at = db.Column(db.DateTime, default=datetime.now)
+    # created_at = db.Column(db.DateTime, default=datetime.now)
+    # updated_at = db.Column(db.DateTime, default=datetime.now)
 
     playlists = db.relationship('Playlist', back_populates='user', cascade='all, delete-orphan')
-    songs = db.relationship('Song', back_popuates='user', cascade='all, delete-orphan')
+    songs = db.relationship('Song', back_populates='user', cascade='all, delete-orphan')
     user_likes = db.relationship(
-        "Song",
+        'Song',
         secondary=likes,
-        back_populates='song_likes'
+        back_populates='liked_songs'
     )
+    comments = db.relationship("Comment", cascade='all, delete-orphan', back_populates='user')
 
     @property
     def password(self):
@@ -50,6 +51,6 @@ class User(db.Model, UserMixin):
             'lastName': self.last_name,
             'bio': self.bio,
             'imageUrl': self.image_url,
-            'joinedAt': self.created_at
+            # 'joinedAt': self.created_at
 
         }
