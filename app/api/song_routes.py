@@ -7,7 +7,7 @@ from app.aws import (upload_file_to_s3, allowed_file, get_unique_filename)
 
 song_routes = Blueprint('songs', __name__)
 #get all song(done)
-@song_routes.route('/all')
+@song_routes.route('/')
 def get_all_songs():
     songs = Song.query.all()
     return {'songs': [song.to_dict() for song in songs]}, 200
@@ -41,35 +41,33 @@ def upload_song():
     form = UploadSongForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
-    if form.validate_on_submit():
-        song_file = request.files.get('file_path')
+    if form.validate_on_submit() and 'file_path' in request.files:
+        song_file = request.files['file_path']
+        cover_photo =  request.files.get('cover_photo')
         # Check if the file has an allowed extension (e.g., mp3, wav)
         if not allowed_file(song_file.filename):
             return jsonify({'error': 'Invalid file format'}), 400
-         # Generate a unique filename for the uploaded song
-        # unique_filename = get_unique_filename(song_file.filename)
 
         #upload to s3
-        result = upload_file_to_s3(song_file)
+        song_file_url = upload_file_to_s3(song_file)
+        # Upload the cover photo to S3 (if provided)
 
-        if 'url' in result:
-            s3_url = result['url']
+        if cover_photo and allowed_file(cover_photo.filename):
+            cover_photo_url = upload_file_to_s3(cover_photo)
+        else: cover_photo_url = None
 
-            new_song = Song(
-                name=form.data['name'],
-                artist = form.data['artist'],
-                genre = form.data['genre'],
-                cover_photo = form.data['cover_photo'],
-                file_path = s3_url
-            )
-            db.session.add(new_song)
-            db.session.commit()
-            return new_song.to_dict(), 201
-        else:
-            return jsonify({'error': 'Failed to upload song'}), 500
+        new_song = Song(
+            name=form.data['name'],
+            artist = form.data['artist'],
+            genre = form.data['genre'],
+            cover_photo = cover_photo_url,
+            file_path = song_file_url,
+
+        )
+        db.session.add(new_song)
+        db.session.commit()
+        return jsonify({'message': 'Song uploaded successfully', 'song': new_song.to_dict()}), 201
     return jsonify({'error': 'Invalid form data'}), 400
-
-
 
 
 #update a song
