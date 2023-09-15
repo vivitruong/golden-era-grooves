@@ -1,23 +1,26 @@
 from flask import Blueprint, jsonify, session, request
 from flask_login import login_required, current_user
 from app.models import db, Song, Comment, likes, User
-from app.forms import UploadSongFormm, CommentForm, LikeForm, UploadSongForm
+from app.forms import CommentForm, LikeForm, UploadSongForm, SongForm
+from app.aws import (upload_file_to_s3, allowed_file, get_unique_filename)
+
 
 song_routes = Blueprint('songs', __name__)
-#get all song
+#get all song(done)
 @song_routes.route('/all')
 def get_all_songs():
     songs = Song.query.all()
     return {'songs': [song.to_dict() for song in songs]}, 200
 
-#get all song of a current user
+#get all song of a current user(done)
 @song_routes.route('/current')
 def user_songs():
     current_user_info = current_user.to_dict()
     current_user_id = current_user_info['id']
     songs = Song.query.filter(Song.user_id == current_user_id).all()
     return {'songs': [song.to_dict() for song in songs]}, 200
-#get a song
+
+#get a song(done)
 @song_routes.route('/<int:song_id>', methods=['GET'])
 def get_song(song_id):
     song_info = Song.query.get(song_id)
@@ -29,17 +32,52 @@ def get_song(song_id):
             'statusCode': 404
         }},404
 
-#upload song (ask)
+
+@song_routes.route('/', methods=['POST'])
+@login_required
+def upload_song():
+    current_user_info = current_user.to_dict()
+    current_user_id = current_user_info['id']
+    form = UploadSongForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        song_file = request.files.get('file_path')
+        # Check if the file has an allowed extension (e.g., mp3, wav)
+        if not allowed_file(song_file.filename):
+            return jsonify({'error': 'Invalid file format'}), 400
+         # Generate a unique filename for the uploaded song
+        # unique_filename = get_unique_filename(song_file.filename)
+
+        #upload to s3
+        result = upload_file_to_s3(song_file)
+
+        if 'url' in result:
+            s3_url = result['url']
+
+            new_song = Song(
+                name=form.data['name'],
+                artist = form.data['artist'],
+                genre = form.data['genre'],
+                cover_photo = form.data['cover_photo'],
+                file_path = s3_url
+            )
+            db.session.add(new_song)
+            db.session.commit()
+            return new_song.to_dict(), 201
+        else:
+            return jsonify({'error': 'Failed to upload song'}), 500
+    return jsonify({'error': 'Invalid form data'}), 400
+
+
 
 
 #update a song
 @song_routes.route('/<int:song_id>', methods=['PUT'])
 @login_required
 def update_song(song_id):
-    current_user_info = current_user.to_dict()
-    current_user_id = current_user_info['id']
     update_song = Song.query.get(song_id)
-    form = UploadSongForm()
+    form = SongForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
@@ -47,8 +85,11 @@ def update_song(song_id):
         db.session.add(update_song)
         db.session.commit()
         return update_song.to_dict(), 201
+    else:
+        # Handle the case where form validation fails, for example, return an error response.
+        return {"errors": form.errors}, 400
 
-#delete a song
+#delete a song(done)
 @song_routes.route('/<int:song_id>', methods=['DELETE'])
 @login_required
 def delete_song(song_id):
@@ -84,23 +125,23 @@ def search_music(keyword):
 
 
 
-#get all comments base on a song
+#get all comments base on a song(done)
 @song_routes.route('/<int:song_id>/comments')
 def all_comments(song_id):
     comments = Comment.query.filter(Comment.song_id == song_id)
     return {'comments': [comment.to_dict() for comment in comments]}, 200
 
-#create a comment for song
+#create a comment for song(done)
 @song_routes.route('/<int:song_id>/comments', methods=['POST'])
 @login_required
-def post_comment():
+def post_comment(song_id):
     form = CommentForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
         new_comment = Comment()
         form.populate_obj(new_comment)
-        # new_comment.song_id = song_id
+        new_comment.song_id = song_id
         db.session.add(new_comment)
         db.session.commit()
         return new_comment.to_dict(), 201
@@ -109,7 +150,7 @@ def post_comment():
             'errors': form.errors
         }, 400
 
-#update a comment for a song
+#update a comment for a song(done)
 @song_routes.route('/comments/<int:comment_id>', methods=['PUT'])
 @login_required
 def update_comment(comment_id):
@@ -132,7 +173,7 @@ def update_comment(comment_id):
     else:
         return jsonify({"errors": form.errors}), 400
 
-#delete a comment
+#delete a comment(done)
 @song_routes.route('/comments/<int:comment_id>', methods=['DELETE'])
 @login_required
 def delete_comment(comment_id):
