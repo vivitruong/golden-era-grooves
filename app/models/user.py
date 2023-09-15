@@ -16,7 +16,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), nullable=False, unique=True)
     first_name = db.Column(db.String(50), nullable=False)
     last_name = db.Column(db.String(50), nullable=False)
-    bio = db.Column(db.String(2000))
+    bio = db.Column(db.String(2000), nullable=True)
     image_url = db.Column(db.String(1000), nullable=True)
     hashed_password = db.Column(db.String(255), nullable=False)
     # created_at = db.Column(db.DateTime, default=datetime.now)
@@ -51,6 +51,6 @@ class User(db.Model, UserMixin):
             'lastName': self.last_name,
             'bio': self.bio,
             'imageUrl': self.image_url,
-            # 'joinedAt': self.created_at
+
 
         }
