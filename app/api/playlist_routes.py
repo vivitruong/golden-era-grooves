@@ -7,7 +7,7 @@ from app.forms import PlaylistForm, AddSongForm
 playlist_routes = Blueprint('playlists', __name__)
 
 #get all playlist(done)
-@playlist_routes.route('/all')
+@playlist_routes.route('/')
 def get_all():
     playlists = Playlist.query.all()
     return {
@@ -44,7 +44,7 @@ def get_list(playlist_id):
         }}, 403
     return playlist.to_dict(), 200
 
-#create playlist
+#create playlist(done)
 @playlist_routes.route('/', methods=['POST'])
 @login_required
 def create_playlist():
@@ -68,35 +68,32 @@ def create_playlist():
     if form.errors:
         return {'error': form.errors}, 400
 
-#update a playlist
+#update a playlist(done)
 @playlist_routes.route('/<int:playlist_id>', methods=['PUT'])
 @login_required
 def update_playlist(playlist_id):
     current_user_info = current_user.to_dict()
     current_user_id = current_user_info['id']
     update_playlist = Playlist.query.get(playlist_id)
-    if update_playlist:
+    form = PlaylistForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
         if update_playlist.user_id == current_user_id:
-            data = request.get_json()
-            if data['name'].isspace() or not data['name']:
-                return { 'error ': {
-                    'message': 'Name cannot be blank',
-                    'statusCode': 400
-                }}, 400
-            update_playlist.name = data['name']
-            update_playlist.description = data['description']
+            new_name = form.data['name']
+            new_description = form.data['description']
+
+            update_playlist.name = new_name
+            update_playlist.description = new_description
             db.session.commit()
             return update_playlist.to_dict(), 200
         else:
             return {'error': {
-                'message': 'Forbidden',
+                'message':'Forbidden',
                 'statusCode': 403
             }}, 403
-    else:
-        return { 'error' : {
-            'message': 'Cannot find playlist',
-            'statusCode': 404
-        }}, 404
+    if form.errors:
+        return{ 'error': form.errors}, 400
+
 
 #delete a playlist(done)
 @playlist_routes.route('/<int:playlist_id>', methods=['DELETE'])

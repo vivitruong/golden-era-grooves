@@ -3,11 +3,12 @@ from flask_login import login_required, current_user
 from app.models import db, Song, Comment, likes, User
 from app.forms import CommentForm, LikeForm, UploadSongForm, SongForm
 from app.aws import (upload_file_to_s3, allowed_file, get_unique_filename)
-
+from app.api.auth_routes import validation_errors_to_error_messages
+from sqlalchemy import select, func
 
 song_routes = Blueprint('songs', __name__)
 #get all song(done)
-@song_routes.route('/all')
+@song_routes.route('/')
 def get_all_songs():
     songs = Song.query.all()
     return {'songs': [song.to_dict() for song in songs]}, 200
@@ -42,37 +43,40 @@ def upload_song():
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
-        song_file = request.files.get('file_path')
-        # Check if the file has an allowed extension (e.g., mp3, wav)
-        if not allowed_file(song_file.filename):
-            return jsonify({'error': 'Invalid file format'}), 400
-         # Generate a unique filename for the uploaded song
-        # unique_filename = get_unique_filename(song_file.filename)
+        if form.data['file_path']:
+            songfile = form.data['file_path']
+            songfile.filename = get_unique_filename(songfile.filename)
+            upload = upload_file_to_s3(songfile)
+            print('upload--------', upload)
+            if "url" not in upload:
+                return {'errors': validation_errors_to_error_messages(upload)}, 400
+            song_url = upload["url"]
+        else: song_url = None
+        if form.data['cover_photo']:
+            coverphoto = form.data['cover_photo']
+            coverphoto.filename = get_unique_filename(coverphoto.filename)
+            upload2 = upload_file_to_s3(coverphoto)
+            if 'url' not in upload2:
+                return  {'errors': validation_errors_to_error_messages(upload2)}, 400
+            coverphoto_url = upload2['url']
+        else: coverphoto_url = None
 
-        #upload to s3
-        result = upload_file_to_s3(song_file)
+        new_song = Song(
+            name=form.data['name'],
+            artist = form.data['artist'],
+            genre = form.data['genre'],
+            cover_photo = coverphoto_url,
+            file_path = song_url,
+            user_id = current_user_id
 
-        if 'url' in result:
-            s3_url = result['url']
-
-            new_song = Song(
-                name=form.data['name'],
-                artist = form.data['artist'],
-                genre = form.data['genre'],
-                cover_photo = form.data['cover_photo'],
-                file_path = s3_url
-            )
-            db.session.add(new_song)
-            db.session.commit()
-            return new_song.to_dict(), 201
-        else:
-            return jsonify({'error': 'Failed to upload song'}), 500
+        )
+        db.session.add(new_song)
+        db.session.commit()
+        return new_song.to_dict(), 201
     return jsonify({'error': 'Invalid form data'}), 400
 
 
-
-
-#update a song
+#update a song(cannot uppdate artist)
 @song_routes.route('/<int:song_id>', methods=['PUT'])
 @login_required
 def update_song(song_id):
@@ -86,7 +90,7 @@ def update_song(song_id):
         db.session.commit()
         return update_song.to_dict(), 201
     else:
-        # Handle the case where form validation fails, for example, return an error response.
+
         return {"errors": form.errors}, 400
 
 #delete a song(done)
@@ -116,11 +120,13 @@ def delete_song(song_id):
             }
         }, 404
 
-#search song
+#search song(nice vivi you are the best! its working! you are so smart!!!!)
 @song_routes.route('/search/<string:keyword>')
 def search_music(keyword):
-    result = [{'song': item.name, 'artist': item.artist, 'id': item.id} for item in Song.query.filter(Song.name.ilike(f'%{keyword}%') | Song.artist.ilike(
-    f'%{keyword}%')).order_by(Song.name.startswith(keyword), Song.artist.startswith(keyword)).limit(10)]
+    result = [{'song': item.name, 'artist': item.artist, 'id': item.id} for item in Song.query.filter(Song.name.ilike(f'%{keyword}%') | Song.artist.ilike(f'%{keyword}%')).order_by(
+            func.char_length(func.replace(Song.name, keyword, '')),
+            func.char_length(func.replace(Song.artist, keyword, ''))
+    ).limit(10)]
     return jsonify(result)
 
 
@@ -192,3 +198,52 @@ def delete_comment(comment_id):
         return jsonify({'message': 'Comment deleted successfully'}), 200
     except Exception:
         return {'error': 'There is an error'}, 500
+
+#get all likes for a song by song id(done)
+@song_routes.route('<int:song_id>/likes')
+def all_like(song_id):
+    stmt = select(likes)
+    result = db.session.execute(stmt)
+
+    all_like = result.fetchall()
+    filtered = filter(lambda like: like[1] == song_id, all_like)
+    dict_version = dict(filtered)
+
+    valuesI = dict_version.values()
+    total_likes = len(list(valuesI))
+    return {'likes': total_likes}, 200
+    # all_like = db.session.execute(db.select(likes).fetchall())
+    # filtered = filter(lambda like: like[1] == song_id, all_like)
+    # dict_version = dict(filtered)
+
+    # valuesI = dict_version.values()
+    # total_likes = len(list(valuesI))
+    # return {'likes': total_likes}, 200
+
+#create like for a song by song-id(maybe) will check back when test with react.
+@song_routes.route('<int:song_id>/likes', methods=['POST'])
+def post_like(song_id):
+    form = LikeForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        user_id = form.users.data
+        selected_songs = Song.query.get(song_id)
+        selected_users = User.query.get(user_id)
+
+        if selected_songs is None:
+            return jsonify({'error': 'Song not found'}), 404
+
+        if selected_users is None:
+            return jsonify({'error': 'User not found'}), 404
+
+        if selected_users in selected_songs.liked_songs:
+            selected_songs.liked_songs.remove(selected_users)
+            db.session.commit()
+            return all_like(song_id)
+        else:
+            selected_songs.liked_songs.append(selected_users)
+            db.session.commit()
+            return all_like(song_id)
+
+    return jsonify({'error': 'Invalid form data'}), 400
