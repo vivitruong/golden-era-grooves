@@ -6,6 +6,13 @@ from app.aws import (upload_file_to_s3, allowed_file, get_unique_filename)
 from app.api.auth_routes import validation_errors_to_error_messages
 from sqlalchemy import select, func
 
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+client_id = os.environ.get('CLIENT_ID')
+client_secret = os.environ.get('CLIENT_SECRET')
+
 song_routes = Blueprint('songs', __name__)
 #get all song(done)
 @song_routes.route('/')
