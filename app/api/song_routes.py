@@ -5,13 +5,68 @@ from app.forms import CommentForm, LikeForm, UploadSongForm, SongForm
 from app.aws import (upload_file_to_s3, allowed_file, get_unique_filename)
 from app.api.auth_routes import validation_errors_to_error_messages
 from sqlalchemy import select, func
-
+import base64
+import json
+from requests import post, get
 from dotenv import load_dotenv
 import os
 
 load_dotenv()
 client_id = os.environ.get('CLIENT_ID')
 client_secret = os.environ.get('CLIENT_SECRET')
+
+def get_token():
+    auth_string = client_id + ":" + client_secret
+    auth_bytes = auth_string.encode("utf-8")
+    auth_base64 = str(base64.b64encode(auth_bytes), 'utf-8')
+
+    url = 'https://accounts.spotify.com/api/token'
+    headers = {
+        'Authorization': 'Basic ' + auth_base64,
+        'Content-Type': 'application/x-www-form-urlencoded'
+    }
+    data = {'grant_type': 'client_credentials'}
+    result = post(url, headers=headers, data=data)
+    json_result = json.loads(result.content)
+    token = json_result['access_token']
+    return token
+
+def get_auth_header(token):
+    return {'Authorization': 'Bearer ' + token}
+#search artist
+def search_for_artist(token, artist_name):
+    url = 'http://api.spotify.com/v1/search'
+    headers = get_auth_header(token)
+    query = f'?q={artist_name}&type=artist&limit=1'
+
+    query_url = url + query
+    result = get(query_url, headers=headers)
+    json_result = json.loads(result.content)['artists']['items']
+    if len(json_result) == 0:
+        print('No artist with this name exists...')
+        return None
+    return json_result[0]
+#search songs
+def get_songs_by_artist(token, artist_id):
+    url = f'http://api.spotify.com/v1/artists/{artist_id}/top-tracks?country=US'
+    headers = get_auth_header(token)
+
+    result = get(url, headers=headers)
+    json_result = json.loads(result.content)['tracks']
+
+    return json_result
+
+
+
+
+# token = get_token()
+# # result1 = search_for_artist(token, 'ACDC')
+# # artist_id = result1['id']
+# songs = get_songs_by_artist(token, artist_id)
+# for idx, song in enumerate(songs):
+#     print(f"{idx+1}. {song['name']}")
+
+
 
 song_routes = Blueprint('songs', __name__)
 #get all song(done)
@@ -49,46 +104,54 @@ def upload_song():
     form = UploadSongForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
-    if form.validate_on_submit():
-        if form.data['file_path']:
-            songfile = form.data['file_path']
-            songfile.filename = get_unique_filename(songfile.filename)
-            upload = upload_file_to_s3(songfile)
-            print('upload--------', upload)
-            if "url" not in upload:
-                return {'errors': validation_errors_to_error_messages(upload)}, 400
-            song_url = upload["url"]
-        else: song_url = None
-        if form.data['cover_photo']:
-            coverphoto = form.data['cover_photo']
-            coverphoto.filename = get_unique_filename(coverphoto.filename)
-            upload2 = upload_file_to_s3(coverphoto)
-            if 'url' not in upload2:
-                return  {'errors': validation_errors_to_error_messages(upload2)}, 400
-            coverphoto_url = upload2['url']
-        else: coverphoto_url = None
+    print('Request Files:', request.files)  #
 
+    if request.files.get('file_path'):
+        songfile = request.files['file_path']
+        print('Received file_path:', songfile.filename)
+        songfile.filename = get_unique_filename(songfile.filename)
+        upload = upload_file_to_s3(songfile)
+
+        if "url" not in upload:
+            return {'errors': validation_errors_to_error_messages(upload)}, 400
+        song_url = upload["url"]
+    else:
+        song_url = None
+
+    if request.files.get('cover_photo'):
+        coverphoto = request.files['cover_photo']
+        print('Received cover_photo:', coverphoto.filename)
+        coverphoto.filename = get_unique_filename(coverphoto.filename)
+        upload2 = upload_file_to_s3(coverphoto)
+
+        if 'url' not in upload2:
+            return {'errors': validation_errors_to_error_messages(upload2)}, 400
+        coverphoto_url = upload2['url']
+    else:
+        coverphoto_url = None
+
+    if form.validate_on_submit():
         new_song = Song(
             name=form.data['name'],
-            artist = form.data['artist'],
-            genre = form.data['genre'],
-            cover_photo = coverphoto_url,
-            file_path = song_url,
-            user_id = current_user_id
-
+            artist=form.data['artist'],
+            genre=form.data['genre'],
+            cover_photo=coverphoto_url,
+            file_path=song_url,
+            user_id=current_user_id
         )
         db.session.add(new_song)
         db.session.commit()
         return new_song.to_dict(), 201
+
     return jsonify({'error': 'Invalid form data'}), 400
 
 
-#update a song(cannot uppdate artist)
+#update a song(done
 @song_routes.route('/<int:song_id>', methods=['PUT'])
 @login_required
 def update_song(song_id):
     update_song = Song.query.get(song_id)
-    form = SongForm()
+    form = UploadSongForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
@@ -127,7 +190,7 @@ def delete_song(song_id):
             }
         }, 404
 
-#search song(nice vivi you are the best! its working! you are so smart!!!!)
+#search song
 @song_routes.route('/search/<string:keyword>')
 def search_music(keyword):
     result = [{'song': item.name, 'artist': item.artist, 'id': item.id} for item in Song.query.filter(Song.name.ilike(f'%{keyword}%') | Song.artist.ilike(f'%{keyword}%')).order_by(
