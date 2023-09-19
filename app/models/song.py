@@ -31,9 +31,9 @@ class Song(db.Model):
             'name': self.name,
             'artist': self.artist,
             'genre': self.genre,
-            'userId': self.user_id,
-            'filePath': self.file_path,
-            'coverPhoto': self.cover_photo
+            'user_id': self.user_id,
+            'file_path': self.file_path,
+            'cover_photo': self.cover_photo
         }
 
 
