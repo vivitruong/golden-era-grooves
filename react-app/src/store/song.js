@@ -3,7 +3,7 @@ const LOAD_USERSONGS = 'songs/loadUserSongs';
 const ADD_SONG = 'songs/addSong';
 const REMOVE_SONG = 'songs/removeSong';
 const UPDATE_SONG = 'song/UPDATE_SONG'
-const LOAD_ONESONG = 'songs/loadOneSong'
+// const LOAD_ONESONG = 'songs/loadOneSong'
 
 export function loadAllSongs(songs) {
     return {
@@ -97,17 +97,17 @@ export const updateASong = (payload, songId) => async dispatch => {
     }
   }
 
-export const deleteSong = (songId) = async dispatch => {
-    const response = await fetch(`api/songs/${songId}`, {
-        method: 'DELETE'
-    })
-    if (response.ok) {
-        const deletionResponse = await response.json();
-        dispatch(removeSong(songId)
-        )
-        return deletionResponse
-    }
-}
+// export const deleteSong = (songId) = async dispatch => {
+//     const response = await fetch(`api/songs/${songId}`, {
+//         method: 'DELETE'
+//     })
+//     if (response.ok) {
+//         const deletionResponse = await response.json();
+//         dispatch(removeSong(songId)
+//         )
+//         return deletionResponse
+//     }
+// }
 
 function deepCopy(value) {
     if (typeof value === 'object') {

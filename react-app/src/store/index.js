@@ -15,7 +15,7 @@ const rootReducer = combineReducers({
   userSongs: userSongReducer,
   player: playerReducer,
   queue: queueReducer,
-  commentsReducer
+  // comments: commentsReducer
 
 });
 
