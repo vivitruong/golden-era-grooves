@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import ProfileDropDown from './Right/auth/ProfileDropDown';
 import { Modal } from './Modal';
 import LoginForm from './Right/auth/Login/LoginForm';
-import Player from './Right/Player';
+// import Player from './Right/Player';
 
 const NavBar = () => {
     const user = useSelector(state => state.session.user);
@@ -17,7 +17,7 @@ const NavBar = () => {
 
     return (
       <div className='navbar-container'>
-        <Player/>
+        {/* <Player/> */}
         <div className='navbar-button-signin'>
           {user == null &&
             <div className='navbar-signin' >
