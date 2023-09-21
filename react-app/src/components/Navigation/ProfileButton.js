@@ -4,7 +4,7 @@ import { logout } from "../../store/session";
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
-
+import './Navigation.css'
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
@@ -39,34 +39,39 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button onClick={openMenu}>
-        <i className="fas fa-user-circle" />
-      </button>
-      <ul className={ulClassName} ref={ulRef}>
-        {user ? (
-          <>
-            <li>{user.username}</li>
-            <li>{user.email}</li>
-            <li>
-              <button onClick={handleLogout}>Log Out</button>
-            </li>
-          </>
-        ) : (
-          <>
-            <OpenModalButton
-              buttonText="Log In"
-              onItemClick={closeMenu}
-              modalComponent={<LoginFormModal />}
-            />
+      <div onClick={openMenu} style={{ cursor: 'pointer' }}>
+  {/* <<i className="fas fa-user-circle" />> */}
+  <img style={{ width: '30px', height: 'auto' }}  src='https://goldeneragrooves.s3.us-east-2.amazonaws.com/windowPG.png' alt='signup'/>
+  <div className="menu-container">
+    <ul className={ulClassName} ref={ulRef}>
+      {user ? (
+        <>
+          <li>{user.username}</li>
+          <li>{user.email}</li>
+          <li>
+            <button onClick={handleLogout}>Log Out</button>
+          </li>
+        </>
+      ) : (
 
-            <OpenModalButton
-              buttonText="Sign Up"
-              onItemClick={closeMenu}
-              modalComponent={<SignupFormModal />}
-            />
-          </>
-        )}
-      </ul>
+        <div className="menu-items">
+          <OpenModalButton
+            buttonText="Log In"
+            onItemClick={closeMenu}
+            modalComponent={<LoginFormModal />}
+          />
+
+          <OpenModalButton
+            buttonText="Sign Up"
+            onItemClick={closeMenu}
+            modalComponent={<SignupFormModal />}
+          />
+          </div>
+
+      )}
+    </ul>
+  </div>
+</div>
     </>
   );
 }

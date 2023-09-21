@@ -1,1 +1,7 @@
 /* TODO Add site wide styles */
+body {
+    background-image: url('https://goldeneragrooves.s3.us-east-2.amazonaws.com/cloudscreen.jpg'); /* Replace with the path to your image */
+    background-size: cover;
+    background-repeat: no-repeat;
+    /* Add other styles as needed */
+  }

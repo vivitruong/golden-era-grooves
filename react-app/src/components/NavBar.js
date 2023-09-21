@@ -30,7 +30,6 @@ const NavBar = () => {
       </div>
 
       <div className="window-body">
-        {/* <p style={{ textAlign: "center" }}>Current count: {count}</p> */}
         <div className="field-row" style={{ justifyContent: "center" }}>
           <button onClick=''>Sign In</button>
           <button onClick=''>Sign Up</button>

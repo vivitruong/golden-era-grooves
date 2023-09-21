@@ -18,7 +18,7 @@ function App() {
 
   return (
     <>
-    <BrowserRouter>
+    {/* <BrowserRouter>
       <Switch>
         <Route exact path='/'>
           <>
@@ -31,8 +31,8 @@ function App() {
           </>
         </Route>
       </Switch>
-    </BrowserRouter>
-      {/* <Navigation isLoaded={isLoaded} />
+    </BrowserRouter> */}
+      <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
           <Route path="/login" >
@@ -42,7 +42,7 @@ function App() {
             <SignupFormPage />
           </Route>
         </Switch>
-      )} */}
+      )}
     </>
   );
 }
