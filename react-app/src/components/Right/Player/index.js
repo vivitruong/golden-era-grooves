@@ -4,7 +4,7 @@ import { useEffect} from 'react';
 import * as playerAction from '../../../store/player';
 import * as queueAction from '../../../store/queue';
 
-// import imgBox from '../Home/imgBox.png';
+
 
 const Player = () => {
     const { song, playing, duration, currentTime, volume, muted } = useSelector(state => state.player);

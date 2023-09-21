@@ -13,8 +13,8 @@ const rootReducer = combineReducers({
   playlists: playlistReducer,
   songs: songReducer,
   userSongs: userSongReducer,
-  // player: playerReducer,
-  // queue: queueReducer,
+  player: playerReducer,
+  queue: queueReducer,
   // comments: commentsReducer
 
 });
