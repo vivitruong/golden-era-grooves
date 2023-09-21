@@ -54,7 +54,7 @@
     background-color: #fff;
 }
 .app-left-search-focus {
-    border: 4px solid #d60017;
+    border: 4px solid #F2BED1;
     border-radius: 2px;
     height: 30px;
     color: #cccccc;
@@ -678,7 +678,7 @@
 
 .navbar-signin {
     cursor: pointer;
-    background-color: #d60017;
+    background-color: #F2BED1;
     color: #fff;
     padding: 0.5rem;
     border-radius: 0.5rem;
@@ -768,7 +768,7 @@
 }
 
 .login-info > button:hover {
-    background-color: var(--melodify-red-close);
+    background-color: #F2BED1;
     color: white;
     cursor: pointer;
 
@@ -791,15 +791,15 @@
 }
 
 .login-change-signup > span:hover {
-    color: var(--melodify-red-close);
+    color: #F2BED1;
 }
 
 .signup-change > span:hover {
-    color: var(--melodify-red-close);
+    color:#F2BED1;
 }
 
 .login-error {
-    color: var(--melodify-red-close);
+    color: #F2BED1;
     margin: 5px;
     font-weight: 500;
     font-size: 0.8rem;
@@ -856,14 +856,14 @@
 }
 
 .signup-info > button:hover {
-    background-color: var(--melodify-red-close);
+    background-color:#F2BED1;
     color: white;
     cursor: pointer;
 
 }
 
 .signup-password-err, .signup-email-err {
-    color: var(--melodify-red-close);
+    color:#F2BED1;
     font-size: 0.8rem;
     padding-top: 15px;
     text-align: left;
@@ -1459,7 +1459,7 @@ animation-name: quiet;
 }
 
 .ha-porfolio {
-    background-color: #da0f47;
+    background-color: #F2BED1;
     color: #fff;
 }
 .ha-resume > a, .ha-porfolio > a {
