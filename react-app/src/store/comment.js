@@ -90,7 +90,7 @@ const commentsReducer = (state = initialState, action) => {
                 newObj[comment.id] = comment
               })
 
-             newState.comments = newOb
+             newState.comments = newObj
              return newState
         }
 

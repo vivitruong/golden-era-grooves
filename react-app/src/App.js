@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+// import './components/stylesheet/app.css';
 import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
+import NavBar from "./components/NavBar";
+import "98.css";
+import Home from "./components/Right/Home";
+
 
 function App() {
   const dispatch = useDispatch();
@@ -15,6 +20,20 @@ function App() {
 
   return (
     <>
+    {/* <BrowserRouter>
+      <Switch>
+        <Route exact path='/'>
+          <>
+          <div className="app-right-container">
+            <>
+            <NavBar />
+            </>
+
+          </div>
+          </>
+        </Route>
+      </Switch>
+    </BrowserRouter> */}
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
@@ -24,7 +43,12 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
+          <Route>
+          <Home />
+      s
+          </Route>
         </Switch>
+
       )}
     </>
   );
