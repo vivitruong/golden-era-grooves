@@ -8,6 +8,8 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import NavBar from "./components/NavBar";
 import "98.css";
+import Home from "./components/Right/Home";
+
 
 function App() {
   const dispatch = useDispatch();
@@ -41,7 +43,12 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
+          <Route>
+          <Home />
+      s
+          </Route>
         </Switch>
+
       )}
     </>
   );
