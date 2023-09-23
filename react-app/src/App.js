@@ -9,6 +9,8 @@ import Navigation from "./components/Navigation";
 import NavBar from "./components/NavBar";
 import "98.css";
 import Home from "./components/Right/Home";
+import Player from './components/Right/Player'
+import Winamp from "./components/Right/Player";
 
 
 function App() {
@@ -45,7 +47,9 @@ function App() {
           </Route>
           <Route>
           <Home />
-      s
+          <Winamp />
+
+          {/* <Player /> */}
           </Route>
         </Switch>
 
