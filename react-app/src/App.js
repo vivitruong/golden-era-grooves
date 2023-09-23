@@ -47,7 +47,7 @@ function App() {
           </Route>
           <Route>
           <Home />
-          <Winamp />
+          {/* <Winamp /> */}
 
           {/* <Player /> */}
           </Route>
