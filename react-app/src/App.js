@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-// import './components/stylesheet/app.css';
+import './components/stylesheet/app.css';
 import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
@@ -11,6 +11,7 @@ import "98.css";
 import Home from "./components/Right/Home";
 import Player from './components/Right/Player'
 import Winamp from "./components/Right/Player";
+import Left from "./components/Left";
 
 
 function App() {
@@ -47,6 +48,7 @@ function App() {
           </Route>
           <Route>
           <Home />
+          <Left />
           {/* <Winamp /> */}
 
           {/* <Player /> */}

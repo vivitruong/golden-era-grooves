@@ -18,12 +18,12 @@ const DeletePlaylistForm = ({ playlist, onClose }) => {
             .catch(async (err) => {
                 return setValidationError(err[0]);
             });
-        if (response) {
-            if (playlist.id === queue.listId) {
-                dispatch(queueAction.updateList({list: []}))
-            }
-            onClose();
-        }
+        // if (response) {
+        //     if (playlist.id === queue.listId) {
+        //         dispatch(queueAction.updateList({list: []}))
+        //     }
+        //     onClose();
+
     };
 
     const handleClosebtn = (e) => {
