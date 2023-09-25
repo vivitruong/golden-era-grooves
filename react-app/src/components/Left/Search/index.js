@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import * as queueAction from "../../../store/queue";
+
 import { useDispatch } from "react-redux";
 
 const Search = () => {
@@ -29,7 +29,7 @@ const Search = () => {
 
     const onSongClick = (song) => () => {
         const songInfo = { name: song.song, id: song.id, artistName: song.artist };
-        dispatch(queueAction.updateList({ list: [songInfo] }));
+        // dispatch(queueAction.updateList({ list: [songInfo] }));
         setShowResult(false);
     };
 
