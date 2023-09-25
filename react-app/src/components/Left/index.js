@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import LabelledButton from '../LabelledButton'
 import Playlist from "./Playlist/Playlist";
+import Search from "./Search";
 const Left = () => {
     const [showModal, setShowModal] = useState(false);
     const user = useSelector(state => state.session.user);
@@ -22,7 +23,7 @@ const Left = () => {
                     Search
                 </span>
             </div> */}
-            {/* <Search/> */}
+            <Search/>
             <LabelledButton
                 child={
                     <div className='app-letf-listen'>

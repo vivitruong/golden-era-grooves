@@ -6,6 +6,7 @@ import { Modal } from '../../Modal';
 import UpdateBox from './UpdateBox';
 import { Link } from 'react-router-dom';
 
+
 const Playlist = () => {
     const dispatch = useDispatch();
     const playlists = useSelector(state => state.playlists.playlists);
