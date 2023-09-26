@@ -33,6 +33,7 @@ function App() {
             <div className='main-app'>
               <div className='app-left-container'>
                 <Left/>
+
               </div>
               <div className='app-right-container'>
                   <>
@@ -71,6 +72,7 @@ function App() {
                 <>
                   <NavBar />
                   <PlaylistPage/>
+
                 </>
               </div>
 
