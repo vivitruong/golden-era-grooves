@@ -26,6 +26,8 @@ function App() {
 
   return (
     <>
+     <Navigation isLoaded={isLoaded} />
+      {isLoaded && (
  <BrowserRouter>
       <Switch>
         <Route exact path='/'>
@@ -38,7 +40,7 @@ function App() {
               <div className='app-right-container'>
                   <>
                     {/* <NavBar /> */}
-                    <Navigation />
+                    {/* <Navigation /> */}
                     <Home/>
                   </>
               </div>
@@ -54,7 +56,8 @@ function App() {
               </div>
               <div className='app-right-container'>
                   <>
-                    <NavBar />
+                  {/* <Navigation /> */}
+                    {/* <NavBar /> */}
                     {/* <UploadSong/> */}
                 </>
               </div>
@@ -70,7 +73,7 @@ function App() {
               </div>
               <div className='app-right-container'>
                 <>
-                <Navigation />
+                {/* <Navigation /> */}
                   {/* <NavBar /> */}
                   <PlaylistPage/>
 
@@ -88,7 +91,7 @@ function App() {
               </div>
               <div className='app-right-container'>
                 <>
-                <Navigation/>
+                {/* <Navigation/> */}
                 {/* <NavBar /> */}
                 {/* <UserPage /> */}
                 </>
@@ -105,7 +108,7 @@ function App() {
             </div>
             <div className='app-right-container'>
                 <>
-                <Navigation />
+                {/* <Navigation /> */}
                   {/* <NavBar /> */}
                   <NotFound/>
                 </>
@@ -116,6 +119,7 @@ function App() {
         </Route>
       </Switch>
     </BrowserRouter>
+      )}
       {/* <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
