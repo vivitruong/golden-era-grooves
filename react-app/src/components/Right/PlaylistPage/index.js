@@ -36,7 +36,7 @@ const PlaylistPage = () => {
         dispatch(queueAction.deleteSong(song.songId));
     };
     const onSongClick = (i, song) => () => {
-        const songInfo = { id: song.songId, artistName: song.song.artistName, name: song.song.name};
+        const songInfo = { id: song.songId, artist: song.song.artist, name: song.song.name};
         if (listId === +playlistId) {
             dispatch(queueAction.playSong(i));
         } else {
@@ -82,7 +82,7 @@ const PlaylistPage = () => {
                             <span>Title</span>
                             <span>Artist</span>
                             <span>Genre</span>
-                            <span>Time</span>
+                            {/* <span>Time</span> */}
                             <span></span>
                         </div>
                     }
@@ -106,16 +106,16 @@ const PlaylistPage = () => {
                                         {song.song.name}
                                     </span>
                                     <span className='listpage-content-name'>
-                                        {song.song.artistName}
+                                        {song.song.artist}
                                     </span>
                                     <span className='listpage-content-name'>
                                         {song.song.genre}
                                     </span>
-                                    <span className='listpage-content-name'>
+                                    {/* <span className='listpage-content-name'>
                                         {
                                             changeSecondToTime(song.song.length)
                                         }
-                                    </span>
+                                    </span> */}
                                     <span onClick={removeSong(i, song)}>
                                         <i className="fa-solid fa-xmark"></i>
                                     </span>

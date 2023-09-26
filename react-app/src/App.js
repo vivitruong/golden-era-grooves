@@ -70,7 +70,8 @@ function App() {
               </div>
               <div className='app-right-container'>
                 <>
-                  <NavBar />
+                <Navigation />
+                  {/* <NavBar /> */}
                   <PlaylistPage/>
 
                 </>
@@ -87,7 +88,8 @@ function App() {
               </div>
               <div className='app-right-container'>
                 <>
-                <NavBar />
+                <Navigation/>
+                {/* <NavBar /> */}
                 {/* <UserPage /> */}
                 </>
               </div>
@@ -103,7 +105,8 @@ function App() {
             </div>
             <div className='app-right-container'>
                 <>
-                  <NavBar />
+                <Navigation />
+                  {/* <NavBar /> */}
                   <NotFound/>
                 </>
                 {/* <Footer/> */}
