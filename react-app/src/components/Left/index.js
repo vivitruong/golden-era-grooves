@@ -12,22 +12,15 @@ const Left = () => {
     return (
         <div className='app-left-main'>
             <Link className='app-left-logo' to='/'>
-                <img className='main-logo' alt='logo'/>
-                <span style={{fontSize: '1.4rem'}}>GEG</span>
+                <img src='https://goldeneragrooves.s3.us-east-2.amazonaws.com/4.png' className='main-logo' alt='logo'/>
+                <span style={{fontSize: '1.4rem'}}>GEGrooves</span>
             </Link>
-            {/* <div className='app-left-search' style={{cursor:"default"}}>
-                <span className="material-symbols-outlined" style={{padding: 8, cursor:"default"}}>
-                    search
-                </span>
-                <span style={{ padding: 6}}>
-                    Search
-                </span>
-            </div> */}
+
             <Search/>
             <LabelledButton
                 child={
                     <div className='app-letf-listen'>
-                        <img className='playmusic-logo' alt='logo' />
+                        <img src='https://goldeneragrooves.s3.us-east-2.amazonaws.com/3.png' className='playmusic-logo' alt='logo' />
                         <span> Listen Now</span>
                     </div>
                 }
@@ -35,12 +28,12 @@ const Left = () => {
             <LabelledButton
                 child={
                     <div className='app-left-radio'>
-                        <img className='radio-logo' alt='logo' />
+                        <img src="https://goldeneragrooves.s3.us-east-2.amazonaws.com/1.png" className='radio-logo' alt='logo' />
                         <span>Radio</span>
                     </div>}
             />
             {user !== null &&  <div onClick={() => setShowModal(true)} className='app-left-make-playlistcomp'>
-                <img  className='main-logo' alt='logo'/>
+                <img src="https://goldeneragrooves.s3.us-east-2.amazonaws.com/2.png" className='main-logo' alt='logo'/>
                 <span>New Playlist</span>
             </div>
 

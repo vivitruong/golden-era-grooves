@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 // import * as playerAction from '../../../store/player';
 // import * as queueAction from '../../../store/queue';
 import WaveBox from "../../Box";
-import NotFound from "../../Notfound";
+import NotFound from "../../NotFound";
 import MiniBox from '../../MiniBox';
 import * as playlistAction from "../../../store/playlist";
 function changeSecondToTime(length) {
