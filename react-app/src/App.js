@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-// import './components/stylesheet/app.css';
+import './components/stylesheet/app.css';
 import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
@@ -11,6 +11,8 @@ import "98.css";
 import Home from "./components/Right/Home";
 import Player from './components/Right/Player'
 import Winamp from "./components/Right/Player";
+import Left from "./components/Left";
+import PlaylistPage from "./components/Right/PlaylistPage";
 
 
 function App() {
@@ -39,19 +41,25 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route path="/login" >
+          {/* <Route path="/login" >
             <LoginFormPage />
           </Route>
           <Route path="/signup">
             <SignupFormPage />
-          </Route>
-          <Route>
+          </Route> */}
+          <Route path='/'>
           <Home />
+          <Left />
           {/* <Winamp /> */}
 
           {/* <Player /> */}
           </Route>
+          <Route path='/playlists/:playlistId'>
+          <PlaylistPage/>
+
+          </Route>
         </Switch>
+
 
       )}
     </>

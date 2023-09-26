@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux';
 const DeletePlaylistForm = ({ playlist, onClose }) => {
     const dispatch = useDispatch();
     const [validationError, setValidationError] = useState('');
-    const queue = useSelector(state => state.queue);
+    // const queue = useSelector(state => state.queue);
 
     const handleDeletebtn = async (e) => {
         e.stopPropagation();
@@ -19,11 +19,11 @@ const DeletePlaylistForm = ({ playlist, onClose }) => {
                 return setValidationError(err[0]);
             });
         if (response) {
-            if (playlist.id === queue.listId) {
-                dispatch(queueAction.updateList({list: []}))
-            }
+            // if (playlist.id === queue.listId) {
+            //     dispatch(queueAction.updateList({list: []}))
+            // }
             onClose();
-        }
+
     };
 
     const handleClosebtn = (e) => {
@@ -56,6 +56,7 @@ const DeletePlaylistForm = ({ playlist, onClose }) => {
             </div>
         </div>
     );
+}
 }
 
 export default DeletePlaylistForm;

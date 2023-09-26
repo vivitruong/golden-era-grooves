@@ -4,9 +4,7 @@ import session from './session'
 import playlistReducer from './playlist';
 import songReducer from './song';
 import userSongReducer from './userSong';
-// import playerReducer from './player';
-// import queueReducer from './queue';
-// import commentsReducer from './comment';
+
 
 
 const rootReducer = combineReducers({
@@ -14,10 +12,6 @@ const rootReducer = combineReducers({
   playlists: playlistReducer,
   songs: songReducer,
   userSongs: userSongReducer,
-  // player: playerReducer,
-  // queue: queueReducer,
-  // comments: commentsReducer
-
 
 });
 
