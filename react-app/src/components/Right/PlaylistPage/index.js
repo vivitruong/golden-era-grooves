@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 // import * as playerAction from '../../../store/player';
 // import * as queueAction from '../../../store/queue';
-// import WaveBox from "../../Box";
+import WaveBox from "../../Box";
 // import NotFound from "../../Notfound";
-// import MiniBox from "../../MiniBox";
+import MiniBox from '../../MiniBox';
 import * as playlistAction from "../../../store/playlist";
 function changeSecondToTime(length) {
     const minute = Math.floor(length % 3600 / 60).toString().padStart(2, '0');
@@ -68,10 +68,10 @@ const PlaylistPage = () => {
                                 ((listId !== +playlistId || !playing) && playlists[+playlistId].playlist_songs.length > 0) &&
                                 // <i className="fa-solid fa-play listpage-title-playbtn" onClick={onPlaylistClick(playlists[+playlistId])}/>
                             } */}
-                            {/* {
+                            {
                                 list !== null && playing && listId === +playlistId &&
                                 <WaveBox/>
-                            } */}
+                            }
                         </div>
                         <span>{playlists[+playlistId].name}</span>
                     </div>
@@ -99,7 +99,7 @@ const PlaylistPage = () => {
                                     {
                                         playing && playedSong.fileId === song.song.fileId &&
                                         <span>
-                                               {/* <MiniBox/> */} mini box here
+                                               <MiniBox/>
                                         </span>
                                     }
                                     {/* <span onClick={onSongClick(i, song)} className='listpage-content-name listname-hover' style={{cursor:"pointer", padding:"1px"}}>
