@@ -12,6 +12,7 @@ import Home from "./components/Right/Home";
 import Player from './components/Right/Player'
 import Winamp from "./components/Right/Player";
 import Left from "./components/Left";
+import PlaylistPage from "./components/Right/PlaylistPage";
 
 
 function App() {
@@ -53,7 +54,12 @@ function App() {
 
           {/* <Player /> */}
           </Route>
+          <Route path='/playlists/:playlistId'>
+          <PlaylistPage/>
+
+          </Route>
         </Switch>
+
 
       )}
     </>
