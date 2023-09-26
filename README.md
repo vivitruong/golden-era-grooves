@@ -1,6 +1,6 @@
-# Flask React Project
+# Welcome to Golden Era Grooves
 
-This is the starter for the Flask React project.
+This is my final project that associated with App Academy. Golden Era Grooves is a music streaming app that allows users to play and share their favorite songs. Inspired by Spotify, but with a little touch of Window 98 UI, it brings back the memory when I first have my first ever computer. This app was developed by using a combination of Python, Flask, React, Redux, SQLAlchemy and Postgres.
 
 ## Getting started
 1. Clone this repository (only this branch)

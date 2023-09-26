@@ -13,6 +13,8 @@ import Player from './components/Right/Player'
 import Winamp from "./components/Right/Player";
 import Left from "./components/Left";
 import PlaylistPage from "./components/Right/PlaylistPage";
+import ProtectedRoute from './components/ProtectedRoute';
+import NotFound from "./components/NotFound";
 
 
 function App() {
@@ -24,36 +26,116 @@ function App() {
 
   return (
     <>
-    {/* <BrowserRouter>
+     <Navigation isLoaded={isLoaded} />
+      {isLoaded && (
+ <BrowserRouter>
       <Switch>
         <Route exact path='/'>
           <>
-          <div className="app-right-container">
-            <>
-            <NavBar />
-            </>
+            <div className='main-app'>
+              <div className='app-left-container'>
+                <Left/>
 
-          </div>
+              </div>
+              <div className='app-right-container'>
+                  <>
+                    {/* <NavBar /> */}
+                    {/* <Navigation /> */}
+                    <Home/>
+                  </>
+              </div>
+
+            </div>
+          </>
+        </Route>
+        <ProtectedRoute path='/upload'>
+          <>
+            <div className='main-app'>
+              <div className='app-left-container'>
+              <Left/>
+              </div>
+              <div className='app-right-container'>
+                  <>
+                  {/* <Navigation /> */}
+                    {/* <NavBar /> */}
+                    {/* <UploadSong/> */}
+                </>
+              </div>
+
+            </div>
+            </>
+        </ProtectedRoute>
+        <ProtectedRoute path='/playlists/:playlistId'>
+          <>
+            <div className='main-app'>
+              <div className='app-left-container'>
+               <Left/>
+              </div>
+              <div className='app-right-container'>
+                <>
+                {/* <Navigation /> */}
+                  {/* <NavBar /> */}
+                  <PlaylistPage/>
+
+                </>
+              </div>
+
+            </div>
+          </>
+        </ProtectedRoute>
+        <ProtectedRoute path='/profile'>
+          <>
+            <div className='main-app'>
+              <div className='app-left-container'>
+              <Left/>
+              </div>
+              <div className='app-right-container'>
+                <>
+                {/* <Navigation/> */}
+                {/* <NavBar /> */}
+                {/* <UserPage /> */}
+                </>
+              </div>
+
+            </div>
+          </>
+        </ProtectedRoute>
+        <Route>
+          <>
+            <div className='main-app'>
+            <div className='app-left-container'>
+               <Left/>
+            </div>
+            <div className='app-right-container'>
+                <>
+                {/* <Navigation /> */}
+                  {/* <NavBar /> */}
+                  <NotFound/>
+                </>
+                {/* <Footer/> */}
+              </div>
+            </div>
           </>
         </Route>
       </Switch>
-    </BrowserRouter> */}
-      <Navigation isLoaded={isLoaded} />
+    </BrowserRouter>
+      )}
+      {/* <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          {/* <Route path="/login" >
+          <Route path="/login" >
             <LoginFormPage />
           </Route>
           <Route path="/signup">
             <SignupFormPage />
-          </Route> */}
+          </Route>
           <Route path='/'>
           <Home />
           <Left />
-          {/* <Winamp /> */}
+          <Winamp /> */}
 
           {/* <Player /> */}
-          </Route>
+          {/* </Route>
           <Route path='/playlists/:playlistId'>
           <PlaylistPage/>
 
@@ -61,7 +143,7 @@ function App() {
         </Switch>
 
 
-      )}
+      )} */}
     </>
   );
 }
