@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux';
 const DeletePlaylistForm = ({ playlist, onClose }) => {
     const dispatch = useDispatch();
     const [validationError, setValidationError] = useState('');
-    const queue = useSelector(state => state.queue);
+    // const queue = useSelector(state => state.queue);
 
     const handleDeletebtn = async (e) => {
         e.stopPropagation();

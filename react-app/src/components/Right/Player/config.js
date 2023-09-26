@@ -3,7 +3,7 @@ const album = 'netBloc Vol. 24: tiuqottigeloot';
 export const initialTracks = [
   {
     url:
-      'https://raw.githubusercontent.com/captbaritone/webamp-music/4b556fbf/Diablo_Swing_Orchestra_-_01_-_Heroines.mp3',
+      'https://sadhost.neocities.org/music/Boy.mp3',
     duration: 322.612245,
     metaData: {
       title: 'Melody',
@@ -13,7 +13,7 @@ export const initialTracks = [
   },
   {
     url:
-      'https://raw.githubusercontent.com/captbaritone/webamp-music/4b556fbf/Eclectek_-_02_-_We_Are_Going_To_Eclecfunk_Your_Ass.mp3',
+      'https://goldeneragrooves.s3.us-east-2.amazonaws.com/a-small-miracle-132333.mp3',
     duration: 190.093061,
     metaData: {
       title: 'Eternal Echoes',

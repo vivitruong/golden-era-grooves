@@ -49,7 +49,7 @@ function App() {
           <Route>
           <Home />
           <Left />
-          <Winamp />
+          {/* <Winamp /> */}
 
           {/* <Player /> */}
           </Route>
