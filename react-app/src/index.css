@@ -3,5 +3,10 @@ body {
     background-image: url('https://goldeneragrooves.s3.us-east-2.amazonaws.com/cloudscreen.jpg'); /* Replace with the path to your image */
     background-size: cover;
     background-repeat: no-repeat;
+    font-family: 'ms-sans-serif', sans-serif;
     /* Add other styles as needed */
   }
+@font-face {
+  font-family: 'ms-sans-serif-bold ';
+  src: url('../public/ms-sans-serif-bold.otf/ms-sans-serif-bold.otf')  format('truetype');
+}
