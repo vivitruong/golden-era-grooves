@@ -14,6 +14,7 @@ class Song(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     file_path = db.Column(db.String, nullable=True)
     cover_photo = db.Column(db.String, nullable=True)
+    duration = db.Column(db.Integer, nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.now)
     updated_at = db.Column(db.DateTime, default=datetime.now)
 
@@ -33,7 +34,8 @@ class Song(db.Model):
             'genre': self.genre,
             'user_id': self.user_id,
             'file_path': self.file_path,
-            'cover_photo': self.cover_photo
+            'cover_photo': self.cover_photo,
+            'duaration': self.duration
         }
 
 
