@@ -7,7 +7,8 @@ def seed_songs():
         genre='Instrumental',
         artist='Batman',
         cover_photo='https://goldeneragrooves.s3.us-east-2.amazonaws.com/avatar1.png',
-        file_path='https://goldeneragrooves.s3.us-east-2.amazonaws.com/a-small-miracle-132333.mp3'
+        file_path='https://goldeneragrooves.s3.us-east-2.amazonaws.com/a-small-miracle-132333.mp3',
+        duration='1.23'
     )
     demo_song2 = Song(
         user_id = 1,
@@ -15,8 +16,8 @@ def seed_songs():
         genre='Pop',
         artist='Vivi',
         cover_photo='https://goldeneragrooves.s3.us-east-2.amazonaws.com/avatar2.png',
-        file_path='https://goldeneragrooves.s3.us-east-2.amazonaws.com/cinematic-fairy-tale-story-main-8697.mp3'
-
+        file_path='https://goldeneragrooves.s3.us-east-2.amazonaws.com/cinematic-fairy-tale-story-main-8697.mp3',
+        duration='1.2'
     )
     demo_song3 = Song(
         user_id = 1,
@@ -24,8 +25,8 @@ def seed_songs():
         genre='Rock',
         artist='50cent',
         cover_photo='https://goldeneragrooves.s3.us-east-2.amazonaws.com/avatar3.png',
-        file_path='https://goldeneragrooves.s3.us-east-2.amazonaws.com/forest-lullaby-110624.mp3'
-
+        file_path='https://goldeneragrooves.s3.us-east-2.amazonaws.com/forest-lullaby-110624.mp3',
+        duration='1.20'
     )
     demo_song4 = Song(
         user_id = 2,
@@ -33,8 +34,8 @@ def seed_songs():
         genre='Country',
         artist='Lily Aurora',
         cover_photo='https://goldeneragrooves.s3.us-east-2.amazonaws.com/avatar4.png',
-        file_path='https://goldeneragrooves.s3.us-east-2.amazonaws.com/just-relax-11157.mp3'
-
+        file_path='https://goldeneragrooves.s3.us-east-2.amazonaws.com/just-relax-11157.mp3',
+        duration='1.21'
     )
     demo_song5 = Song(
         user_id = 2,
@@ -42,8 +43,8 @@ def seed_songs():
         genre='Blues',
         artist='Leo Stone',
         cover_photo='https://goldeneragrooves.s3.us-east-2.amazonaws.com/avatar5.png',
-        file_path='https://goldeneragrooves.s3.us-east-2.amazonaws.com/lofi-study-112191.mp3'
-
+        file_path='https://goldeneragrooves.s3.us-east-2.amazonaws.com/lofi-study-112191.mp3',
+        duration='1.22'
     )
     demo_song6 = Song(
         user_id = 1,
@@ -51,8 +52,8 @@ def seed_songs():
         genre='Jazz',
         artist='Oliver Rain',
         cover_photo='https://goldeneragrooves.s3.us-east-2.amazonaws.com/avatar6.png',
-        file_path='https://goldeneragrooves.s3.us-east-2.amazonaws.com/loneliness-of-the-winner-110416.mp3'
-
+        file_path='https://goldeneragrooves.s3.us-east-2.amazonaws.com/loneliness-of-the-winner-110416.mp3',
+        duration='1.23'
     )
     demo_song7 = Song(
         user_id = 3,
@@ -60,8 +61,8 @@ def seed_songs():
         genre='Classical',
         artist='Nova Starling',
         cover_photo='https://goldeneragrooves.s3.us-east-2.amazonaws.com/avatar7.png',
-        file_path='https://goldeneragrooves.s3.us-east-2.amazonaws.com/relaxed-vlog-night-street-131746.mp3'
-
+        file_path='https://goldeneragrooves.s3.us-east-2.amazonaws.com/relaxed-vlog-night-street-131746.mp3',
+        duration='1.23'
     )
     demo_song8 = Song(
         user_id = 3,
@@ -69,8 +70,8 @@ def seed_songs():
         genre='Reggae',
         artist='One direction',
         cover_photo='https://goldeneragrooves.s3.us-east-2.amazonaws.com/avatar8.png',
-        file_path='https://goldeneragrooves.s3.us-east-2.amazonaws.com/relaxing-145038.mp3'
-
+        file_path='https://goldeneragrooves.s3.us-east-2.amazonaws.com/relaxing-145038.mp3',
+        duration='1.23'
     )
     db.session.add(demo_song1)
     db.session.add(demo_song2)

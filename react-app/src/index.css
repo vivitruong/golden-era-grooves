@@ -8,5 +8,5 @@ body {
   }
 @font-face {
   font-family: 'ms-sans-serif-bold ';
-  src: url('../public/ms-sans-serif-bold.otf/ms-sans-serif-bold.otf')  format('truetype');
+  src: url('./ms-sans-serif-bold.otf/ms-sans-serif-bold.otf')  format('truetype');
 }

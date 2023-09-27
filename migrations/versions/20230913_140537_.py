@@ -26,6 +26,7 @@ def upgrade():
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('file_path', sa.String(), nullable=True),
     sa.Column('cover_photo', sa.String(), nullable=True),
+    sa.Column('duration', sa.Integer(), nullable=True),
     sa.Column('created_at', sa.DateTime(), nullable=True),
     sa.Column('updated_at', sa.DateTime(), nullable=True),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),

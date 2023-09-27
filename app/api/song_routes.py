@@ -137,6 +137,7 @@ def upload_song():
             genre=form.data['genre'],
             cover_photo=coverphoto_url,
             file_path=song_url,
+            duration = form.data['duration'],
             user_id=current_user_id
         )
         db.session.add(new_song)
