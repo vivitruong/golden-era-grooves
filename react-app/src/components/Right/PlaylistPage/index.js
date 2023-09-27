@@ -7,9 +7,9 @@ import WaveBox from "../../Box";
 import NotFound from "../../NotFound";
 import MiniBox from '../../MiniBox';
 import * as playlistAction from "../../../store/playlist";
-function changeSecondToTime(length) {
-    const minute = Math.floor(length % 3600 / 60).toString().padStart(2, '0');
-    const second = Math.floor(length % 60).toString().padStart(2, '0');
+function changeSecondToTime(duaration) {
+    const minute = Math.floor(duaration % 3600 / 60).toString().padStart(2, '0');
+    const second = Math.floor(duaration % 60).toString().padStart(2, '0');
     return minute + ":" + second;
 }
 
@@ -37,6 +37,7 @@ const PlaylistPage = () => {
     };
     const onSongClick = (i, song) => () => {
         const songInfo = { id: song.songId, artist: song.song.artist, name: song.song.name};
+
         if (listId === +playlistId) {
             dispatch(queueAction.playSong(i));
         } else {
@@ -65,7 +66,7 @@ const PlaylistPage = () => {
                     <div className="listpage-title">
                         <div style={{marginRight:"15px"}}>
                             {
-                                ((listId !== +playlistId || !playing) && playlists[+playlistId].playlist_songs.length > 0) &&
+                                ((listId !== +playlistId || !playing) && playlists[+playlistId].playlist_songs.duration > 0) &&
                                 <i className="fa-solid fa-play listpage-title-playbtn" onClick={onPlaylistClick(playlists[+playlistId])}/>
                             }
                             {
@@ -82,7 +83,7 @@ const PlaylistPage = () => {
                             <span>Title</span>
                             <span>Artist</span>
                             <span>Genre</span>
-                            {/* <span>Time</span> */}
+                            <span>Time</span>
                             <span></span>
                         </div>
                     }
@@ -111,11 +112,11 @@ const PlaylistPage = () => {
                                     <span className='listpage-content-name'>
                                         {song.song.genre}
                                     </span>
-                                    {/* <span className='listpage-content-name'>
+                                    <span className='listpage-content-name'>
                                         {
-                                            changeSecondToTime(song.song.length)
+                                            changeSecondToTime(song.song.duration)
                                         }
-                                    </span> */}
+                                    </span>
                                     <span onClick={removeSong(i, song)}>
                                         <i className="fa-solid fa-xmark"></i>
                                     </span>

@@ -9,13 +9,14 @@ import Navigation from "./components/Navigation";
 import NavBar from "./components/NavBar";
 import "98.css";
 import Home from "./components/Right/Home";
-import Player from './components/Right/Player'
-import Winamp from "./components/Right/Player";
+import Player from './components/Right/Player/index'
+import Winamp from "./components/Right/Player/winamp";
 import Left from "./components/Left";
 import PlaylistPage from "./components/Right/PlaylistPage";
 import ProtectedRoute from './components/ProtectedRoute';
 import NotFound from "./components/NotFound";
 import Paint from "./components/Left/Paint";
+
 
 
 function App() {
@@ -44,6 +45,8 @@ function App() {
                     {/* <NavBar /> */}
                     {/* <Navigation /> */}
                     <Home/>
+                    <Player />
+                    {/* <Winamp /> */}
                   </>
               </div>
 
