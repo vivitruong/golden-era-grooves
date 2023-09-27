@@ -15,6 +15,7 @@ import Left from "./components/Left";
 import PlaylistPage from "./components/Right/PlaylistPage";
 import ProtectedRoute from './components/ProtectedRoute';
 import NotFound from "./components/NotFound";
+import Paint from "./components/Left/Paint";
 
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
             <div className='main-app'>
               <div className='app-left-container'>
                 <Left/>
+                {/* <Paint/> */}
 
               </div>
               <div className='app-right-container'>
