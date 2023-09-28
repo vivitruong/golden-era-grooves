@@ -16,6 +16,8 @@ import PlaylistPage from "./components/Right/PlaylistPage";
 import ProtectedRoute from './components/ProtectedRoute';
 import NotFound from "./components/NotFound";
 import Paint from "./components/Left/Paint";
+import UserPage from "./components/Right/UserPage";
+import UploadSong from "./components/Right/Upload";
 
 
 
@@ -63,7 +65,7 @@ function App() {
                   <>
                   {/* <Navigation /> */}
                     {/* <NavBar /> */}
-                    {/* <UploadSong/> */}
+                    <UploadSong/>
                 </>
               </div>
 
@@ -98,7 +100,7 @@ function App() {
                 <>
                 {/* <Navigation/> */}
                 {/* <NavBar /> */}
-                {/* <UserPage /> */}
+                <UserPage />
                 </>
               </div>
 
