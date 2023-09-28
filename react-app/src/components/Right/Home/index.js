@@ -2,7 +2,7 @@ import * as songAction from '../../../store/song';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PlaylistSong from './PlaylistSong';
-// import * as queueAction from '../../../store/queue';
+import * as queueAction from '../../../store/queue';
 import * as playlistAction from '../../../store/playlist';
 
 const Home = () => {
@@ -11,7 +11,7 @@ const Home = () => {
     const songs = useSelector(state => state.songs.songs);
     const playlists = useSelector(state => state.playlists.playlists);
     const [openings, setOpenings] = useState({});
-    // const {shuffled} = useSelector(state => state.queue);
+    const {shuffled} = useSelector(state => state.queue);
 
     useEffect(() => {
         dispatch(songAction.fetchAllSongs());
@@ -19,9 +19,9 @@ const Home = () => {
 
     }, [dispatch]);
 
-    // const onSongClick = (song) => () => {
-    //     dispatch(queueAction.updateList({ list: [song], shuffled}));
-    // };
+    const onSongClick = (song) => () => {
+        dispatch(queueAction.updateList({ list: [song], shuffled}));
+    };
 
     const addSongClick = (i) => () => {
         const newOpenings = {
@@ -45,9 +45,9 @@ const Home = () => {
                                 <div key={i} className="song-box" >
                                     <div className='song-box-img'>
                                         <img src='https://goldeneragrooves.s3.us-east-2.amazonaws.com/avatar1.png' style={{width: '50px', height: '50px'}} alt='icon'/>
-                                            {/* <div className='song-box-playbutton' onClick={onSongClick(song)}>
+                                            <div className='song-box-playbutton' onClick={onSongClick(song)}>
                                                 <i className="fa-solid fa-play" style={{marginLeft: "0.1rem"}}></i>
-                                            </div> */}
+                                            </div>
                                         {user !== null && playlists && Object.keys(playlists).length > 0 &&
                                             <div>
                                                 <div className='song-box-addbutton' onClick={addSongClick(i)}>
