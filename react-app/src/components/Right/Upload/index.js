@@ -47,9 +47,10 @@ const UploadSong = () => {
     const [file, setFile] = useState('');
     const [error, setError] = useState({});
     const [name, setName] = useState('');
-    const [artist_name, setArtistName] = useState('');
+    const [cover_photo, setCoverPhoto] = useState('');
+    const [artist, setArtistName] = useState('');
     const [genre, setGenre] = useState('pop');
-    const [length, setLength] = useState(0);
+    const [duration, setLength] = useState(0);
     const [fileStatus, setFileStatus] = useState('NOT_LOADED');
     const dispatch = useDispatch();
     const history = useHistory();
@@ -60,6 +61,7 @@ const UploadSong = () => {
         setError({});
         const errors = {};
         const file = e.target.files[0];
+        console.log(file)
         if (!file) {
             errors.type = 'Please upload mp3 file.';
             setError(errors);
@@ -101,9 +103,10 @@ const UploadSong = () => {
         e.preventDefault();
         setError({});
         const errors = {};
-        const audioFile = file;
-        const song = { name, artist_name, genre, length, audioFile };
+        const file_path = file;
+        const song = { name, artist, genre, cover_photo, file_path, duration };
         const data = await dispatch(songActions.createSong(song));
+        console.log(data , "0000000000")
         setSubmitStatus('SUBMITTED');
         if (!data) {
             history.push('/');
@@ -114,13 +117,13 @@ const UploadSong = () => {
         }
     }
 
-    const isSubmitEnabled = fileStatus === 'LOADED' && name !== '' && artist_name !== '' && submitStatus === 'NOT_SUBMITTING' && name.trim() !== "" && artist_name !== "";
+    const isSubmitEnabled = fileStatus === 'LOADED' && name !== '' && artist !== '' && submitStatus === 'NOT_SUBMITTING' && name.trim() !== "" && artist !== "";
 
     return (
         <div className="uploadsong-container" onSubmit={handleSubmit} >
             <form className="uploadsong-form">
                 <div className="uploadsong-title">
-                    <h1>Drop your music here</h1>
+                    <h3>Drop your music here</h3>
                 </div>
                 <div className="uploadsong-content">
                     <div className="uploadsong-name uploadinfo">
@@ -158,7 +161,7 @@ const UploadSong = () => {
                         <input
                             type="text"
                             placeholder="Artist name length must be between 1 and 100 characters."
-                            value={artist_name}
+                            value={artist}
                             onChange={e => setArtistName(e.target.value)}
                             required
                             minLength="1"
