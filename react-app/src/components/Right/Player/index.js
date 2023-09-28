@@ -8,6 +8,7 @@ import * as queueAction from '../../../store/queue';
 const Player = () => {
     const { song, playing, duration, currentTime, volume, muted } = useSelector(state => state.player);
     const { repeated, shuffled, list } = useSelector(state => state.queue);
+    console.log(list)
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -70,9 +71,10 @@ const Player = () => {
                 }
                 <i className="fa-solid fa-backward" onClick={onBackwardClick} ></i>
                 <div className='player-controls-play-pause'>
+
                     {
                         playing &&
-                            <i className="fa-solid fa-pause" onClick={onPauseClick}></i>
+                            <i className="fa-regular fa-pause" onClick={onPauseClick}></i>
                     }
                     {
                         !playing &&
