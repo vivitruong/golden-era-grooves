@@ -3,8 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect} from 'react';
 import * as playerAction from '../../../store/player';
 import * as queueAction from '../../../store/queue';
-import LabelledButton from '../../LabelledButton';
-// import imgBox from '../Home/imgBox.png';
+
 
 const Player = () => {
     const { song, playing, duration, currentTime, volume, muted } = useSelector(state => state.player);
@@ -90,7 +89,7 @@ const Player = () => {
                     !repeated &&
                     <i className="fa-solid fa-repeat" onClick={repeatClick(true)}></i>
                 }
-               {/* style={{ cursor: "default", color: "rgba(0, 0, 0, 0.5)" }} */}
+
             </div>
             <div className='player-lcd'>
                 <div className='player-lcd-artwork'>
