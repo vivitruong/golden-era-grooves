@@ -5,6 +5,7 @@ import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import './Navigation.css'
+import { Link } from "react-router-dom";
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
@@ -46,8 +47,11 @@ function ProfileButton({ user }) {
     <ul className={ulClassName} ref={ulRef}>
       {user ? (
         <>
-          <li>{user.username}</li>
-          <li>{user.email}</li>
+          {user.username}
+          {user.email}
+          <Link to='/upload' className="profile-dropdown-info profile-hover">
+                          <span className="profile-dropdown-content">Upload  </span>
+                    </Link>
           <li>
             <button onClick={handleLogout}>Log Out</button>
           </li>
@@ -66,6 +70,7 @@ function ProfileButton({ user }) {
             onItemClick={closeMenu}
             modalComponent={<SignupFormModal />}
           />
+
           </div>
 
       )}
