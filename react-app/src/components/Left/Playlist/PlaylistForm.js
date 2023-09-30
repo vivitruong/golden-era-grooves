@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import * as playlistAction from '../../../store/playlist';
 
+
 const PlaylistForm = ({onClose}) => {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
@@ -30,7 +31,7 @@ const PlaylistForm = ({onClose}) => {
         }
 
         dispatch(playlistAction.makePlaylist({ name, description }));
-        onClose();
+        onClose()
     }
     const handleCancel = (e) => {
         e.preventDefault();
