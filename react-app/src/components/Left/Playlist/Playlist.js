@@ -2,7 +2,7 @@ import * as playlistAction from '../../../store/playlist';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Modal } from '../../Modal';
-// import playlistIcon from '../Playlist/playlist-icon.png';
+
 import UpdateBox from './UpdateBox';
 import { Link } from 'react-router-dom';
 
