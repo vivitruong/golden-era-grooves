@@ -104,7 +104,6 @@ def upload_song():
     form = UploadSongForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
-    print('Request Files:', request.files)  #
 
     if request.files.get('file_path'):
         songfile = request.files['file_path']
