@@ -1,12 +1,12 @@
-/* TODO Add site wide styles */
+/* /* TODO Add site wide styles
 body {
     background-image: url('https://goldeneragrooves.s3.us-east-2.amazonaws.com/cloudscreen.jpg'); /* Replace with the path to your image */
-    background-size: cover;
+    /* background-size: cover;
     background-repeat: no-repeat;
-    font-family: 'ms-sans-serif', sans-serif;
+    font-family: 'ms-sans-serif', sans-serif; */
     /* Add other styles as needed */
-  }
-@font-face {
+
+/* @font-face {
   font-family: 'ms-sans-serif-bold ';
   src: url('./ms-sans-serif-bold.otf/ms-sans-serif-bold.otf')  format('truetype');
 }
@@ -25,7 +25,7 @@ body {
   font-family: 'Roboto', sans-serif;
   box-sizing: border-box;
   /* font-size: 1rem; */
-  position: relative;
+  /* position: relative;
   margin:0px;
 }
 
@@ -34,10 +34,10 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
 -webkit-appearance: none;
 margin: 0;
-}
+} */
 
 /* Firefox */
-input[type=number] {
+/* input[type=number] {
   -moz-appearance: textfield;
   appearance: textfield;
 }
@@ -46,4 +46,18 @@ input, textarea {
   border: none;
   border-width: 0;
   box-shadow: none;
+}  */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  border: none;
+  list-style-type: none;
+}
+
+body {
+  background-color: #c0c0c0;
+  padding: 10px;
+  overflow: hidden;
 }

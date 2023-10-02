@@ -1,0 +1,44 @@
+.playList {
+    overflow-y: scroll;
+    height: 430px;
+    width: 153px;
+    background: #fff;
+    padding: 10px;
+    border-width: 2px;
+    border-style: outset;
+    border-color: buttonface;
+    border-left-color: #424242;
+    border-top-color: #424242;
+    color: black;
+  }
+  h2 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  .playListName {
+    background-color: #fff;
+    width: fit-content;
+    margin-bottom: 5px;
+  }
+  .playListName {
+    cursor: pointer;
+  }
+
+  .playListName:hover {
+    color: white;
+    background-color: #000a71;
+  }
+
+  .active {
+    color: white;
+    background-color: #000a71;
+  }
+
+  .link {
+    color: black;
+  }
+
+  .link:hover {
+    color: white;
+  }
