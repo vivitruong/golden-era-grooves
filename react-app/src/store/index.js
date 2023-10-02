@@ -6,6 +6,11 @@ import songReducer from './song';
 import userSongReducer from './userSong';
 import playerReducer from './player';
 import queueReducer from './queue';
+import { configureStore } from '@reduxjs/toolkit';
+import { apiSlice } from '../slices/apiSlice';
+import playlistsSliceReducer from '../slices/playlistsSlice';
+import { songsSliceReducer, playSongSliceRducer, likedSongSliceRducer } from '../slices/songsSlice';
+
 
 
 const rootReducer = combineReducers({
