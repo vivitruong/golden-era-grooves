@@ -6,7 +6,7 @@ import songReducer from './song';
 import userSongReducer from './userSong';
 import playerReducer from './player';
 import queueReducer from './queue';
-import { configureStore } from '@reduxjs/toolkit';
+// import { configureStore } from '@reduxjs/toolkit';
 import { apiSlice } from '../slices/apiSlice';
 import playlistsSliceReducer from '../slices/playlistsSlice';
 import { songsSliceReducer, playSongSliceRducer, likedSongSliceRducer } from '../slices/songsSlice';
@@ -15,11 +15,16 @@ import { songsSliceReducer, playSongSliceRducer, likedSongSliceRducer } from '..
 
 const rootReducer = combineReducers({
   session,
-  playlists: playlistReducer,
-  songs: songReducer,
-  userSongs: userSongReducer,
-  player: playerReducer,
-  queue: queueReducer
+  [ apiSlice.reducerPath ]: apiSlice.reducer,
+  playlists: playlistsSliceReducer,
+  songs: songsSliceReducer,
+  playSong: playSongSliceRducer,
+  likedSongs: likedSongSliceRducer,
+  // playlists: playlistReducer,
+  // songs: songReducer,
+  // userSongs: userSongReducer,
+  // player: playerReducer,
+  // queue: queueReducer
 
 });
 
