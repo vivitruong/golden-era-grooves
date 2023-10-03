@@ -8,7 +8,7 @@ import iconPause from "../../assets/playIcon.svg";
 import iconNext from "../../assets/next.svg";
 import iconPrev from "../../assets/next.svg";
 import iconRepeat from "../../assets/repeat.svg";
-import "./styles.css";
+import "./style.css";
 
 const Controls = ({
   audioRef,
