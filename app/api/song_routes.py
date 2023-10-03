@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, session, request
 from flask_login import login_required, current_user
-from app.models import db, Song, Comment, likes, User
+from app.models import db, Song, Comment, likes, User, File
 from app.forms import CommentForm, LikeForm, UploadSongForm, SongForm
 from app.aws import (upload_file_to_s3, allowed_file, get_unique_filename)
 from app.api.auth_routes import validation_errors_to_error_messages
@@ -94,56 +94,91 @@ def get_song(song_id):
             'message': 'Cannot find this song',
             'statusCode': 404
         }},404
-
-
 @song_routes.route('/', methods=['POST'])
 @login_required
 def upload_song():
     current_user_info = current_user.to_dict()
     current_user_id = current_user_info['id']
     form = UploadSongForm()
+    audio_file = request.json['audioFile']
     form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate():
+        try:
+            print('!!!! data=', audio_file, len(audio_file))
+            data = audio_file
+            data = bytearray(data)
+            data = bytes(data)
+            fileBytes = data
+            new_file = File(
+                file_song = fileBytes
+            )
+            db.session.add(new_file)
+            db.session.commit()
+            new_song = Song(
+                name = form.data['name'],
+                artist = form.data['artist'],
+                genre = form.data['genre'],
+                duration = form.data['duration'],
+                user_id = current_user_id,
+                file_id = new_file.id
+            )
+            db.session.add(new_song)
+            db.session.commit()
+            return new_song.to_dict(), 201
+        except Exception as exception:
+            exception.print_exc()
+            return {'error': 'there is an error, please try again'}, 500
+    if form.errors:
+        return {'error': form.errors}, 400
+
+# @song_routes.route('/', methods=['POST'])
+# @login_required
+# def upload_song():
+#     current_user_info = current_user.to_dict()
+#     current_user_id = current_user_info['id']
+#     form = UploadSongForm()
+#     form['csrf_token'].data = request.cookies['csrf_token']
 
 
-    if request.files.get('file_path'):
-        songfile = request.files['file_path']
-        print('Received file_path:', songfile.filename)
-        songfile.filename = get_unique_filename(songfile.filename)
-        upload = upload_file_to_s3(songfile)
+#     if request.files.get('file_path'):
+#         songfile = request.files['file_path']
+#         print('Received file_path:', songfile.filename)
+#         songfile.filename = get_unique_filename(songfile.filename)
+#         upload = upload_file_to_s3(songfile)
 
-        if "url" not in upload:
-            return {'errors': validation_errors_to_error_messages(upload)}, 400
-        song_url = upload["url"]
-    else:
-        song_url = None
+#         if "url" not in upload:
+#             return {'errors': validation_errors_to_error_messages(upload)}, 400
+#         song_url = upload["url"]
+#     else:
+#         song_url = None
 
-    if request.files.get('cover_photo'):
-        coverphoto = request.files['cover_photo']
-        print('Received cover_photo:', coverphoto.filename)
-        coverphoto.filename = get_unique_filename(coverphoto.filename)
-        upload2 = upload_file_to_s3(coverphoto)
+#     if request.files.get('cover_photo'):
+#         coverphoto = request.files['cover_photo']
+#         print('Received cover_photo:', coverphoto.filename)
+#         coverphoto.filename = get_unique_filename(coverphoto.filename)
+#         upload2 = upload_file_to_s3(coverphoto)
 
-        if 'url' not in upload2:
-            return {'errors': validation_errors_to_error_messages(upload2)}, 400
-        coverphoto_url = upload2['url']
-    else:
-        coverphoto_url = None
+#         if 'url' not in upload2:
+#             return {'errors': validation_errors_to_error_messages(upload2)}, 400
+#         coverphoto_url = upload2['url']
+#     else:
+#         coverphoto_url = None
 
-    if form.validate_on_submit():
-        new_song = Song(
-            name=form.data['name'],
-            artist=form.data['artist'],
-            genre=form.data['genre'],
-            cover_photo=coverphoto_url,
-            file_path=song_url,
-            duration = form.data['duration'],
-            user_id=current_user_id
-        )
-        db.session.add(new_song)
-        db.session.commit()
-        return new_song.to_dict(), 201
+#     if form.validate_on_submit():
+#         new_song = Song(
+#             name=form.data['name'],
+#             artist=form.data['artist'],
+#             genre=form.data['genre'],
+#             cover_photo=coverphoto_url,
+#             file_path=song_url,
+#             duration = form.data['duration'],
+#             user_id=current_user_id
+#         )
+#         db.session.add(new_song)
+#         db.session.commit()
+#         return new_song.to_dict(), 201
 
-    return jsonify({'error': 'Invalid form data'}), 400
+#     return jsonify({'error': 'Invalid form data'}), 400
 
 
 #update a song(done
