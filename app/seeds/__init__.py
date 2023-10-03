@@ -1,6 +1,6 @@
 from flask.cli import AppGroup
 from .users import seed_users, undo_users
-from .songs import seed_songs, undo_songs
+# from .songs import seed_songs, undo_songs
 from .comments import seed_comments, undo_comments
 from .likes import seed_likes, undo_likes
 from .playlist_songs import seed_playlist_songs, undo_playlist_songs
@@ -26,13 +26,13 @@ def seed():
         undo_comments()
         undo_likes()
         undo_playlist_songs()
-        undo_songs
+        # undo_songs
     seed_users()
     seed_playlists()
     seed_comments()
     seed_likes()
     seed_playlist_songs()
-    seed_songs()
+    # seed_songs()
     # Add other seed functions here
 
 

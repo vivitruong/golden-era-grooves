@@ -17,7 +17,8 @@ class Song(db.Model):
     duration = db.Column(db.Integer, nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.now)
     updated_at = db.Column(db.DateTime, default=datetime.now)
-
+    file_id = db.Column(db.Integer, db.ForeignKey("files.id"), nullable=False)
+    file = db.relationship('File', back_populates='song', uselist=False, cascade="all, delete")
     user = db.relationship('User', back_populates='songs')
     playlist_songs = db.relationship('Playlist_Song', back_populates='song', cascade='all, delete-orphan')
     comments = db.relationship('Comment', back_populates='song', cascade='all, delete-orphan')
@@ -35,7 +36,8 @@ class Song(db.Model):
             'user_id': self.user_id,
             'file_path': self.file_path,
             'cover_photo': self.cover_photo,
-            'duaration': self.duration
+            'duaration': self.duration,
+            'fileId': self.file_id,
         }
 
 

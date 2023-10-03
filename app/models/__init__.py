@@ -6,3 +6,4 @@ from .playlist_song import Playlist_Song
 from .comment import Comment
 from .like import likes
 from .db import environment, SCHEMA
+from .file_song import File
