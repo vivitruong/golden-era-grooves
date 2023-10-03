@@ -8,6 +8,7 @@ import Navigation from "./components/Navigation";
 import { Login } from "./pages/login";
 import SplashScreen from "./components/SplashScreen";
 import './app.css';
+import '98.css';
 
 function App () {
   const dispatch = useDispatch();
@@ -22,9 +23,13 @@ function App () {
       {/* <Navigation isLoaded={isLoaded} />
       {isLoaded && ( */}
         <Switch>
-              <Route path='/'>
+            <Route path='/'>
+
           <SplashScreen />
+
           </Route>
+
+
 
           <Route path="/login">
             {/* <LoginFormPage /> */}

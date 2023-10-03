@@ -2,7 +2,7 @@
     display: block;
     margin: 0 auto;
     width: 300.394px;
-    height: 340.651px;
+    height: 350.651px;
 }
 
 .splash-page {
@@ -20,8 +20,11 @@ span {
     font-size: 15.076px;
     font-style: normal;
     font-weight: 600;
-    line-height: 21.412px;; /* Adjust the top margin to create spacing */
+    line-height: 21.412px; /* Adjust the top margin to create spacing */
 }
-span:hover {
+.clickenter:hover {
     cursor: pointer;
+}
+.clickenter {
+    width: 111px;
 }
