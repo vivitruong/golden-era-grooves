@@ -13,7 +13,7 @@ function SplashScreen() {
         <div className="splash-page">
 
         <img className='splash-screen-image' src='https://goldeneragrooves.s3.us-east-2.amazonaws.com/splash_logo-removebg.png' alt='splashscreen'/>
-        <span onClick={redirectToMainPage}>Click here to enter</span>
+        <img onClick={redirectToMainPage} className="clickenter" src="https://goldeneragrooves.s3.us-east-2.amazonaws.com/Click+here+to+enter.png"></img>
 
         </div>
         </>
