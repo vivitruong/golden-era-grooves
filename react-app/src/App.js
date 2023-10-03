@@ -24,12 +24,9 @@ function App () {
       {isLoaded && ( */}
         <Switch>
             <Route path='/'>
-
           <SplashScreen />
 
           </Route>
-
-
 
           <Route path="/login">
             {/* <LoginFormPage /> */}
