@@ -60,4 +60,7 @@ body {
   background-color: #c0c0c0;
   padding: 10px;
   overflow: hidden;
+  background-image: url('https://goldeneragrooves.s3.us-east-2.amazonaws.com/cloudscreen.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
