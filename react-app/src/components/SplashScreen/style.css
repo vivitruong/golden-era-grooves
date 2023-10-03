@@ -1,0 +1,27 @@
+.splash-screen-image {
+    display: block;
+    margin: 0 auto;
+    width: 300.394px;
+    height: 340.651px;
+}
+
+.splash-page {
+    display: flex;
+    flex-direction: column; /* Ensure content is stacked vertically */
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100vh;
+}
+
+span {
+    color:  #222;
+    font-family: MS Sans Serif Bold;
+    font-size: 15.076px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 21.412px;; /* Adjust the top margin to create spacing */
+}
+span:hover {
+    cursor: pointer;
+}

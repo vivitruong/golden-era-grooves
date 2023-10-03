@@ -10,8 +10,8 @@ export const Login = () => {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
 
-  const [email, setEmail] = useState("test1234@gmail.com");
-  const [password, setpassword] = useState("test1234");
+  const [email, setEmail] = useState("");
+  const [password, setpassword] = useState("");
   const [errors, setErrors] = useState([]);
   const { closeModal } = useModal();
 
@@ -19,6 +19,18 @@ export const Login = () => {
 
   const toggleMaximize = () => {
     setIsMaximized(!isMaximized);
+  };
+    const demoLogin = async (e) => {
+    const email = "demo@aa.io";
+    const password = "password";
+    e.preventDefault();
+    const data = await dispatch(login(email, password));
+    if (data === null) {
+     closeModal();
+    }
+    if (data) {
+      setErrors(data);
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -45,7 +57,7 @@ export const Login = () => {
       <div className="login-box">
         <div className="login-title-bar">
           <div className="logo">
-            <img src="xpLogo.png" alt="Windows Logo" />
+            <img src="https://goldeneragrooves.s3.us-east-2.amazonaws.com/windowPG.png" alt="Windows Logo" />
           </div>
           <div className="login-title">Golden Era Grooves</div>
           <div className="window-controls">
