@@ -27,7 +27,7 @@ import { pauseAudio, playAudio } from "./slices/songsSlice";
 
 function App () {
   const dispatch = useDispatch();
-  const [ isLoaded, setIsLoaded ] = useState(false);
+  const [ isLoaded, setIsLoaded ] = useState(true);
   useEffect(() => {
     dispatch(authenticate()).then(() => setIsLoaded(true));
   }, [ dispatch ]);
@@ -72,14 +72,14 @@ function App () {
 
   return (
     <>
-     <div className="app">
+     {/* <div className="app">
       <div className="container">
         <div>
           <Navbar />
           <PlayLists />
         </div>
         <Switch>
-          {/* Route definitions for your pages */}
+
           <Route exact path="/">
             <HomePage />
           </Route>
@@ -128,26 +128,21 @@ function App () {
           />
         </div>
       </div>
-    </div>
+    </div> */}
 
-      {/* <Navigation isLoaded={isLoaded} />
-      {isLoaded && ( */}
-        {/* <Switch>
-            <Route path='/'>
-          <SplashScreen />
-
-          </Route>
-
+<Navigation isLoaded={isLoaded} />
+      {isLoaded && (
+        <Switch>
           <Route path="/login">
-
+            {/* <LoginFormPage /> */}
             <Login />
-
           </Route>
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-        </Switch> */}
-      {/* )} */}
+        </Switch>
+      )}
+
     </>
   );
 }
