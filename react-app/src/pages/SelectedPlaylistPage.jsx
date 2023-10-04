@@ -13,6 +13,7 @@ const SelectedPlaylistPage = () => {
   const { selectedPlayListSongs: playlist } = useSelector(
     (state) => state.playlists
   );
+
   // const [addedSongs, setAddedSongs] = useState(playlist?.playlist_songs);
   const { allSongs: songs } = useSelector((state) => state.songs);
 

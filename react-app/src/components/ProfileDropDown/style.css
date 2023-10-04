@@ -1,0 +1,83 @@
+.profile-user-btn {
+    background-color: transparent;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.profile-dropdown {
+    position: absolute;
+    right: 0.5rem;
+    width: 10rem;
+    border: 1px  solid #cccccc;
+    background-color: rgb(254, 254, 254);
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.profile-dropdown-info {
+    width: 100%;
+    border-bottom: 1px solid #cccccc;
+    height: 30px;
+    display: flex;
+    align-items: center;
+}
+.navbar-button-signin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin: 0.5rem;
+}
+
+.navbar-logo-img {
+    border-right: 1px solid #cccccc;
+    display: flex;
+    justify-content: center;
+}
+
+.profile-logout {
+    width: 100%;
+    height: 30px;
+    display: flex;
+    align-items: center;
+}
+.profile-hover {
+    text-decoration: none;
+    color: #000;;
+}
+
+.profile-hover:hover{
+    background-color: #ececec;
+}
+
+.profile-dropdown-content{
+    padding: 10px;
+    overflow: hidden;
+}
+
+.btn-signout {
+    width: 100%;
+    color: var(--melodify-red-close);
+    background-color: transparent;
+    border: none;
+    text-align: left;
+    margin-left: 3px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+.navbar-signin {
+    cursor: pointer;
+    background-color: #d60017;
+    color: #fff;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    width: 4rem;
+    height: 0.8rem;
+    font-size: 0.8rem;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

@@ -1,9 +1,9 @@
 const LOAD_ALL = 'playlist/loadAll';
-const LOAD_USERPLAYLISTS = 'playlist/loadUserPlaylists';
+const LOAD_USERPLAYLISTS = 'playlist/loadUserPlaylists'; 
 const ADD_PLAYLIST = 'playlist/addPlaylist';
 const REMOVE_PLAYLIST = 'playlist/removePlaylist';
 const EDIT_PLAYLIST = 'playlist/editPlaylist';
-const ADD_SONG = 'playlist/addSong';
+const ADD_SONG = 'playlist/addSong'; 
 const REMOVE_SONG = 'playlist/removeSong';
 
 export function loadAll(playlists) {
@@ -36,7 +36,7 @@ export function removePlaylist(playlistId) {
 
 export function editPlaylist(playlist) {
     return {
-        type: EDIT_PLAYLIST,
+        type: EDIT_PLAYLIST, 
         playlist
     }
 }
@@ -50,17 +50,17 @@ export function addSong(song) {
 
 export function removeSong(song) {
     return {
-        type: REMOVE_SONG,
+        type: REMOVE_SONG, 
         song
     }
 }
 
 
 export const fetchAll = () => async dispatch => {
-    const response = await fetch(`/api/playlists`);
+    const response = await fetch(`/api/playlists/all`); 
     if (response.ok) {
         const data = await response.json();
-        dispatch(loadAll(data.playlists));
+        dispatch(loadAll(data.playlists)); 
         return response
     }
 }
@@ -77,7 +77,7 @@ export const fetchUserList = () => async dispatch => {
 export const makePlaylist = (playlist) => async dispatch => {
     const { name, description } = playlist;
     try {
-        const response = await fetch(`/api/playlists`, {
+        const response = await fetch(`/api/playlists/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -130,7 +130,7 @@ export const updatePlaylist = (playlist) => async dispatch => {
 export const removeSongFromPlaylist = (song) => async dispatch => {
     const { id, playlist_id } = song;
     try {
-        const response = await fetch(`/api/playlists/songs/${playlist_id}/${id}`, {
+        const response = await fetch(`/api/playlists/songs/${id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
@@ -185,7 +185,7 @@ export const deletePlaylist = (playlistId) => async dispatch => {
         });
         if (response.ok) {
             dispatch(removePlaylist(playlistId));
-            const data = response.json();
+            const data = response.json(); 
             return data;
         } else {
             const data = await response.json();
@@ -193,7 +193,7 @@ export const deletePlaylist = (playlistId) => async dispatch => {
                 throw data.error.message;
             }
         }
-
+        
     } catch (err) {
         throw err;
     }
@@ -214,25 +214,25 @@ const playlistReducer = (state = {}, action) => {
             newState = deepCopy(state);
             newState.playlists[action.playlist.id] = action.playlist;
             return newState;
-
+        
         case EDIT_PLAYLIST:
             newState = deepCopy(state);
             const playlist = action.playlist;
             newState.playlists[playlist.id] = playlist;
             return newState;
-
+            
         case REMOVE_PLAYLIST:
             newState = deepCopy(state);
             delete newState.playlists[action.playlistId];
             return newState;
-
+        
         case REMOVE_SONG:
             newState = deepCopy(state);
             let { playlist_id, id } = action.song;
             let playlists_songs = newState.playlists[playlist_id].playlist_songs.filter(song => song.id !== id);
             newState.playlists[playlist_id].playlist_songs = playlists_songs;
             return newState;
-
+    
         default:
             return state
     }

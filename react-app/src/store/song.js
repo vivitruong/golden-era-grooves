@@ -2,8 +2,8 @@ const LOAD_ALLSONGS = 'songs/loadAll';
 const LOAD_USERSONGS = 'songs/loadUserSongs';
 const ADD_SONG = 'songs/addSong';
 const REMOVE_SONG = 'songs/removeSong';
-const UPDATE_SONG = 'song/UPDATE_SONG'
-// const LOAD_ONESONG = 'songs/loadOneSong'
+const LOAD_ONESONG = 'songs/loadOneSong'
+
 
 export function loadAllSongs(songs) {
     return {
@@ -19,10 +19,6 @@ export function loadUserSongs(songs) {
         songs
     }
 }
-export const updateSong = (song) => ({
-    type: UPDATE_SONG,
-    song
-  })
 
 export function addSong(song) {
     return {
@@ -38,8 +34,16 @@ export function removeSong(songId) {
     }
 }
 
+// export function loadOneSong(song) {
+//     return {
+//         type: LOAD_ONESONG,
+//         song
+//     }
+// }
+
+
 export const fetchAllSongs = () => async dispatch => {
-    const response = await fetch(`/api/songs`);
+    const response = await fetch(`/api/songs/all`);
     if (response.ok) {
         const data = await response.json();
         dispatch(loadAllSongs(data.songs));
@@ -57,15 +61,18 @@ export const fetchUserSongs = () => async dispatch => {
 }
 
 
+
 export const createSong = (song) => async dispatch => {
-    const { name, artist, genre, cover_photo, file_path, duration } = song;
+    console.log(song, "-----right here")
+
+
     try {
-        const response = await fetch(`/api/songs`, {
+        const response = await fetch(`/api/songs/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ name, artist, genre, cover_photo, file_path, duration})
+            body: JSON.stringify(song)
         });
         if (response.ok) {
             const data = await response.json();
@@ -84,30 +91,39 @@ export const createSong = (song) => async dispatch => {
     }
 }
 
-export const updateASong = (payload, songId) => async dispatch => {
-    const response = await fetch(`/api/songs/${songId}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    })
-    if(response.ok) {
-      const editedSong = await response.json()
-      dispatch(updateSong(editedSong))
-    return editedSong
-    }
-  }
-
-// export const deleteSong = (songId) = async dispatch => {
-//     const response = await fetch(`api/songs/${songId}`, {
-//         method: 'DELETE'
-//     })
+// export const fetchOneSong = (song_id) => async dispatch => {
+//     const response = await fetch(`/api/songs/${song_id}`);
 //     if (response.ok) {
-//         const deletionResponse = await response.json();
-//         dispatch(removeSong(songId)
-//         )
-//         return deletionResponse
+//         const data = await response.json();
+//         dispatch(loadOneSong(data));
+//         return data;
 //     }
 // }
+
+const songReducer = (state = {songs: {}}, action) => {
+    let newState;
+    switch (action.type) {
+        case LOAD_ALLSONGS:
+            newState = deepCopy(state);
+            let newSong = action.songs.reduce((data, song) => {
+                data[song.id] = song;
+                return data;
+            }, {});
+            newState.songs = newSong;
+            return newState;
+        case ADD_SONG:
+            newState = deepCopy(state);
+            newState.songs[action.song.id] = action.song;
+            return newState;
+
+        // case LOAD_ONESONG:
+        //     newState = deepCopy(state);
+        //     newState.singleSong = action.song;
+        //     return newState;
+        default:
+            return state;
+    }
+}
 
 function deepCopy(value) {
     if (typeof value === 'object') {
@@ -124,30 +140,5 @@ function deepCopy(value) {
         return value;
     }
 }
-const songReducer = (state = {songs: {}}, action) => {
-    let newState;
-    switch (action.type) {
-        case LOAD_ALLSONGS:
-            newState = deepCopy(state);
-            let newSong = action.songs.reduce((data, song) => {
-                data[song.id] = song;
-                return data;
-            }, {});
-            newState.songs = newSong;
-            return newState;
-        case ADD_SONG:
-            newState = deepCopy(state);
-            newState.songs[action.song.id] = action.song;
-            return newState;
-        case UPDATE_SONG:
-            newState = deepCopy(state)
-            newState.songs[action.song.id] = action.song;
-            return newState;
 
-
-
-        default:
-            return state;
-    }
-}
 export default songReducer;

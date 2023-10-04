@@ -10,7 +10,7 @@ export function loadUserSongs(songs) {
 
 export function removeSong(songId) {
     return {
-        type: REMOVE_SONG,
+        type: REMOVE_SONG, 
         songId
     }
 }
@@ -44,25 +44,12 @@ export const deleteSong = (songId) => async dispatch => {
         throw err;
     }
 }
-// export const updateASong = (payload, songId) => async dispatch => {
-//     const response = await fetch(`/api/songs/${songId}`, {
-//       method: 'PUT',
-//       headers: { 'Content-Type': 'application/json' },
-//       body: JSON.stringify(payload)
-//     })
-//     if(response.ok) {
-//       const editedSong = await response.json()
-//       dispatch(updateSong(editedSong))
-//     return editedSong
-//     }
-//   }
-
 
 
 const userSongReducer = (state = {}, action) => {
     let newState;
     switch (action.type) {
-        case LOAD_USERSONGS:
+        case LOAD_USERSONGS: 
             newState = deepCopy(state);
             let newSong = action.songs.reduce((data, song) => {
                 data[song.id] = song;
@@ -70,13 +57,13 @@ const userSongReducer = (state = {}, action) => {
             }, {});
             newState.songs = newSong;
             return newState;
-
+        
         case REMOVE_SONG:
             newState = deepCopy(state);
             delete newState.songs[action.songId];
             return newState;
 
-
+        
         default:
             return state;
     }

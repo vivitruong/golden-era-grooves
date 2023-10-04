@@ -18,6 +18,12 @@ import LibrarayPage from "../LibrarayPage"; // Import your route components
 import CreatePlayList from "../CreatePlayList"; // Import your route components
 import PlaylistsPage from "../PlaylistsPage"; // Import your route components
 import SelectedPlaylistPage from "../SelectedPlaylistPage";
+import TopNav from "../../components/TopNav";
+import UploadSong from "../../components/CreateSong/dragdrop";
+import UserPage from "../../components/UserPage";
+import Paint from "../../components/Paint/apps/Paint";
+import SplashScreen from "../../components/SplashScreen";
+import PlaylistPage from "../../components/PlaylistPage";
 
 export const Home = () => {
   const { allSongs } = useSelector((state) => state?.songs);
@@ -42,12 +48,25 @@ export const Home = () => {
     if (isPlaying) {
       console.log("pause");
       dispatch(pauseAudio());
-      audioRef.current.pause();
+      if (audioRef.current) {
+        audioRef.current.pause();
+      }
     } else {
       console.log("play");
       dispatch(playAudio(playSong?.filePath));
-      audioRef.current.play();
+      if (audioRef.current) {
+        audioRef.current.play();
+      }
     }
+    // if (isPlaying) {
+    //   console.log("pause");
+    //   dispatch(pauseAudio());
+    //   audioRef.current.pause();
+    // } else {
+    //   console.log("play");
+    //   dispatch(playAudio(playSong?.filePath));
+    //   audioRef.current.play();
+    // }
   };
 
   useEffect(() => {
@@ -77,13 +96,16 @@ export const Home = () => {
     <div className="app">
       <div className="container">
         <div>
+
           <Navbar />
           <PlayLists />
         </div>
         <Switch>
           {/* Route definitions for your pages */}
           <Route exact path="/">
+
             <HomePage />
+            <TopNav />
           </Route>
           <Route path="/liked-songs">
             <LikedSongsPage />
@@ -100,9 +122,24 @@ export const Home = () => {
           <Route path="/playlists">
             <PlaylistsPage />
           </Route>
+          <Route path='/playlists/:playlistId'>
+            <PlaylistPage />
+
+          </Route>
           <Route path="/playlist/:name">
             <SelectedPlaylistPage />
+            <PlaylistPage/>
           </Route>
+          <Route path='/upload'>
+            <UploadSong />
+          </Route>
+          <Route path='/profile'>
+
+            <UserPage />
+
+          </Route>
+          <Route path='/paint'>
+          <Paint/>          </Route>
         </Switch>
       </div>
       <div className="bottom_control_board">

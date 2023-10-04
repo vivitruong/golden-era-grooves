@@ -13,7 +13,7 @@ const RESET = "player/reset";
 
 class AudioController {
     constructor(audio) {
-        this.audio = audio;
+        this.audio = new Audio();
         if (!localStorage.getItem('volume')) {
             localStorage.setItem('volume', 0.7);
         }

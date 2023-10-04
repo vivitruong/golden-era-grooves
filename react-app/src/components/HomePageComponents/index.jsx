@@ -14,6 +14,7 @@ import Modal from "../Modal";
 import Overlay from "../Overlay";
 import CreateSong from "../CreateSong";
 import { useDeleteSongMutation } from "../../slices/songsApiSlice";
+import UploadSong from "../CreateSong/dragdrop";
 
 const HomePageComponents = ({ allPlaylists }) => {
   const [showModal, setShowModal] = useState(false);
@@ -57,7 +58,7 @@ const HomePageComponents = ({ allPlaylists }) => {
           <span className=" title-column">{song?.name}</span>
           <span className=" artist-column">{song?.artist}</span>
         </div>
-        <Button
+        {/* <Button
           iconOnly
           onClick={async (e) => {
             e.stopPropagation();
@@ -68,7 +69,7 @@ const HomePageComponents = ({ allPlaylists }) => {
           }}
         >
           Delete Song
-        </Button>
+        </Button> */}
       </div>
     );
   });
