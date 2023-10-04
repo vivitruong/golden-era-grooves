@@ -1,35 +1,35 @@
 .container_playListHeader {
-    display: flex;
-    align-items: start;
-    justify-content: space-between;
-    width: 100%;
-    margin-bottom: 8px;
-  }
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 8px;
+}
 
-  .playListHeader {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
+.playListHeader {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
 
-  .icon {
-    padding: 10px;
-    border: 2px inset #fff;
-    background: silver;
-    color: #424242;
-    box-shadow: -1px -1px #000;
-    background-color: #dfdfdf;
-  }
+.icon {
+  padding: 10px;
+  border: 2px inset #fff;
+  background: silver;
+  color: #424242;
+  box-shadow: -1px -1px #000;
+  background-color: #dfdfdf;
+}
 
-  .playListHeader h2 {
-    color: #222222;
-    font-size: 1rem;
-    font-weight: bold;
-    margin-bottom: 7px;
-  }
+.playListHeader h2 {
+  color: #222222;
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 7px;
+}
 
-  .playListHeader p {
-    margin-bottom: 5px;
-    color: #222222;
-    font-size: 0.8rem;
-  }
+.playListHeader p {
+  margin-bottom: 5px;
+  color: #222222;
+  font-size: 0.8rem;
+}

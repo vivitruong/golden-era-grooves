@@ -1,25 +1,29 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import ProfileButton from './ProfileButton';
-import OpenModalButton from '../OpenModalButton';
-import './Navigation.css';
+import React from "react";
+import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
+import ProfileButton from "./ProfileButton";
+import "./Navigation.css";
+import { Redirect } from "react-router-dom";
+import { Home } from "../../pages/home";
 
-function Navigation({ isLoaded }){
-	const sessionUser = useSelector(state => state.session.user);
+function Navigation ({ isLoaded }) {
+  const sessionUser = useSelector((state) => state.session.user);
+  if (!sessionUser) return <Redirect to="/login" />;
 
-	return (
-	<div className="title-bar" >
-		 <div className="title-bar-text">Golden Era Grooves</div>
-		 <div className="title-bar-controls">
-        </div>
-			{isLoaded && (
-				<div>
-					<ProfileButton user={sessionUser} />
-				</div>
-			)}
-	</div>
-	);
+  return (
+    <ul>
+      <li>
+        {/* <NavLink exact to="/login"> */}
+        <Home />
+        {/* </NavLink> */}
+      </li>
+      {/* {isLoaded && (
+        <li>
+          <ProfileButton user={sessionUser} />
+        </li>
+      )} */}
+    </ul>
+  );
 }
 
 export default Navigation;

@@ -1,57 +1,57 @@
 .table {
-    width: 100%;
-    background-color: #fff;
-    overflow-y: scroll;
-    height: 475px;
-    border-width: 2px;
-    border-style: outset;
-    border-color: buttonface;
-    border-left-color: #424242;
-    border-top-color: #424242;
-  }
+  width: 100%;
+  background-color: #fff;
+  overflow-y: scroll;
+  height: 475px;
+  border-width: 2px;
+  border-style: outset;
+  border-color: buttonface;
+  border-left-color: #424242;
+  border-top-color: #424242;
+}
 
-  .header-row {
-    background-color: #c0c0c0 !important;
-  }
+.header-row {
+  background-color: #c0c0c0 !important;
+}
 
-  .song-row {
-    background-color: #fff;
-    display: flex;
-    padding: 10px;
-    gap: 20px;
-  }
-  .songs {
-    cursor: pointer;
-  }
+.song-row {
+  background-color: #fff;
+  display: flex;
+  padding: 10px;
+  gap: 20px;
+}
+.songs {
+  cursor: pointer;
+}
 
-  .songs:hover {
-    background-color: #000a71;
-    color: white;
-  }
+.songs:hover {
+  background-color: #000a71;
+  color: white;
+}
 
-  .id-column {
-  }
+.id-column {
+}
 
-  .title-column {
-    flex: 3;
-    font-weight: bold;
-  }
+.title-column {
+  flex: 3;
+  font-weight: bold;
+}
 
-  .album-column {
-    flex: 4;
-  }
+.album-column {
+  flex: 4;
+}
 
-  .date-added-column {
-    flex: 2;
-  }
+.date-added-column {
+  flex: 2;
+}
 
-  .duration-column {
-    flex: 2;
-  }
+.duration-column {
+  flex: 2;
+}
 
-  .title {
-    display: flex;
-    flex-direction: column;
-    flex: 3;
-    gap: 6px;
-  }
+.title {
+  display: flex;
+  flex-direction: column;
+  flex: 3;
+  gap: 6px;
+}

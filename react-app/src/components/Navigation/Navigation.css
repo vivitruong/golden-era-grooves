@@ -5,25 +5,3 @@
 .hidden {
   display: none;
 }
-.title-bar {
-  width: 100%;
-  margin: 0 auto;
-}
-
-/* .menu-container {
-  position: absolute;
-  top: 100%;
-  right: 0;
-  display: none;
-  background-color: white;
-
-}
-
-.menu-container.open {
-  display: block;
-} */
-.menu-items {
-  display: flex;
-  flex-direction: column; /* Stack items vertically */
-  gap: 10px; /* Add some spacing between items */
-}

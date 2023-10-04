@@ -1,16 +1,17 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useState, useEffect } from "react";
+import "./Login.css"; // Import your CSS file
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../../store/session";
 import { useModal } from "../../context/Modal";
-import { signUp } from "../../store/session";
-import "./SignupForm.css";
+import { Redirect } from "react-router-dom";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
-function SignupFormModal() {
+export const Login = () => {
   const dispatch = useDispatch();
-  const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const sessionUser = useSelector((state) => state.session.user);
 
+  const [email, setEmail] = useState("example@ok.com");
+  const [password, setpassword] = useState("123456789");
   const [errors, setErrors] = useState([]);
   const { closeModal } = useModal();
 
@@ -22,19 +23,22 @@ function SignupFormModal() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (password === confirmPassword) {
-      const data = await dispatch(signUp(username, email, password));
-      if (data) {
-        setErrors(data);
-      } else {
-        closeModal();
-      }
+    const data = await dispatch(login(email, password));
+    console.log("login :", data);
+    if (data) {
+      setErrors(data);
     } else {
-      setErrors([
-        "Confirm Password field must be the same as the Password field",
-      ]);
+      // closeModal();
+      console.log("login sucess");
     }
   };
+
+  // useEffect(() => {
+  //   console.log("email:", email);
+  //   console.log("password:", password);
+  // }, [email, password]);
+
+  if (sessionUser) return <Redirect to="/" />;
 
   return (
     <div className={`login-container ${isMaximized ? "maximized" : ""}`}>
@@ -56,24 +60,21 @@ function SignupFormModal() {
           <div className="welcome-message">
             Golden Era Grooves
             <br />
-            Please sign up
+            Please log in
           </div>
           <form onSubmit={handleSubmit}>
+            <ul>
+              {errors.map((error, idx) => (
+                <li key={idx}>{error}</li>
+              ))}
+            </ul>
             <div className="input-group">
-              <label htmlFor="username">Username:</label>
+              <label htmlFor="username">Email:</label>
               <input
                 type="text"
                 id="username"
-                name="username"
-                onChange={(e) => setUsername(e.target.value)}
-              />
-            </div>
-            <div className="input-group">
-              <label htmlFor="email">Email:</label>
-              <input
-                type="email"
-                id="email"
                 name="email"
+                value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
@@ -83,28 +84,23 @@ function SignupFormModal() {
                 type="password"
                 id="password"
                 name="password"
-                onChange={(e) => setPassword(e.target.value)}
+                value={password}
+                onChange={(e) => setpassword(e.target.value)}
               />
             </div>
-            <div className="input-group">
-              <label htmlFor="confirmPassword">Confirm Password:</label>
-              <input
-                type="password"
-                id="confirmPassword"
-                name="confirmPassword"
-                onChange={(e) => setConfirmPassword(e.target.value)}
-              />
-            </div>
-            {/* <button className="login-button">Sign Up</button> */}
+            <button
+              // onClick={() => handleLogin()}
+              className="login-button"
+            >
+              Log In
+            </button>
           </form>
-          <div className="login-or">
-            <span>or</span>
-          </div>
-          <button className="signup-button">Login</button>
+          <button className="signup-button">
+            {/* Sign Up */}
+            <Link to="/signup">Sign Up</Link>
+          </button>
         </div>
       </div>
     </div>
   );
-}
-
-export default SignupFormModal;
+};

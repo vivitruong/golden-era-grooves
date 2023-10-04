@@ -1,140 +1,140 @@
 * {
-    margin: 0;
+margin: 0;
+padding: 0;
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #77AFD4;
+    /* background-image: url('bg.png'); */
+    background-repeat: repeat-x;
+
+}
+
+.login-box {
+    background-color: #C0C0C0;
+    /* Windows XP login box background color */
+    border: 1px solid #000;
     padding: 0;
-    }
+    box-shadow: 0px 0px 10px #000;
+    width: 350px;
+}
 
-    .login-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        background-color: #77AFD4;
-        /* background-image: url('bg.png'); */
-        background-repeat: repeat-x;
+.login-title-bar {
+    background-color: #094CAE;
+    /* Windows XP title bar color */
+    color: #fff;
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+    cursor: move;
+}
 
-    }
+.logo img {
+    width: 24px;
+    height: 24px;
+    margin-right: 50px;
+}
 
-    .login-box {
-        background-color: #C0C0C0;
-        /* Windows XP login box background color */
-        border: 1px solid #000;
-        padding: 0;
-        box-shadow: 0px 0px 10px #000;
-        width: 350px;
-    }
+.login-title {
+    font-weight: bold;
+    font-size: 18px;
+}
 
-    .login-title-bar {
-        background-color: #094CAE;
-        /* Windows XP title bar color */
-        color: #fff;
-        display: flex;
-        align-items: center;
-        padding: 5px 10px;
-        cursor: move;
-    }
+.window-controls {
+    display: flex;
+    gap: 15px;
+    margin-left: 30px;
+}
 
-    .logo img {
-        width: 24px;
-        height: 24px;
-        margin-right: 50px;
-    }
+.minimize-button,
+.maximize-button,
+.close-button {
+    background-color: transparent;
+    border: none;
+    color: #fff;
+    font-size: 18px;
+    cursor: pointer;
+    outline: none;
+}
 
-    .login-title {
-        font-weight: bold;
-        font-size: 18px;
-    }
+.login-content {
+    padding: 20px;
+}
 
-    .window-controls {
-        display: flex;
-        gap: 15px;
-        margin-left: 30px;
-    }
+.welcome-message {
+    text-align: center;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
 
-    .minimize-button,
-    .maximize-button,
-    .close-button {
-        background-color: transparent;
-        border: none;
-        color: #fff;
-        font-size: 18px;
-        cursor: pointer;
-        outline: none;
-    }
+.input-group {
+    margin-bottom: 15px;
+}
 
-    .login-content {
-        padding: 20px;
-    }
+.input-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
 
-    .welcome-message {
-        text-align: center;
-        font-size: 16px;
-        margin-bottom: 20px;
-    }
+.input-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
 
-    .input-group {
-        margin-bottom: 15px;
-    }
+.login-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #008080;
+    /* Windows XP button color */
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+}
 
-    .input-group label {
-        display: block;
-        font-weight: bold;
-        margin-bottom: 5px;
-    }
+.login-button:hover {
+    background-color: #006666;
+    /* Windows XP button color on hover */
+}
 
-    .input-group input {
-        width: 100%;
-        padding: 8px;
-        border: 1px solid #ccc;
-        border-radius: 3px;
-    }
+.signup-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #C0C0C0;
+    /* Windows XP button color */
+    color: black;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+}
 
-    .login-button {
-        width: 100%;
-        padding: 10px;
-        background-color: #008080;
-        /* Windows XP button color */
-        color: #fff;
-        font-weight: bold;
-        border: none;
-        cursor: pointer;
-    }
+/* Additional styles for buttons */
+.minimize-button:hover,
+.maximize-button:hover,
+.close-button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transition: background-color 0.2s ease-in-out;
+}
 
-    .login-button:hover {
-        background-color: #006666;
-        /* Windows XP button color on hover */
-    }
+.maximized .login-box {
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+}
 
-    .signup-button {
-        width: 100%;
-        padding: 10px;
-        background-color: #C0C0C0;
-        /* Windows XP button color */
-        color: black;
-        font-weight: bold;
-        border: none;
-        cursor: pointer;
-    }
+.maximized .login-title-bar {
+    border-radius: 0;
+}
 
-    /* Additional styles for buttons */
-    .minimize-button:hover,
-    .maximize-button:hover,
-    .close-button:hover {
-        background-color: rgba(255, 255, 255, 0.2);
-        border-radius: 50%;
-        transition: background-color 0.2s ease-in-out;
-    }
+.maximized .window-controls {
+    gap: 10px;
 
-    .maximized .login-box {
-        width: 100vw;
-        height: 100vh;
-        border-radius: 0;
-    }
-
-    .maximized .login-title-bar {
-        border-radius: 0;
-    }
-
-    .maximized .window-controls {
-        gap: 10px;
-
-    }
+}

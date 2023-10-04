@@ -1,0 +1,41 @@
+nav {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+}
+
+.divider_1 {
+  width: 100%;
+  height: 5px;
+  margin: 4px 0;
+}
+.divider_1 > .one {
+  width: 100%;
+  height: 2px;
+  background-color: #808080;
+}
+.divider_1 > .two {
+  width: 100%;
+  height: 2px;
+  background-color: #ffffff;
+}
+
+.divider_2 {
+  width: 100%;
+  height: 5px;
+  margin: 4px 0;
+}
+.divider_2 > .one {
+  width: 100%;
+  height: 2px;
+  background-color: #808080;
+}
+.divider_2 > .two {
+  width: 100%;
+  height: 2px;
+  background-color: #ffffff;
+}
+
+ul li {
+  margin-bottom: 3px;
+}
