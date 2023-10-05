@@ -21,7 +21,7 @@
 .allsongs {
   width: 100%;
   overflow-y: scroll;
-  height: 445px;
+  height: 570px;
 }
 
 .conn {
@@ -33,4 +33,34 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.deleteModal {
+  padding: 10px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 990;
+  width: 60%;
+  margin: 0 auto;
+  max-width: 600px;
+  background-color: white;
+  overflow-y: auto;
+  border-width: 2px;
+  border-style: outset;
+  border-color: buttonface;
+  border-left-color: #424242;
+  border-top-color: #424242;
+  cursor: default;
+}
+
+.deleteModal:hover {
+  color: black;
+}
+
+.btns {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
 }

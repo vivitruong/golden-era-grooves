@@ -5,10 +5,10 @@ import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
-import { Login } from "./pages/login";
 import './app.css';
-import SplashScreen from "./components/SplashScreen";
-
+import SplashScreen from './components/SplashScreen'
+import { Login } from "./pages/login";
+import '98.css'
 function App () {
   const dispatch = useDispatch();
   const [ isLoaded, setIsLoaded ] = useState(false);
@@ -18,7 +18,7 @@ function App () {
 
   return (
     <>
-      <Navigation isLoaded={isLoaded} />
+    <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
            <Route exact path="/">

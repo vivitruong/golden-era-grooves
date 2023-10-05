@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { nextSong, pervSong } from "../../slices/songsSlice";
+// import { nextSong, pervSong } from "../../slices/songsSlice";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "../Button";
 import iconShuffle from "../../assets/shuffle.svg";
@@ -9,6 +9,7 @@ import iconNext from "../../assets/next.svg";
 import iconPrev from "../../assets/next.svg";
 import iconRepeat from "../../assets/repeat.svg";
 import "./styles.css";
+import { nextSong, pervSong } from "../../store/slices/playlistSlice";
 
 const Controls = ({
   audioRef,
@@ -18,11 +19,12 @@ const Controls = ({
   volume,
 }) => {
   const dispatch = useDispatch();
-  const { songs } = useSelector((state) => state.songs);
+  const songs = useSelector((state) => state.songs);
   // const { selectedPlayListSongs } = useSelector((state) => state.playlists);
   // const audioRef = useRef(null);
   const [progressPercent, setProgressPercent] = useState(0);
-  const [remainingDuration, setRemainingDuration] = useState(0);
+  const [remainingDuration, setRemainingDuration] = useState(null);
+  const [duration, setDuration] = useState(null);
   const [loop, setLoop] = useState(false);
 
   function formatTime(timeInSeconds) {
@@ -38,6 +40,7 @@ const Controls = ({
   function updateProgress(e) {
     const audioElement = e.currentTarget;
     const { duration, currentTime } = audioElement;
+    setDuration(formatTime(duration));
     const progressPercent = (currentTime / duration) * 100;
     setProgressPercent(progressPercent);
     const remaining = duration - currentTime;
@@ -91,6 +94,7 @@ const Controls = ({
       </div>
       <div className="ctrl">
         {/* {playSong?.duration} */}
+        {duration}
         <div
           className="progressContainer"
           id="progressContainer"

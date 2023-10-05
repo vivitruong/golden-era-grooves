@@ -1,18 +1,33 @@
 const LOAD_USERSONGS = 'songs/loadUserSongs';
 const REMOVE_SONG = 'songs/removeSong';
+const ADD_SONG = 'songs/addSong';
+const UPDATE_SONG = 'song/UPDATE_SONG';
 
-export function loadUserSongs(songs) {
+
+export function loadUserSongs (songs) {
     return {
         type: LOAD_USERSONGS,
         songs
-    }
+    };
+}
+export const updateSong = (song) => ({
+    type: UPDATE_SONG,
+    payload: song
+});
+
+export function addSong (song) {
+    return {
+        type: ADD_SONG,
+        payload: song
+    };
 }
 
-export function removeSong(songId) {
+
+export function removeSong (songId) {
     return {
-        type: REMOVE_SONG, 
-        songId
-    }
+        type: REMOVE_SONG,
+        payload: songId
+    };
 }
 
 export const fetchUserSongs = () => async dispatch => {
@@ -22,61 +37,102 @@ export const fetchUserSongs = () => async dispatch => {
         dispatch(loadUserSongs(data.songs));
         return response;
     }
-}
+};
 
-export const deleteSong = (songId) => async dispatch => {
-    try {
-        const response = await fetch(`/api/songs/${songId}`, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ songId })
-        })
-        if (response.ok) {
-            dispatch(removeSong(songId));
-            return response;
-        } else {
-            const data = response.json();
-            return data;
-        }
-    } catch (err) {
-        throw err;
+export const updateASong = (updatedSong) => async dispatch => {
+    const response = await fetch(`/api/songs/${ updatedSong.id }`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(updatedSong)
+    });
+    if (response.ok) {
+        const editedSong = await response.json();
+        console.log(editedSong);
+        dispatch(updateSong(editedSong));
+        return editedSong;
     }
-}
+};
+
+export const deleteSong = ({ songId }) => async dispatch => {
+    const response = await fetch(`api/songs/${ songId }`, {
+        method: 'DELETE'
+    });
+    if (response.ok) {
+        const deletionResponse = await response.json();
+        dispatch(removeSong(songId)
+        );
+        return deletionResponse;
+    }
+};
 
 
-const userSongReducer = (state = {}, action) => {
-    let newState;
+const initialState = [];
+
+const userSongReducer = (state = initialState, action) => {
+    let newState = [ ...state ];
+
     switch (action.type) {
-        case LOAD_USERSONGS: 
-            newState = deepCopy(state);
-            let newSong = action.songs.reduce((data, song) => {
-                data[song.id] = song;
-                return data;
-            }, {});
-            newState.songs = newSong;
-            return newState;
-        
-        case REMOVE_SONG:
-            newState = deepCopy(state);
-            delete newState.songs[action.songId];
+        case LOAD_USERSONGS:
+            return action.songs || []; // Replace the existing state with the new songs array.
+
+        case ADD_SONG:
+            newState.push(action.payload);
             return newState;
 
-        
+        case UPDATE_SONG:
+            return newState.map((song) => {
+                return parseInt(song?.id) === parseInt(action.payload?.id) ? action.payload : song;
+            }
+            );
+
+        case REMOVE_SONG:
+            return newState.filter((song) => parseInt(song.id) !== parseInt(action.payload));
+
         default:
             return state;
     }
-}
+};
 
-function deepCopy(value) {
+
+
+// const userSongReducer = (state = {}, action) => {
+//     let newState;
+//     switch (action.type) {
+//         case LOAD_USERSONGS:
+//             const userSong = {};
+//             console.log(action);
+//             action.songs?.forEach((song) => {
+//                 userSong[ song.id ] = song;
+//             });
+//             return userSong;
+
+//         case ADD_SONG:
+//             newState = deepCopy(state);
+//             newState.songs[ action.song.id ] = action.song;
+//             return newState;
+//         case UPDATE_SONG:
+//             newState = { ...state };
+//             newState[ action.song.id ] = action.song;
+//             return newState;
+
+//         case REMOVE_SONG:
+//             console.log(action);
+//             newState = { ...state };
+//             delete newState[ action?.songId ];
+//             return newState;
+//         default:
+//             return state;
+//     }
+// };
+
+function deepCopy (value) {
     if (typeof value === 'object') {
         if (Array.isArray(value)) {
             return value.map(element => deepCopy(element));
         } else {
             const result = {};
             Object.entries(value).forEach(entry => {
-                result[entry[0]] = deepCopy(entry[1]);
+                result[ entry[ 0 ] ] = deepCopy(entry[ 1 ]);
             });
             return result;
         }

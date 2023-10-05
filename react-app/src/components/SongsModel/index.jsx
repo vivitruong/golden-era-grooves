@@ -1,9 +1,11 @@
 import { useState } from "react"; // Import useState
 import { useDispatch } from "react-redux";
-import { addSongToSelectedPlayList } from "../../slices/playlistsSlice";
+// import { addSongToSelectedPlayList } from "../../slices/playlistsSlice";
 import Button from "../Button";
+import { addSongsToPlaylist } from "../../store/playlist";
 
-const SongsModal = ({ songs, playlist }) => {
+const SongsModal = ({ songs, playlistId }) => {
+  console.log(playlistId);
   const dispatch = useDispatch();
 
   // Initialize state to keep track of added songs
@@ -30,12 +32,10 @@ const SongsModal = ({ songs, playlist }) => {
           iconOnly
           onClick={() => {
             const addSong = {
-              id: Math.random(),
-              playlistId: playlist?.id,
-              song,
-              songId: Math.random(),
+              playlistId,
+              song_Id: song?.id,
             };
-            dispatch(addSongToSelectedPlayList({ playlist, addSong }));
+            dispatch(addSongsToPlaylist({ playlistId, song_Id: song?.id }));
 
             // setAddedSongs([...addedSongs, song.id]);
           }}

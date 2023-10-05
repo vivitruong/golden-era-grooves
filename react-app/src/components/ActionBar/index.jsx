@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { likeSong } from "../../slices/songsSlice";
+// import { likeSong } from "../../slices/songsSlice";
 import Button from "../Button";
 import iconPlay from "../../assets/play.svg";
 import iconHeart from "../../assets/heart.svg";
@@ -9,8 +9,8 @@ import "./style.css";
 
 const ActionBar = () => {
   const dispatch = useDispatch();
-  const { playSong } = useSelector((state) => state.playSong);
-  console.log(playSong);
+  // const { playSong } = useSelector((state) => state.playSong);
+  // console.log(playSong);
   return (
     <div className="actionBar">
       <div className="btns">
@@ -19,7 +19,7 @@ const ActionBar = () => {
         </Button>
         <Button
           iconOnly
-          onClick={() => dispatch(likeSong({ ...playSong, isLiked: true }))}
+          // onClick={() => dispatch(likeSong({ ...playSong, isLiked: true }))}
         >
           <img src={iconHeart} alt="" />
         </Button>

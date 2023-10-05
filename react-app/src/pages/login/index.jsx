@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Login.css"; // Import your CSS file
 import { useDispatch, useSelector } from "react-redux";
-import { login } from "../../store/session";
+import { login, signUp } from "../../store/session";
 import { useModal } from "../../context/Modal";
 import { Redirect } from "react-router-dom";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
@@ -10,8 +10,8 @@ export const Login = () => {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
 
-  const [email, setEmail] = useState("example@ok.com");
-  const [password, setpassword] = useState("123456789");
+  const [email, setEmail] = useState("");
+  const [password, setpassword] = useState("");
   const [errors, setErrors] = useState([]);
   const { closeModal } = useModal();
 
@@ -24,12 +24,23 @@ export const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = await dispatch(login(email, password));
-    console.log("login :", data);
     if (data) {
       setErrors(data);
     } else {
       // closeModal();
       console.log("login sucess");
+    }
+  };
+  const demoLogin = async (e) => {
+    const email = "demo@aa.io";
+    const password = "password";
+    e.preventDefault();
+    const data = await dispatch(login(email, password));
+    if (data === null) {
+      closeModal();
+    }
+    if (data) {
+      setErrors(data);
     }
   };
 
@@ -41,66 +52,72 @@ export const Login = () => {
   if (sessionUser) return <Redirect to="/" />;
 
   return (
-    <div className={`login-container ${isMaximized ? "maximized" : ""}`}>
-      <div className="login-box">
-        <div className="login-title-bar">
-          <div className="logo">
-            <img src="xpLogo.png" alt="Windows Logo" />
-          </div>
-          <div className="login-title">Golden Era Grooves</div>
-          <div className="window-controls">
-            <button className="minimize-button">_</button>
-            <button className="maximize-button" onClick={toggleMaximize}>
-              {isMaximized ? "◻" : "□"}
-            </button>
-            <button className="close-button">X</button>
-          </div>
-        </div>
-        <div className="login-content">
-          <div className="welcome-message">
-            Golden Era Grooves
-            <br />
-            Please log in
-          </div>
-          <form onSubmit={handleSubmit}>
-            <ul>
-              {errors.map((error, idx) => (
-                <li key={idx}>{error}</li>
-              ))}
-            </ul>
-            <div className="input-group">
-              <label htmlFor="username">Email:</label>
-              <input
-                type="text"
-                id="username"
-                name="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-            <div className="input-group">
-              <label htmlFor="password">Password:</label>
-              <input
-                type="password"
-                id="password"
-                name="password"
-                value={password}
-                onChange={(e) => setpassword(e.target.value)}
-              />
-            </div>
-            <button
-              // onClick={() => handleLogin()}
-              className="login-button"
-            >
-              Log In
-            </button>
-          </form>
-          <button className="signup-button">
-            {/* Sign Up */}
-            <Link to="/signup">Sign Up</Link>
-          </button>
-        </div>
-      </div>
+    <>
+
+    <div class="title-bar loginmodal">
+    <div class="title-bar-text">Log in</div>
+    <div className="title-bar-controls">
+    <button aria-label="Minimize" />
+    <button aria-label="Maximize" />
+    <button onClick={closeModal} aria-label="Close" />
     </div>
+  </div>
+        <div class="window-body">
+      <form onSubmit={handleSubmit} className="input-login">
+        <ul>
+          {errors.map((error, idx) => (
+            <li key={idx}>{error}</li>
+          ))}
+        </ul>
+
+        <img className="logo-login" src='https://goldeneragrooves.s3.us-east-2.amazonaws.com/windowPG.png' alt='login'/>
+        <span style={{
+            color: '#222222',
+            textAlign: 'center',
+            fontFamily: 'MS Sans Serif Bold',
+            fontSize: '15px',
+            fontStyle: 'normal',
+            fontWeight: '600',
+            lineHeight: '12px',
+
+          }}>Golden Era Grooves</span>
+        <div class="login-content">
+        <div className='login-email login-info'>
+          <input
+            placeholder="Email"
+            type="text"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+
+        </div>
+         <div className='login-password login-info'>
+          <input
+            type="password"
+            value={password}
+            placeholder="Password"
+            onChange={(e) => setpassword(e.target.value)}
+            required
+
+          />
+          </div>
+        </div>
+        <div className="down-login">
+        <button type="submit">Log In</button>
+        <button className="custom-link">
+      {/* Use the Link component to navigate to the signup page */}
+      <Link to="/signup">Create an account</Link>
+    </button>
+
+        <span onClick={demoLogin}>Log in as Demo User</span>
+        </div>
+
+      </form>
+      </div>
+
+
+
+  </>
   );
 };

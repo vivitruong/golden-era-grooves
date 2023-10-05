@@ -1,5 +1,5 @@
 .playList {
-  overflow-y: scroll;
+  overflow-y: auto;
   height: 430px;
   width: 153px;
   background: #fff;

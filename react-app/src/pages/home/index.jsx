@@ -1,16 +1,16 @@
 import React, { useState, useEffect, useRef } from "react";
 import Button from "../../components/Button";
-import { fetchLocalData } from "../../slices/playlistsSlice";
+// import { fetchLocalData } from "../../slices/playlistsSlice";
 import PlayLists from "../../components/PlayLists";
 import { useSelector, useDispatch } from "react-redux";
 import Navbar from "../../components/Navbar";
 import CurrentPlayingSong from "../../components/CurrentPlayingSong";
-import { pauseAudio, playAudio } from "../../slices/songsSlice";
+// import { pauseAudio, playAudio } from "../../slices/songsSlice";
 import volumnIcon from "../../assets/volumnIcon.svg";
 import Controls from "../../components/Controls";
 import { Switch } from "react-router-dom";
 import { Route } from "react-router-dom/cjs/react-router-dom";
-
+import TopNav from '../../components/TopNav'
 import HomePage from "../HomePage"; // Import your route components
 import LikedSongsPage from "../LikedSongsPage"; // Import your route components
 import SearchPage from "../SearchPage"; // Import your route components
@@ -18,28 +18,15 @@ import LibrarayPage from "../LibrarayPage"; // Import your route components
 import CreatePlayList from "../CreatePlayList"; // Import your route components
 import PlaylistsPage from "../PlaylistsPage"; // Import your route components
 import SelectedPlaylistPage from "../SelectedPlaylistPage";
-import TopNav from "../../components/TopNav";
-import UploadSong from "../../components/CreateSong/dragdrop";
-import UserPage from "../../components/UserPage";
-import Paint from "../../components/Paint/apps/Paint";
-import SplashScreen from "../../components/SplashScreen";
-import PlaylistPage from "../../components/PlaylistPage";
-
+import { pauseAudio, playAudio } from "../../store/slices/playlistSlice";
+import Paint from '../../components/Paint'
+import UploadSong from "../../components/UploadSong";
+import ProtectedRoute from "../../components/ProtectedRoute";
 export const Home = () => {
-  const { allSongs } = useSelector((state) => state?.songs);
-  const { selectedPlayListSongs } = useSelector((state) => state?.playlists);
-  // const { id } = useParams();
-  // const location = useLocation();
-  // const isPlaylistPage = location.pathname.startsWith("/playlist/");
-  // console.log(isPlaylistPage);
-
-  // const selectedSongsList = isPlaylistPage
-  //   ? selectedPlayListSongs?.playlist_songs?.map((song) => song.song)
-  //   : allSongs;
-  // console.log(selectedSongsList);
+  // const { selectedPlayListSongs } = useSelector((state) => state?.playlists);
 
   const dispatch = useDispatch();
-  const { status, error } = useSelector((state) => state.playlists);
+  // const { status, error } = useSelector((state) => state.playlists);
   const { playSong, isPlaying } = useSelector((state) => state.playSong);
   const [volume, setVolume] = useState(1);
   const audioRef = useRef(null);
@@ -48,40 +35,27 @@ export const Home = () => {
     if (isPlaying) {
       console.log("pause");
       dispatch(pauseAudio());
-      if (audioRef.current) {
-        audioRef.current.pause();
-      }
+      audioRef?.current?.pause();
     } else {
       console.log("play");
       dispatch(playAudio(playSong?.filePath));
-      if (audioRef.current) {
-        audioRef.current.play();
-      }
+      audioRef?.current?.play();
     }
-    // if (isPlaying) {
-    //   console.log("pause");
-    //   dispatch(pauseAudio());
-    //   audioRef.current.pause();
-    // } else {
-    //   console.log("play");
-    //   dispatch(playAudio(playSong?.filePath));
-    //   audioRef.current.play();
-    // }
   };
 
-  useEffect(() => {
-    if (status === "idle") {
-      dispatch(fetchLocalData());
-    }
-  }, [status, dispatch]);
+  // useEffect(() => {
+  //   if (status === "idle") {
+  //     // dispatch(fetchLocalData());
+  //   }
+  // }, [status, dispatch]);
 
-  if (status === "loading") {
-    return <div>Loading...</div>;
-  }
+  // if (status === "loading") {
+  //   return <div>Loading...</div>;
+  // }
 
-  if (status === "failed") {
-    return <div>Error: {error}</div>;
-  }
+  // if (status === "failed") {
+  //   return <div>Error: {error}</div>;
+  // }
 
   const handleVolumeChange = (e) => {
     const newVolume = e?.target?.value;
@@ -96,7 +70,6 @@ export const Home = () => {
     <div className="app">
       <div className="container">
         <div>
-
           <Navbar />
           <PlayLists />
         </div>
@@ -116,30 +89,21 @@ export const Home = () => {
           <Route path="/library">
             <LibrarayPage />
           </Route>
-          <Route path="/create-playlist">
+          <ProtectedRoute path="/create-playlist">
             <CreatePlayList />
-          </Route>
-          <Route path="/playlists">
+          </ProtectedRoute>
+          <ProtectedRoute path="/playlists/:id">
             <PlaylistsPage />
-          </Route>
-          <Route path='/playlists/:playlistId'>
-            <PlaylistPage />
-
-          </Route>
-          <Route path="/playlist/:name">
+          </ProtectedRoute>
+          <ProtectedRoute path="/playlist/:name">
             <SelectedPlaylistPage />
-            <PlaylistPage/>
-          </Route>
-          <Route path='/upload'>
-            <UploadSong />
-          </Route>
-          <Route path='/profile'>
-
-            <UserPage />
-
-          </Route>
+          </ProtectedRoute>
           <Route path='/paint'>
-          <Paint/>          </Route>
+            <Paint />
+          </Route>
+          <ProtectedRoute path='/upload'>
+            <UploadSong />
+          </ProtectedRoute>
         </Switch>
       </div>
       <div className="bottom_control_board">

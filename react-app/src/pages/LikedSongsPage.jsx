@@ -5,7 +5,7 @@ import Divider from "../components/Divider";
 import { useSelector } from "react-redux";
 
 const LikedSongsPage = () => {
-  const { likedSong } = useSelector((state) => state.likedSongs);
+  // const { likedSong } = useSelector((state) => state.likedSongs);
 
   return (
     <div style={{ width: "100%" }}>
@@ -13,11 +13,11 @@ const LikedSongsPage = () => {
       <Divider />
       <ActionBar />
       <Divider />
-      {likedSong.length === 0 ? (
-        <h2>No Liked Songs yet</h2>
-      ) : (
-        <Songs songs={likedSong} />
-      )}
+      {/* {likedSong.length === 0 ? ( */}
+      <h2>No Liked Songs yet</h2>
+      {/* ) : ( */}
+      {/* <Songs songs={likedSong} /> */}
+      {/* )} */}
     </div>
   );
 };

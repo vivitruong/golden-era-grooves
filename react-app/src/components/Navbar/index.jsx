@@ -68,6 +68,16 @@ const Navbar = () => {
               </Button>
             </Link>
           </li>
+
+          <li>
+            <Link to="/paint">
+              <Button onClick={onClickHandler}>
+                <img style={{width: '20px'}} src='https://goldeneragrooves.s3.us-east-2.amazonaws.com/jspaint.svg' alt="" />
+                Paint
+              </Button>
+            </Link>
+          </li>
+
         </ul>
         <Divider />
       </nav>
