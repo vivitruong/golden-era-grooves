@@ -102,7 +102,7 @@ const CreateSong = () => {
   const [error, setErrors] = useState({});
   const history = useHistory()
 
-  // const [createUserSong] = useCreateSongMutation();
+
 
   const dispatch = useDispatch();
   const handleSubmit = async (e) => {
@@ -117,7 +117,7 @@ const CreateSong = () => {
 
   if (cover_photo[0]  && cover_photo[0].name) {
       const allowedExtensions = ['png', 'jpg', 'jpeg'];
-      // const fileExtension = cover_photo[0].name.toLowerCase().slice(-4);
+
       let fileExtension = cover_photo[0].name.split('.')
       fileExtension = fileExtension[fileExtension.length-1]
       console.log(fileExtension)
