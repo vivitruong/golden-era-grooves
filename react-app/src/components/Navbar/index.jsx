@@ -77,8 +77,6 @@ const Navbar = () => {
               </Button>
             </Link>
           </li>
-<<<<<<< HEAD
-=======
           <li>
             <Link to="/game">
               <Button onClick={onClickHandler}>
@@ -95,7 +93,6 @@ const Navbar = () => {
               </Button>
             </Link>
           </li>
->>>>>>> game
 
         </ul>
         <Divider />

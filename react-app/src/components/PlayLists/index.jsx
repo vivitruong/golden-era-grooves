@@ -35,15 +35,9 @@ const PlayLists = () => {
   });
   return (
     <div className="playList">
-<<<<<<< HEAD
-      <span style={{fontSize:'20px', paddingBottom:'5px'}}>My Playlists:</span>
-      {renderList}
-    </div>
-=======
     <span style={{fontSize:'17px', paddingBottom:'5px', fontWeight:'600'}}>My Playlists <img src='https://win98icons.alexmeub.com/icons/png/cd_audio_cd-1.png'></img></span>
     {renderList}
   </div>
->>>>>>> game
   );
 };
 
