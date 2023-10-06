@@ -29,7 +29,7 @@ function SplashScreen() {
     };
     // if (sessionUser) return <Redirect to='/'>;
     if(sessionUser){
-      return <Redirect to='/welcome'></Redirect>
+      return <Redirect to='/'></Redirect>
     }
 
     return (

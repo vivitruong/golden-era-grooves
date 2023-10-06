@@ -60,8 +60,8 @@ const LibrarayPage = () => {
     const formData = new FormData();
     formData.append("name", name);
     formData.append("genre", genre);
-    formData.append("cover_photo", coverPhoto);
-    formData.append("file_path", filePath);
+    formData.append("cover_photo", cover_photo);
+    formData.append("file_path", file_path);
     formData.append("artist", artist);
 
     try {
@@ -218,7 +218,7 @@ const LibrarayPage = () => {
               setFilePath={setFilePath}
               setGenre={setGenre}
               setName={setName}
-              onSubmitHandler={editSong}
+              onSubmitHandler={createSong}
               btnText={"Create"}
             />
           </Modal>

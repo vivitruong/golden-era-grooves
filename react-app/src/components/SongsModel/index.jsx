@@ -1,18 +1,14 @@
 import { useState } from "react"; // Import useState
 import { useDispatch } from "react-redux";
-
+// import { addSongToSelectedPlayList } from "../../slices/playlistsSlice";
 import Button from "../Button";
 import { addSongsToPlaylist } from "../../store/playlist";
 
 const SongsModal = ({ songs, playlistId, songsInPlayList }) => {
-  console.log(playlistId);
   const dispatch = useDispatch();
 
-  // Initialize state to keep track of added songs
-
   const renderList = songs?.map((song, index) => {
-    // Check if the song is already added
-    // const isSongAdded = addedSongs.includes(song.id);
+    // const isSongAdded = songsInPlayList[index]?.song?.includes(song.id);
 
     return (
       <div
@@ -37,12 +33,11 @@ const SongsModal = ({ songs, playlistId, songsInPlayList }) => {
               playlistId,
               songId: song?.id,
             };
-            dispatch(addSongsToPlaylist({  playlistId, song_Id: song?.id, addSong  }));
-
-
+            dispatch(
+              addSongsToPlaylist({ playlistId, song_Id: song?.id, addSong })
+            );
           }}
         >
-
           Add
         </Button>
       </div>
