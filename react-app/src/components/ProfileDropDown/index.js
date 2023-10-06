@@ -22,7 +22,8 @@ const ProfileDropdown = () => {
     return (
         <div>
             <button onClick={openMenu} className="profile-user-btn">
-                <i className="fas fa-user-circle" />
+                {/* <i className="fas fa-user-circle" /> */}
+                <img src='https://win98icons.alexmeub.com/icons/png/address_book_user.png'></img>
             </button>
             {
                 showMenu &&

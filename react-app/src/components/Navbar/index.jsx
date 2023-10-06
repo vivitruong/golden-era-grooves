@@ -68,12 +68,29 @@ const Navbar = () => {
               </Button>
             </Link>
           </li>
+          <Divider />
 
           <li>
             <Link to="/paint">
               <Button onClick={onClickHandler}>
                 <img style={{width: '20px'}} src='https://goldeneragrooves.s3.us-east-2.amazonaws.com/jspaint.svg' alt="" />
                 Paint
+              </Button>
+            </Link>
+          </li>
+          <li>
+            <Link to="/game">
+              <Button onClick={onClickHandler}>
+                <img style={{width: '20px'}} src='https://win98icons.alexmeub.com/icons/png/game_freecell-2.png' alt="" />
+                Games
+              </Button>
+            </Link>
+          </li>
+          <li>
+            <Link to="/webamp">
+              <Button onClick={onClickHandler}>
+                <img style={{width: '20px'}} src='https://win98icons.alexmeub.com/icons/png/cd_audio_cd_a-2.png' alt="" />
+                Webamp
               </Button>
             </Link>
           </li>

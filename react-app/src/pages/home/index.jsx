@@ -25,6 +25,8 @@ import ProtectedRoute from "../../components/ProtectedRoute";
 import Search from '../../components/SearchBar'
 import UserPage from "../../components/UserPage";
 import Footer from "../../components/Footer";
+import MinesweeperEmbed from "../../components/Game";
+import Webamp from "../../components/Webamp";
 // import CustomMediaPlayer from "../../components/Window-media/media";
 export const Home = () => {
   // const { selectedPlayListSongs } = useSelector((state) => state?.playlists);
@@ -112,6 +114,14 @@ export const Home = () => {
           </ProtectedRoute>
           <Route path='/paint'>
             <Paint />
+            <Footer/>
+          </Route>
+          <Route path='/game'>
+            <MinesweeperEmbed />
+            <Footer/>
+          </Route>
+            <Route path='/webamp'>
+            <Webamp />
             <Footer/>
           </Route>
           <ProtectedRoute path='/profile'>
