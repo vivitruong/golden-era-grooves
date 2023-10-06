@@ -43,7 +43,7 @@ export const updateASong = (updatedSong) => async dispatch => {
     const response = await fetch(`/api/songs/${ updatedSong.id }`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(updatedSong)
+        body: updatedSong
     });
     if (response.ok) {
         const editedSong = await response.json();
