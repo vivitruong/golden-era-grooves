@@ -13,10 +13,14 @@ import { useEffect, useState } from "react";
 import Modal from "../Modal";
 import Overlay from "../Overlay";
 import CreateSong from "../CreateSong";
-import { playAudio, playSong } from "../../store/slices/playlistSlice";
+import {
+  currentPlayListSongs,
+  playAudio,
+  playSong,
+} from "../../store/slices/playlistSlice";
 // import { useDeleteSongMutation } from "../../slices/songsApiSlice";
 // import { useCreateSongMutation } from "../../slices/songsApiSlice";
-
+import Divider from '../../components/Divider'
 const HomePageComponents = ({ allPlaylists }) => {
   // const [showModal, setShowModal] = useState(false);
   // const [showDeleteModal, setDeleteModal] = useState(false);
@@ -52,8 +56,6 @@ const HomePageComponents = ({ allPlaylists }) => {
 
   // const deleteSongHandler = async (song) => {
   //   // const res = await deleteSong({ songId: song?.id });
-  //   console.log(song);
-  //   // console.log(res);
   //   // dispatch();
   //   // removeSongToSelectedPlayList({ playlist, removeSong: song })
   // };
@@ -66,15 +68,12 @@ const HomePageComponents = ({ allPlaylists }) => {
   //     filePath,
   //     genre,
   //   };
-  //   console.log("Creating");
-  //   console.log(songToCreateOrEdit);
   //   setShowModal(false);
   //   setEditModal(false);
   //   try {
   //     // const res = await createUserSong({
   //     //   song: JSON.stringify(songToCreateOrEdit),
   //     // }).unwrap();
-  //     // console.log(res);
   //   } catch (error) {
   //     console.log(error);
   //   }
@@ -108,7 +107,7 @@ const HomePageComponents = ({ allPlaylists }) => {
         className={`song-row songs`}
         key={song?.id}
         onClick={() => {
-          // dispatch(getSongs({ songs: allSongs }));
+          dispatch(currentPlayListSongs({ songs: allSongs }));
           dispatch(playSong({ song: song, index }));
           dispatch(playAudio());
         }}
@@ -117,23 +116,39 @@ const HomePageComponents = ({ allPlaylists }) => {
         <div className="song-column title">
           <span className=" title-column">{song?.name}</span>
           <span className=" artist-column">{song?.artist}</span>
+
         </div>
+        <span className=" duration-column">{song?.duration}</span>
       </div>
     );
   });
 
   return (
     <div>
+
       <div className="conn">
         {/* <h2>PlayLists</h2>
         <div className="pList">{renderPlayList}</div> */}
       </div>
       <div className="conn">
+
         <div className="create">
+<<<<<<< HEAD
           <h4>Browse All New Music Today 🎶 </h4>
+=======
+        <h3>Browse All New Music Today <img src="https://win98icons.alexmeub.com/icons/png/netshow-1.png"></img></h3>
+>>>>>>> game
           {/* <Button iconOnly onClick={() => setShowModal(true)}>
               Create Song
             </Button> */}
+        </div>
+        <Divider />
+        <div className="song-row header-row">
+          <span className="song-column id-column">#</span>
+          <span className="song-column title-column">Title</span>
+          <span className="song-column album-column">Album</span>
+          <span className="song-column date-added-column">Date Added</span>
+          <span className="song-column duration-column">Duration</span>
         </div>
         <div className="allsongs">{renderAllSong}</div>
       </div>

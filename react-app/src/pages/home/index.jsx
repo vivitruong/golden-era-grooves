@@ -10,7 +10,7 @@ import volumnIcon from "../../assets/volumnIcon.svg";
 import Controls from "../../components/Controls";
 import { Switch } from "react-router-dom";
 import { Route } from "react-router-dom/cjs/react-router-dom";
-import TopNav from '../../components/TopNav'
+
 import HomePage from "../HomePage"; // Import your route components
 import LikedSongsPage from "../LikedSongsPage"; // Import your route components
 import SearchPage from "../SearchPage"; // Import your route components
@@ -19,13 +19,17 @@ import CreatePlayList from "../CreatePlayList"; // Import your route components
 import PlaylistsPage from "../PlaylistsPage"; // Import your route components
 import SelectedPlaylistPage from "../SelectedPlaylistPage";
 import { pauseAudio, playAudio } from "../../store/slices/playlistSlice";
-import Paint from '../../components/Paint'
-import UploadSong from "../../components/UploadSong";
-import ProtectedRoute from "../../components/ProtectedRoute";
-import Search from '../../components/SearchBar'
-import UserPage from "../../components/UserPage";
+import TopNav from "../../components/TopNav";
 import Footer from "../../components/Footer";
+<<<<<<< HEAD
 // import CustomMediaPlayer from "../../components/Window-media/media";
+=======
+import UserPage from "../../components/UserPage";
+import Paint from "../../components/Paint";
+import MinesweeperEmbed from "../../components/MineSweeper";
+import Solitaire from "../../components/Game";
+
+>>>>>>> game
 export const Home = () => {
   // const { selectedPlayListSongs } = useSelector((state) => state?.playlists);
 
@@ -37,11 +41,9 @@ export const Home = () => {
 
   const togglePlayPause = () => {
     if (isPlaying) {
-      console.log("pause");
       dispatch(pauseAudio());
       audioRef?.current?.pause();
     } else {
-      console.log("play");
       dispatch(playAudio(playSong?.filePath));
       audioRef?.current?.play();
     }
@@ -63,7 +65,7 @@ export const Home = () => {
 
   const handleVolumeChange = (e) => {
     const newVolume = e?.target?.value;
-    if (newVolume && audioRef.current) {
+    if (newVolume && audioRef?.current) {
       setVolume(newVolume);
       audioRef.current.volume = newVolume;
     } else {
@@ -79,9 +81,7 @@ export const Home = () => {
         </div>
         <Switch>
           {/* Route definitions for your pages */}
-
           <Route exact path="/">
-
             <HomePage />
             <TopNav />
             <Footer/>
@@ -98,26 +98,42 @@ export const Home = () => {
             <LibrarayPage />
             <Footer/>
           </Route>
-          <ProtectedRoute path="/create-playlist">
+          <Route path="/create-playlist">
             <CreatePlayList />
             <Footer/>
-          </ProtectedRoute>
-          <ProtectedRoute path="/playlists/:id">
+          </Route>
+          <Route path="/playlists/:id">
             <PlaylistsPage />
             <Footer/>
-          </ProtectedRoute>
-          <ProtectedRoute path="/playlist/:name">
+          </Route>
+          <Route path='/profile'>
+          <UserPage />
+          <Footer/>
+          </Route>
+          <Route path="/playlist/:name">
             <SelectedPlaylistPage />
             <Footer/>
-          </ProtectedRoute>
+          </Route>
           <Route path='/paint'>
             <Paint />
             <Footer/>
           </Route>
+<<<<<<< HEAD
           <ProtectedRoute path='/profile'>
             <UserPage />
             <Footer/>
           </ProtectedRoute>
+=======
+          <Route path='/game'>
+            <Solitaire />
+            <Footer/>
+          </Route>
+
+          <Route path='/mine'>
+        <MinesweeperEmbed/>
+        <Footer />
+          </Route>
+>>>>>>> game
         </Switch>
       </div>
       <div className="bottom_control_board">

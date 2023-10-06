@@ -207,7 +207,7 @@ const LibrarayPage = () => {
         <>
           <Overlay onClose={() => setShowModal(false)} />
           <Modal>
-            <EditSong
+            <CreateSong
               artist={artist}
               cover_photo={cover_photo}
               file_path={file_path}

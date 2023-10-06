@@ -19,10 +19,9 @@
 }
 
 .allsongs {
-  width: 96%;
+  width: 100%;
   overflow-y: scroll;
-  height: 600px;
-
+  height: 620px;
 }
 
 .conn {
@@ -37,9 +36,7 @@
 }
 
 .deleteModal {
-  /* padding: 10px; */
-  padding-bottom: 5px;
-
+  padding: 10px;
   position: absolute;
   left: 50%;
   top: 50%;

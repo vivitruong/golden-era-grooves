@@ -77,6 +77,25 @@ const Navbar = () => {
               </Button>
             </Link>
           </li>
+<<<<<<< HEAD
+=======
+          <li>
+            <Link to="/game">
+              <Button onClick={onClickHandler}>
+                <img style={{width: '20px'}} src='https://win98icons.alexmeub.com/icons/png/game_freecell-1.png' alt="" />
+                Solitaire
+              </Button>
+            </Link>
+          </li>
+          <li>
+            <Link to="/mine">
+              <Button onClick={onClickHandler}>
+                <img style={{width: '20px'}} src='https://win98icons.alexmeub.com/icons/png/game_mine_2-0.png' alt="" />
+                Minesweeper
+              </Button>
+            </Link>
+          </li>
+>>>>>>> game
 
         </ul>
         <Divider />

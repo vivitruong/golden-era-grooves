@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import* as queueAction from '../../store/queue'
+import * as queueAction from "../../../store/queue";
 import { useDispatch } from "react-redux";
 
 const Search = () => {
@@ -8,7 +8,7 @@ const Search = () => {
     const [showResult, setShowResult] = useState(false);
     const [focus, setFocus] = useState(false);
     const dispatch = useDispatch();
-    // const accessToken = useAuth(code )
+
     useEffect(() => {
         if (input.trim() === "") {
             setShowResult(false);
@@ -27,11 +27,11 @@ const Search = () => {
             .catch(e => console.log(e));
     }, [input]);
 
-    const onSongClick = (song) => () => {
-        const songInfo = { name: song.song, id: song.id, artistName: song.artist };
-        dispatch(queueAction.updateList({ list: [songInfo] }));
-        setShowResult(false);
-    };
+    // const onSongClick = (song) => () => {
+    //     const songInfo = { name: song.song, id: song.id, artistName: song.artist };
+    //     dispatch(queueAction.updateList({ list: [songInfo] }));
+    //     setShowResult(false);
+    // };
 
     const clearSearch = () => {
         // setShowResult(false);
@@ -68,7 +68,7 @@ const Search = () => {
                             <div>
                                 <div className="search-result-song"  onClick={onSongClick(ele)} >
                                     <div className="search-play-button">
-
+                                        <i className="fa-solid fa-play" id="play-btn" ></i>
                                     </div>
                                     <div className="search-result-info">
                                         <span className="search-result-songname">{ele.song}</span>

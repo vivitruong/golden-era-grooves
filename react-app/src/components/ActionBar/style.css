@@ -1,10 +1,10 @@
 .actionBar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
-  .btns {
-    display: flex;
-    gap: 6px;
-  }
+.btns {
+  display: flex;
+  gap: 6px;
+}

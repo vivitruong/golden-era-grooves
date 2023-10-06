@@ -16,7 +16,7 @@ import { updatePlaylist } from "../../store/playlist";
 import Modal from "../Modal";
 import SongsModal from "../SongsModel";
 
-const PlayListHeader = ({ playlistName = "My Heart Will Go On" }) => {
+const PlayListHeader = ({ songsInPlayList }) => {
   const [showDeleteModal, setDeleteModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [addSongModal, setAddSongModal] = useState(false);
@@ -29,7 +29,6 @@ const PlayListHeader = ({ playlistName = "My Heart Will Go On" }) => {
 
   const { id } = useParams();
   const history = useHistory();
-  console.log(id);
 
   const deleteHandler = () => {
     dispatch(deletePlaylist(id));
@@ -49,7 +48,6 @@ const PlayListHeader = ({ playlistName = "My Heart Will Go On" }) => {
       description,
       playlistId: id,
     };
-    console.log("id is " + id);
 
     dispatch(updatePlaylist(playListToBeEdited));
     // dispatch(createNewPLaylist(playListToBeEdited));
@@ -68,10 +66,9 @@ const PlayListHeader = ({ playlistName = "My Heart Will Go On" }) => {
             <img src={icon} alt="" />
           </div>
           <div>
-            {/* <p>Playlist</p> */}
-            <h2>{currentPlayList?.name}</h2>
+          <h2>{currentPlayList?.name}</h2>
             <p>{currentPlayList?.description}</p>
-            {/* <p>{`${currentPlayList?.playlist_songs?.length} songs`}</p> */}
+            <p>{`${currentPlayList?.playlist_songs?.length} songs`}</p>
           </div>
         </div>
         <div className="btns">
@@ -90,11 +87,8 @@ const PlayListHeader = ({ playlistName = "My Heart Will Go On" }) => {
         <>
           <Overlay onClose={() => setDeleteModal(false)} />
           <div className="deleteModal">
-
-            <h4>Are You Sure you want to delete this playlist?</h4>
+            <h4> <img src="https://win98icons.alexmeub.com/icons/png/recycle_bin_empty-0.png"></img> Are You Sure you want to delete this playlist?</h4>
             <div className="btns">
-
-
               <Button iconOnly onClick={() => deleteHandler()}>
                 Delete
               </Button>
@@ -115,7 +109,7 @@ const PlayListHeader = ({ playlistName = "My Heart Will Go On" }) => {
         <div className="deleteModal">
           <Overlay onClose={() => setShowEditModal(false)} />
           <>
-            EditPlayList
+            <p style={{fontSize:'20px'}}>Let's Edit This Playlist <img src="https://win98icons.alexmeub.com/icons/png/directory_control_panel-2.png"></img></p>
             <PlayListForm
               submitHandler={submitHandler}
               name={name}
@@ -135,6 +129,7 @@ const PlayListHeader = ({ playlistName = "My Heart Will Go On" }) => {
             <SongsModal
               songs={songs}
               playlistId={id}
+              songsInPlayList={songsInPlayList}
               // addedSongs={addedSongs}
               // setAddedSongs={setAddedSongs}
             />

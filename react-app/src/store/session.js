@@ -51,7 +51,7 @@ export const login = (email, password) => async (dispatch) => {
 			return data.errors;
 		}
 	} else {
-		return ["An error occurred. Please try again."];
+		return [ "An error occurred. Please try again." ];
 	}
 };
 
@@ -67,7 +67,7 @@ export const logout = () => async (dispatch) => {
 	}
 };
 
-export const signUp = (username, email, password) => async (dispatch) => {
+export const signUp = ({ username, email, password, first_name, last_name }) => async (dispatch) => {
 	const response = await fetch("/api/auth/signup", {
 		method: "POST",
 		headers: {
@@ -77,6 +77,8 @@ export const signUp = (username, email, password) => async (dispatch) => {
 			username,
 			email,
 			password,
+			first_name,
+			last_name
 		}),
 	});
 
@@ -90,11 +92,11 @@ export const signUp = (username, email, password) => async (dispatch) => {
 			return data.errors;
 		}
 	} else {
-		return ["An error occurred. Please try again."];
+		return [ "An error occurred. Please try again." ];
 	}
 };
 
-export default function reducer(state = initialState, action) {
+export default function reducer (state = initialState, action) {
 	switch (action.type) {
 		case SET_USER:
 			return { user: action.payload };
