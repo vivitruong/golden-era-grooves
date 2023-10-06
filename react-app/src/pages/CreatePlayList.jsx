@@ -24,7 +24,7 @@ const CreatePlayList = () => {
 
   return (
     <div>
-      Hooray! Let's create a new playList
+       <h3>Hooray! Let's create a new playlist</h3>
       <PlayListForm
         submitHandler={submitHandler}
         name={name}

@@ -9,7 +9,6 @@ import { useHistory } from "react-router-dom";
 
 const PlayLists = () => {
   // const { data: usersPlaylist } = useGetCurrentUserPlayListQuery();
-  // console.log(usersPlaylist);
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -27,19 +26,18 @@ const PlayLists = () => {
       <div
         key={index}
         // className={`playListName ${isActive ? "active" : ""}`}
-        className={`playListName talble-row class="sunken-panel`}
-
+        className={`playListName `}
         onClick={() => handlePlaylistClick(playlist)}
       >
-        <div className="table-cell">{playlist?.name}</div>
+        {playlist?.name}
       </div>
     );
   });
   return (
     <div className="playList">
-      <span style={{fontSize:'20px', paddingBottom:'5px'}}>My Playlists <img src='https://win98icons.alexmeub.com/icons/png/cd_audio_cd-1.png'></img></span>
-      {renderList}
-    </div>
+    <span style={{fontSize:'17px', paddingBottom:'5px', fontWeight:'600'}}>My Playlists <img src='https://win98icons.alexmeub.com/icons/png/cd_audio_cd-1.png'></img></span>
+    {renderList}
+  </div>
   );
 };
 

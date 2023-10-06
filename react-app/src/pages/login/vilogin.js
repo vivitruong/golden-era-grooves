@@ -6,7 +6,7 @@ import { useModal } from "../../context/Modal";
 import { Redirect } from "react-router-dom";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
-export const Login = () => {
+export const LoginVi = () => {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
 

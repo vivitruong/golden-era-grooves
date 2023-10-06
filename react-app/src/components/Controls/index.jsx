@@ -57,7 +57,10 @@ const Controls = ({
 
     if (audioRef?.current) {
       const skipTime = (clickX / width) * duration;
-      audioRef.current.currentTime = skipTime;
+      if(!audioRef?.current?.currentTime){
+        return;
+      }
+      audioRef.current.currentTime = skipTime
 
       // Update progress bar width as well
       const progressPercent = (skipTime / duration) * 100;

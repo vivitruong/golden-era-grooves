@@ -1,6 +1,6 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 // import { playSong, playAudio } from "../../slices/songsSlice";
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { useParams } from "react-router-dom";
 
 import "./style.css";
 import Button from "../Button";
@@ -20,17 +20,19 @@ const Songs = ({ songs }) => {
     // const active = currentSongIndex === index;
     return (
       <div
-        className={`song-row songs `}
+        // className={`song-row songs ${active ? "active" : ""}`}
+        className={`song-row songs`}
         key={index}
         onClick={() => {
-          // dispatch(currentPlayListSongs({ songs }));
+          const queueSongs = songs.map((song) => song.song);
+          dispatch(currentPlayListSongs({ songs: queueSongs }));
           dispatch(playSong({ song: song?.song, index }));
           dispatch(playAudio());
         }}
       >
         <span className="song-column id-column">{index + 1}</span>
         <div className="song-column title">
-          <span className=" title-column">{song?.song?.title}</span>
+          <span className=" title-column">{song?.song?.name}</span>
           <span className=" artist-column">{song?.song?.artist}</span>
         </div>
         <span className="song-column album-column">{song?.song?.album}</span>

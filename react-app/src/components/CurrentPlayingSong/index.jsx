@@ -7,7 +7,7 @@ const CurrentPlayingSong = () => {
   return (
     <div className="currentlyPlayingSong">
       <div className="icon">
-        <img src={playSong?.cover_photo ? playSong?.cover_photo : icon} alt="" />
+        <img src={playSong?.coverPhoto ? playSong?.coverPhoto : icon} alt="" />
       </div>
       <div>
         <h2>{playSong?.name}</h2>

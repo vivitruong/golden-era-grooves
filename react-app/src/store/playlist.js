@@ -23,10 +23,10 @@ export const createPlaylist = (newPlaylist) => {
 };
 
 
-export const addSongToPlaylist = (playlistId, song_Id) => {
+export const addSongToPlaylist = (playlistId, song_Id, song) => {
     return {
         type: ADD_SONG,
-        payload: { playlistId, song_Id },
+        payload: { playlistId, song_Id, song },
     };
 };
 
@@ -199,7 +199,7 @@ export const addSongsToPlaylist = (song) => async dispatch => {
 
     if (response.ok) {
         const addSongsToPlaylist = await response.json();
-        dispatch(addSongToPlaylist(playlistId, song_Id));
+        dispatch(addSongToPlaylist(playlistId, song_Id, song.addSong));
         return addSongsToPlaylist;
     }
 };
@@ -249,6 +249,7 @@ const playlistReducer = (state = initialState, action) => {
             return state.map((playlist) => {
                 console.log(state);
                 console.log(parseInt(playlist.id) === parseInt(action.payload.playlistId));
+                console.log(action.payload);
                 if (parseInt(playlist.id) === parseInt(action.payload.playlistId)) {
                     // If the playlist matches, update its songs array with the new song.
                     return {
@@ -266,17 +267,16 @@ const playlistReducer = (state = initialState, action) => {
 
         case REMOVE_SONG:
             return state.map((playlist) => {
-
+                console.log(playlist);
+                console.log(action.payload);
                 console.log(parseInt(playlist.id) === parseInt(action.payload.playlistId));
                 if (parseInt(playlist.id) === parseInt(action.payload.playlistId)) {
                     // Remove the song from the specific playlist.
                     return {
                         ...playlist,
-                        playlist_songs: playlist.playlist_songs.filter(
+                        playlist_songs: playlist.playlist_songs?.filter(
                             (song) => {
-                                console.log(parseInt(song?.songId));
-                                console.log(parseInt(action.payload.songId));
-                                return parseInt(song?.id) !== parseInt(action.payload.songId);
+                                return parseInt(song?.songId) !== parseInt(action.payload?.songId);
                             }
                         ),
                     };

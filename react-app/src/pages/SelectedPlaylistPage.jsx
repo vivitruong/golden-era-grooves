@@ -12,6 +12,7 @@ import PlayListForm from "../components/PlayListForm";
 const SelectedPlaylistPage = () => {
   const [showModal, setShowModal] = useState(false);
   const [showEditModal, setEditModal] = useState(false);
+
   const { selectedPlayListSongs: playlist } = useSelector(
     (state) => state.playlists
   );
