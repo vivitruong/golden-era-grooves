@@ -21,14 +21,15 @@ const PlayListForm = ({
           placeholder="Name"
         />
         <InputField
-          className="input"
+          className="input field-row-stacked"
           required
           name="description"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           id="description"
-          type="text"
+          type="textarea"
           placeholder="Description"
+
         />
 
         <Button iconOnly>{btnText}</Button>
