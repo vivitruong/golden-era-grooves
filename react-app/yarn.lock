@@ -2283,6 +2283,11 @@
   "resolved" "https://registry.npmjs.org/@xtuc/long/-/long-4.2.2.tgz"
   "version" "4.2.2"
 
+"98.css@^0.1.20":
+  "integrity" "sha512-9oM+AZMfxG59Zz+bnAjIxAX2AKnBPkEJjf84ATto0wUNdRPxV+jhov1rHKe/wl6D0giuWwY603RxwrVVG4v2sA=="
+  "resolved" "https://registry.npmjs.org/98.css/-/98.css-0.1.20.tgz"
+  "version" "0.1.20"
+
 "abab@^2.0.3", "abab@^2.0.5":
   "integrity" "sha512-9IK9EadsbHo6jLWIpxpR6pL0sazTXV6+SQv25ZB+F7Bj9mJNaOc4nCRabwd5M/JwmUa8idz6Eci6eKfJryPs6Q=="
   "resolved" "https://registry.npmjs.org/abab/-/abab-2.0.5.tgz"
