@@ -24,6 +24,7 @@ import UploadSong from "../../components/UploadSong";
 import ProtectedRoute from "../../components/ProtectedRoute";
 import Search from '../../components/SearchBar'
 import UserPage from "../../components/UserPage";
+import Footer from "../../components/Footer";
 // import CustomMediaPlayer from "../../components/Window-media/media";
 export const Home = () => {
   // const { selectedPlayListSongs } = useSelector((state) => state?.playlists);
@@ -78,39 +79,45 @@ export const Home = () => {
         </div>
         <Switch>
           {/* Route definitions for your pages */}
+
           <Route exact path="/">
 
             <HomePage />
             <TopNav />
+            <Footer/>
           </Route>
           <Route path="/liked-songs">
             <LikedSongsPage />
+            <Footer/>
           </Route>
           <Route path="/search">
             <SearchPage />
+            <Footer/>
           </Route>
           <Route path="/library">
             <LibrarayPage />
+            <Footer/>
           </Route>
           <ProtectedRoute path="/create-playlist">
             <CreatePlayList />
+            <Footer/>
           </ProtectedRoute>
           <ProtectedRoute path="/playlists/:id">
             <PlaylistsPage />
+            <Footer/>
           </ProtectedRoute>
           <ProtectedRoute path="/playlist/:name">
             <SelectedPlaylistPage />
+            <Footer/>
           </ProtectedRoute>
           <Route path='/paint'>
             <Paint />
+            <Footer/>
           </Route>
           <ProtectedRoute path='/profile'>
             <UserPage />
-
+            <Footer/>
           </ProtectedRoute>
-          {/* <ProtectedRoute path='/upload'>
-            <UploadSong />
-          </ProtectedRoute> */}
         </Switch>
       </div>
       <div className="bottom_control_board">

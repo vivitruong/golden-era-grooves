@@ -6,7 +6,7 @@ import Modal from "../components/Modal";
 import CreateSong from "../components/CreateSong";
 import { updateASong, deleteSong } from "../store/userSong";
 import { playAudio, playSong } from "../store/slices/playlistSlice";
-
+import EditSong from "../components/EditSong";
 const LibrarayPage = () => {
   const [showModal, setShowModal] = useState(false);
   const [showDeleteModal, setDeleteModal] = useState(false);
@@ -14,8 +14,8 @@ const LibrarayPage = () => {
   const [songToEditOrDelete, setSongToEditOrDelete] = useState(null);
 
   const [artist, setArtist] = useState("");
-  const [coverPhoto, setCoverPhoto] = useState("");
-  const [filePath, setFilePath] = useState("");
+  const [cover_photo, setCoverPhoto] = useState("");
+  const [file_path, setFilePath] = useState("");
   const [genre, setGenre] = useState("");
   const [name, setName] = useState("");
   const [songId, setSongId] = useState(null);
@@ -34,8 +34,8 @@ const LibrarayPage = () => {
     const songToEdit = {
       name,
       artist,
-      coverPhoto,
-      filePath,
+      cover_photo,
+      file_path,
       genre,
       id: songId,
     };
@@ -53,8 +53,8 @@ const LibrarayPage = () => {
     const songToCreate = {
       name,
       artist,
-      coverPhoto,
-      filePath,
+      cover_photo,
+      file_path,
       genre,
       id: songId,
     };
@@ -79,8 +79,8 @@ const LibrarayPage = () => {
   useEffect(() => {
     if (songToEditOrDelete) {
       setArtist(songToEditOrDelete.artist || "");
-      setCoverPhoto(songToEditOrDelete.coverPhoto || "");
-      setFilePath(songToEditOrDelete.filePath || "");
+      setCoverPhoto(songToEditOrDelete.cover_photo || "");
+      setFilePath(songToEditOrDelete.file_path || "");
       setGenre(songToEditOrDelete.genre || "");
       setName(songToEditOrDelete.name || "");
     }
@@ -117,7 +117,7 @@ const LibrarayPage = () => {
           e.stopPropagation();
           setEditModal(true);
           setSongToEditOrDelete(song);
-          setSongId(song.id);
+          setSongId(song?.id);
         }}
       >
         Edit Song
@@ -129,7 +129,7 @@ const LibrarayPage = () => {
       <div className="conn">
         <div className="conn">
           <div className="create">
-            <h2>My Songs</h2>
+            <h4>My Songs 🎵 😁 </h4>
             <Button iconOnly onClick={() => setShowModal(true)}>
               Create Song
             </Button>
@@ -149,8 +149,8 @@ const LibrarayPage = () => {
           <Modal>
             <CreateSong
               artist={artist}
-              coverPhoto={coverPhoto}
-              filePath={filePath}
+              cover_photo={cover_photo}
+              file_path={file_path}
               genre={genre}
               name={name}
               setArtist={setArtist}
@@ -175,12 +175,18 @@ const LibrarayPage = () => {
   </div>
 </div>
             <h4>
-              Do You Sure you want to delete "{songToEditOrDelete.name}" song ?
+              Are You Sure you want to delete "{songToEditOrDelete?.name}" song ?
             </h4>
             <div className="btns">
               <Button
                 iconOnly
-                onClick={() => deleteSongHandler(songToEditOrDelete)}
+                onClick={() => {
+                  deleteSongHandler(songToEditOrDelete);
+
+                }
+
+                }
+
               >
                 Delete
               </Button>
@@ -201,10 +207,10 @@ const LibrarayPage = () => {
         <>
           <Overlay onClose={() => setShowModal(false)} />
           <Modal>
-            <CreateSong
+            <EditSong
               artist={artist}
-              coverPhoto={coverPhoto}
-              filePath={filePath}
+              cover_photo={cover_photo}
+              file_path={file_path}
               genre={genre}
               name={name}
               setArtist={setArtist}
@@ -212,7 +218,7 @@ const LibrarayPage = () => {
               setFilePath={setFilePath}
               setGenre={setGenre}
               setName={setName}
-              onSubmitHandler={createSong}
+              onSubmitHandler={editSong}
               btnText={"Create"}
             />
           </Modal>
