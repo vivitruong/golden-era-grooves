@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { useParams } from "react-router-dom";
 import "./style.css";
 import Button from "../Button";
 import { removeSongFromPlaylist } from "../../store/playlist";
@@ -31,6 +31,7 @@ const Songs = ({ songs }) => {
         <div className="song-column title">
           <span className=" title-column">{song?.song?.title}</span>
           <span className=" artist-column">{song?.song?.artist}</span>
+          <span className=" duaration-column">{song?.song?.duration}</span>
         </div>
         <span className="song-column album-column">{song?.song?.album}</span>
         <span className="song-column date-added-column">

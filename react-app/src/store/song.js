@@ -1,15 +1,15 @@
 const LOAD_ALLSONGS = 'songs/loadAll';
 const LOAD_ONESONG = 'songs/loadOneSong';
-const ADD_SONG = 'songs/addSong';
+const CREATE_SONG = 'songs/createSong';
 export function loadAllSongs (songs) {
     return {
         type: LOAD_ALLSONGS,
         songs
     };
 }
-export function addSong(song) {
+export function createSongs(song) {
     return {
-        type: ADD_SONG,
+        type: CREATE_SONG,
         song
     }
 }
@@ -44,7 +44,7 @@ export const createSong = (song) => async dispatch => {
     console.log('!!!CREATE', response);
     if (response.ok) {
         const resPost = await response.json();
-        dispatch(addSong(resPost));
+        dispatch(createSongs(resPost));
     } else {
         console.log("There was an error making your post!");
     }
@@ -135,7 +135,7 @@ const songReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD_ALLSONGS:
             return action.songs || [];
-        case ADD_SONG:
+        case CREATE_SONG:
             if (action.song && action.song.id) {
                 return [...state, action.song];
             }
