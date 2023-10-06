@@ -9,8 +9,8 @@ import "./style.css";
 
 const ActionBar = () => {
   const dispatch = useDispatch();
-  // const { playSong } = useSelector((state) => state.playSong);
-  // console.log(playSong);
+  const { playSong } = useSelector((state) => state.playSong);
+  console.log(playSong);
   return (
     <div className="actionBar">
       <div className="btns">
@@ -19,17 +19,15 @@ const ActionBar = () => {
         </Button>
         <Button
           iconOnly
-          // onClick={() => dispatch(likeSong({ ...playSong, isLiked: true }))}
+          onClick={() => dispatch(likeSong({ ...playSong, isLiked: true }))}
         >
           <img src={iconHeart} alt="" />
         </Button>
       </div>
       <div className="btns">
-
-        <Button  iconOnly onClick={() => {}}>
-          <img  src={iconSearch} alt="" />
+        <Button iconOnly onClick={() => {}}>
+          <img src={iconSearch} alt="" />
         </Button>
-
         <Button>
           <img src={iconDate} alt="" onClick={() => {}} />
           Date Added

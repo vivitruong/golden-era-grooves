@@ -25,10 +25,9 @@
 }
 
 .song-row:hover {
-  background-image: linear-gradient(-90deg, navy, #1084d0);
-  color: white !important;
+  background-color: #2b3dff;
+  color: white;
 }
-
 
 .id-column {
 }
