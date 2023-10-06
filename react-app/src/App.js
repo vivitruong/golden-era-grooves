@@ -1,11 +1,22 @@
+<<<<<<< HEAD
+import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+=======
 import React, { useState, useEffect , useRef} from "react";
 import { useDispatch , useSelector} from "react-redux";
+>>>>>>> f812e48879173f209e965f16dcc727c15b858ea0
 import { Route, Switch } from "react-router-dom";
 import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import './app.css';
+<<<<<<< HEAD
+import SplashScreen from './components/SplashScreen'
+import { Login } from "./pages/login";
+import '98.css'
+// import './index.css'
+=======
 import '98.css';
 import { Login } from "./pages/login";
 import SplashScreen from "./components/SplashScreen";
@@ -25,12 +36,27 @@ import SelectedPlaylistPage from "./pages/SelectedPlaylistPage";
 import PlayLists from "./components/PlayLists";
 import { pauseAudio, playAudio } from "./slices/songsSlice";
 
+>>>>>>> f812e48879173f209e965f16dcc727c15b858ea0
 function App () {
   const dispatch = useDispatch();
   const [ isLoaded, setIsLoaded ] = useState(false);
   useEffect(() => {
     dispatch(authenticate()).then(() => setIsLoaded(true));
   }, [ dispatch ]);
+<<<<<<< HEAD
+
+  return (
+    <>
+    <Navigation isLoaded={isLoaded} />
+      {isLoaded && (
+        <Switch>
+           <Route exact path="/">
+          <SplashScreen />
+        </Route>
+          <Route path="/login">
+
+            {/* <LoginFormPage /> */}
+=======
   const { status, error } = useSelector((state) => state.playlists);
   const { playSong, isPlaying } = useSelector((state) => state.playSong);
   const [volume, setVolume] = useState(1);
@@ -140,6 +166,7 @@ function App () {
 
           <Route path="/login">
 
+>>>>>>> f812e48879173f209e965f16dcc727c15b858ea0
             <Login />
 
           </Route>

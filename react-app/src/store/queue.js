@@ -1,5 +1,4 @@
 import * as playerAction from "./player";
-
 const UPDATE_LIST = "queue/updateList";
 const NEXT_SONG = "queue/nextSong";
 const PREVIOUS_SONG = "queue/previousSong";

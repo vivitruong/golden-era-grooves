@@ -1,18 +1,18 @@
 .modal {
-  padding: 10px;
+  /* padding: 10px; */
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   z-index: 990;
-  width: 60%;
+  width: 38%;
   margin: 0 auto;
   max-width: 600px;
   background-color: white;
   overflow-y: auto;
 
-  height: 475px;
-  border-width: 2px;
+  /* height: 475px; */
+  border-width: 1px;
   border-style: outset;
   border-color: buttonface;
   border-left-color: #424242;

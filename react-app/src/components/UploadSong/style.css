@@ -1,0 +1,71 @@
+.uploadsong-container, .uploadsong-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.uploadsong-container {
+    margin: 4rem;
+}
+
+
+
+.uploadsong-content {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    border: 1px solid #cccccc;
+    width: 24rem;
+    height: 350px;
+}
+
+.uploadinfo {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}
+
+.uploadinfo > input {
+    border: 1px solid #cccccc;
+    padding: 5px;
+    margin: 5px 5px 0px 0px;
+}
+
+.uploadinfo > input:focus {
+    border: 1px solid var(--melodify-banerDarkGray)
+}
+
+.uploadsong-btnupload > button {
+    background-color: var(--melodify-red-close);
+    color: #fff;
+    border: none;
+    height: 20px;
+    cursor: pointer;
+}
+
+.uploadsong-btnupload > button:disabled {
+    background-color: rgba(0, 0, 0, 0.5);
+    cursor: default;
+    height: 20px;
+    border: none;
+}
+
+.uploadsong-btnupload {
+    margin-right: 1rem;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.uploadsong-upload {
+    height: 60px;;
+}
+.upload-error > span{
+    font-size: 1rem;
+    color: var(--melodify-red-close);
+}
+
+select:focus {
+    outline: none;
+    scroll-behavior: smooth;
+}

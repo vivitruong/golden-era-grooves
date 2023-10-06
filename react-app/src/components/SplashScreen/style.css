@@ -7,12 +7,32 @@
 
 .splash-page {
     display: flex;
+<<<<<<< HEAD
+    flex-direction: column;
+=======
     flex-direction: column; /* Ensure content is stacked vertically */
+>>>>>>> f812e48879173f209e965f16dcc727c15b858ea0
     justify-content: center;
     align-items: center;
     text-align: center;
     height: 100vh;
+<<<<<<< HEAD
+    opacity: 0; /* Initial opacity set to 0 */
+    animation: fadeIn 5s; /* Use the fadeIn animation with a 3s duration */
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+=======
 }
+>>>>>>> f812e48879173f209e965f16dcc727c15b858ea0
 
 span {
     color:  #222;

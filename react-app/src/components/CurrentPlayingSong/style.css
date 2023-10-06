@@ -1,30 +1,30 @@
 .currentlyPlayingSong {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
 
-  .icon {
-    padding: 10px;
-    border: 2px inset #fff;
-    background: silver;
-    color: #424242;
-    box-shadow: -1px -1px #000;
-    background-color: #dfdfdf;
-    width: 55px;
-  }
-  .icon img {
-    width: 100%;
-  }
+.icon {
+  padding: 10px;
+  border: 2px inset #fff;
+  background: silver;
+  color: #424242;
+  box-shadow: -1px -1px #000;
+  background-color: #dfdfdf;
+  width: 55px;
+}
+.icon img {
+  width: 100%;
+}
 
-  .currentlyPlayingSong h2 {
-    color: #222222;
-    font-size: 1rem;
-    font-weight: bold;
-    margin-bottom: 7px;
-  }
+.currentlyPlayingSong h2 {
+  color: #222222;
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 7px;
+}
 
-  .currentlyPlayingSong p {
-    color: #222222;
-    font-size: 0.8rem;
-  }
+.currentlyPlayingSong p {
+  color: #222222;
+  font-size: 0.8rem;
+}

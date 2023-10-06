@@ -1,36 +1,69 @@
 .playlist {
-    margin: 5px;
-    cursor: pointer;
-    padding: 10px;
-    border: 2px inset #fff;
-    background: silver;
-    color: #424242;
-    box-shadow: -1px -1px #000;
-    background-color: #dfdfdf;
-  }
+  margin: 5px;
+  cursor: pointer;
+  padding: 10px;
+  border: 2px inset #fff;
+  background: silver;
+  color: #424242;
+  box-shadow: -1px -1px #000;
+  background-color: #dfdfdf;
+}
 
-  .playlist:hover {
-    box-shadow: 1px 1px #000;
-  }
+.playlist:hover {
+  box-shadow: 1px 1px #000;
+}
 
-  .pList {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-  }
+.pList {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
 
-  .allsongs {
-    width: 100%;
-    overflow-y: scroll;
-    height: 445px;
-  }
+.allsongs {
+  width: 96%;
+  overflow-y: scroll;
+  /* height: 700px; */
+  height: auto;
+}
 
-  .conn {
-    width: 100%;
-  }
+.conn {
+  width: 100%;
+}
 
-  .create {
-    margin: 20px 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
+.create {
+  margin: 20px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.deleteModal {
+  /* padding: 10px; */
+  padding-bottom: 5px;
+
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 990;
+  width: 60%;
+  margin: 0 auto;
+  max-width: 600px;
+  background-color: white;
+  overflow-y: auto;
+  border-width: 2px;
+  border-style: outset;
+  border-color: buttonface;
+  border-left-color: #424242;
+  border-top-color: #424242;
+  cursor: default;
+}
+
+.deleteModal:hover {
+  color: black;
+}
+
+.btns {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}

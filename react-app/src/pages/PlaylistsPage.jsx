@@ -5,14 +5,18 @@ import Songs from "../components/Songs";
 import Divider from "../components/Divider";
 
 const PlaylistsPage = () => {
-  const { songs } = useSelector((state) => state.songs);
+  const { currentPlayListSongs } = useSelector((state) => state.playlistSongs);
   return (
     <div style={{ width: "100%" }}>
       <PlayListHeader />
       <Divider />
       <ActionBar />
       <Divider />
-      {songs.length === 0 ? <h2>No songs yet</h2> : <Songs songs={songs} />}
+      {currentPlayListSongs?.length === 0 ? (
+        <h2>No songs yet</h2>
+      ) : (
+        <Songs songs={currentPlayListSongs} />
+      )}
     </div>
   );
 };
