@@ -30,9 +30,9 @@ const ProfileDropdown = () => {
                     <div  className="profile-dropdown-info profile-hover">
                         <span className="profile-dropdown-content" style={{cursor:"default"}}>Hello, {user.firstName}</span>
                     </div>
-                    <Link to='/upload' className="profile-dropdown-info profile-hover">
+                    {/* <Link to='/upload' className="profile-dropdown-info profile-hover">
                           <span className="profile-dropdown-content">Upload  </span>
-                    </Link>
+                    </Link> */}
                     <Link to='/profile'  className="profile-dropdown-info profile-hover">
                          <span className="profile-dropdown-content">Account</span>
                     </Link>

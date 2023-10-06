@@ -168,9 +168,15 @@ const LibrarayPage = () => {
         <>
           <Overlay onClose={() => setDeleteModal(false)} />
           <div className="deleteModal">
-            <h2>
-              Are You Sure you want to delete? {songToEditOrDelete.name} song
-            </h2>
+          <div class="title-bar inactive">
+  <div class="title-bar-text">Delete</div>
+  <div class="title-bar-controls">
+
+  </div>
+</div>
+            <h4>
+              Do You Sure you want to delete "{songToEditOrDelete.name}" song ?
+            </h4>
             <div className="btns">
               <Button
                 iconOnly

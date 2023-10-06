@@ -14,6 +14,9 @@ export const Login = () => {
   const [password, setpassword] = useState("");
   const [errors, setErrors] = useState([]);
   const { closeModal } = useModal();
+  const regex = RegExp(
+    /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/g
+  );
 
   const [isMaximized, setIsMaximized] = useState(false);
 
@@ -53,12 +56,12 @@ export const Login = () => {
 
   return (
     <>
-
+  <div class='centered-container'>
     <div class="title-bar loginmodal">
     <div class="title-bar-text">Log in</div>
     <div className="title-bar-controls">
     <button aria-label="Minimize" />
-    <button aria-label="Maximize" />
+    <button aria-label="Maximize" onClick={toggleMaximize} />
     <button onClick={closeModal} aria-label="Close" />
     </div>
   </div>
@@ -116,7 +119,7 @@ export const Login = () => {
       </form>
       </div>
 
-
+      </div>
 
   </>
   );

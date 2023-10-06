@@ -90,6 +90,7 @@ import Button from "../Button";
 import { useDispatch } from "react-redux";
 import * as songActions from '../../store/song';
 import { useHistory } from "react-router-dom";
+import './style.css'
 
 const CreateSong = () => {
   const [artist, setArtist] = useState("");
@@ -145,25 +146,27 @@ const CreateSong = () => {
 
   setErrors(errors);
 
-  if (Object.keys(errors).length === 0) {
-    const formData = {
-      name,
-      artist,
-      cover_photo: cover_photo[0],
-      file_path: file_path,
-      genre,
+  if (Object.keys(error).length === 0) {
+    // const formData = {
+    //   name,
+    //   artist,
+    //   cover_photo: cover_photo[0],
+    //   file_path: file_path,
+    //   genre,
 
-    }
+    // }
 
-  // const formData = new FormData();
-  // formData.append("song_name", name);
-  // formData.append("genre", genre);
-  // formData.append("cover_photo", cover_photo[0]);
-  // formData.append("file_path", file_path[0])
-  // formData.append('artist', artist)
+    console.log('------------2' , file_path)
+  const formData = new FormData();
+  formData.append("name", name);
+  formData.append("genre", genre);
+  formData.append("cover_photo", cover_photo[0]);
+  formData.append("file_path", file_path)
+  formData.append('artist', artist)
 
-  setImageLoading(true);
-  setSongLoading(true);
+  // setImageLoading(true);
+  // setSongLoading(true);
+  console.log(formData.cover_photo, 'this is new')
 
   try {
 
@@ -201,6 +204,13 @@ const CreateSong = () => {
   // };
 
   return (
+    <>
+    <div class="title-bar">
+  <div class="title-bar-text">Song</div>
+  <div class="title-bar-controls">
+
+  </div>
+</div>
     <div className="page-container">
         <div className="form-create">
             {/* <h1>Create a New Song</h1> */}
@@ -210,8 +220,8 @@ const CreateSong = () => {
             >
                 <div>
                 <div className="error-message">{error.name && <p className="">{error.name}</p>}</div>
-                <label className="label-create">
-                    Your Song Name
+                <label> Title <span style={{color:"red", fontSize:"1rem"}}>*</span>
+
                     <input
                         className="input-create"
                         type='text'
@@ -220,8 +230,8 @@ const CreateSong = () => {
                         onChange={(e) => setName(e.target.value)}
                     />
                 </label>
-                <label className="label-create">
-                    Artist
+                <label>Artist <span style={{color:"red", fontSize:"1rem"}}>*</span>
+
                     <input
                         className="input-create"
                         type='text'
@@ -232,8 +242,8 @@ const CreateSong = () => {
                 </label>
                 </div>
                 <div>
-                <div className="error-message">{error.genre && <p className="">{error.genre}</p>}</div>
-                <label className="label-create">
+                {/* <div className="error-message">{error.genre && <p className="">{error.genre}</p>}</div> */}
+                {/* <label className="label-create">
                     Song Genre
                     <input
                         className="input-create"
@@ -242,7 +252,17 @@ const CreateSong = () => {
                         value={genre}
                         onChange={(e) => setGenre(e.target.value)}
                     />
-                </label>
+                </label> */}
+                 <label >Genre <span style={{color:"red", fontSize:"1rem"}}>*</span> </label>
+                        <select style={{ margin: 'auto' }} value={genre} onChange={e => setGenre(e.target.value)} >
+                            <option value="pop">Pop</option>
+                            <option value="rnb">R&B</option>
+                            <option value="rock">Rock</option>
+                            <option value="electronic">Electronic</option>
+                            <option value="classical">Classical</option>
+                            <option value="hiphop">Hiphop & Rap</option>
+                            <option value='other'>Other</option>
+                        </select>
                 </div>
                 <div>
                 <div className="error-message">{error.cover_photo && <p className="">{error.cover_photo}</p>}</div>
@@ -278,7 +298,7 @@ const CreateSong = () => {
             </form>
         </div>
         </div>
-
+        </>
   );
 };
 

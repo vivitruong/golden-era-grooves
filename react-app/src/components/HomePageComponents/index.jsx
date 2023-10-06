@@ -130,7 +130,7 @@ const HomePageComponents = ({ allPlaylists }) => {
       </div>
       <div className="conn">
         <div className="create">
-          <h3>All Songs</h3>
+          <h4>Browse All New Music Today 🎶 </h4>
           {/* <Button iconOnly onClick={() => setShowModal(true)}>
               Create Song
             </Button> */}

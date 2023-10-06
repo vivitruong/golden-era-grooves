@@ -47,10 +47,19 @@ const SongsModal = ({ songs, playlistId }) => {
     );
   });
   return (
+    <>
+    <div class="title-bar inactive">
+  <div class="title-bar-text">Add any song into your playlist</div>
+  <div class="title-bar-controls">
+
+  </div>
+</div>
     <div>
-      <h2>Add Songs</h2>
+
+      {/* <h4>Add any song into your playlist</h4> */}
       <div>{renderList}</div>
     </div>
+    </>
   );
 };
 

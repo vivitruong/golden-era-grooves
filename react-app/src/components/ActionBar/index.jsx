@@ -25,9 +25,11 @@ const ActionBar = () => {
         </Button>
       </div>
       <div className="btns">
-        <Button iconOnly onClick={() => {}}>
-          <img src={iconSearch} alt="" />
+
+        <Button  iconOnly onClick={() => {}}>
+          <img  src={iconSearch} alt="" />
         </Button>
+
         <Button>
           <img src={iconDate} alt="" onClick={() => {}} />
           Date Added

@@ -24,8 +24,8 @@
   cursor: pointer;
 }
 
-.songs:hover {
-  background-color: #000a71;
+.song-row:hover {
+  background-color: #2b3dff;
   color: white;
 }
 

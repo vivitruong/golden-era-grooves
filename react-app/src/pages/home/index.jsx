@@ -22,6 +22,9 @@ import { pauseAudio, playAudio } from "../../store/slices/playlistSlice";
 import Paint from '../../components/Paint'
 import UploadSong from "../../components/UploadSong";
 import ProtectedRoute from "../../components/ProtectedRoute";
+import Search from '../../components/SearchBar'
+import UserPage from "../../components/UserPage";
+// import CustomMediaPlayer from "../../components/Window-media/media";
 export const Home = () => {
   // const { selectedPlayListSongs } = useSelector((state) => state?.playlists);
 
@@ -101,9 +104,13 @@ export const Home = () => {
           <Route path='/paint'>
             <Paint />
           </Route>
-          <ProtectedRoute path='/upload'>
-            <UploadSong />
+          <ProtectedRoute path='/profile'>
+            <UserPage />
+
           </ProtectedRoute>
+          {/* <ProtectedRoute path='/upload'>
+            <UploadSong />
+          </ProtectedRoute> */}
         </Switch>
       </div>
       <div className="bottom_control_board">

@@ -70,7 +70,7 @@ const PlayListHeader = ({ playlistName = "My Heart Will Go On" }) => {
           <div>
             <p>Playlist</p>
             <h2>{currentPlayList?.name}</h2>
-            <p>{`${currentPlayList?.playlist_songs?.length} songs`}</p>
+            {/* <p>{`${currentPlayList?.playlist_songs?.length} songs`}</p> */}
           </div>
         </div>
         <div className="btns">
@@ -89,8 +89,11 @@ const PlayListHeader = ({ playlistName = "My Heart Will Go On" }) => {
         <>
           <Overlay onClose={() => setDeleteModal(false)} />
           <div className="deleteModal">
-            <h2>Are You Sure you want to delete this playlist?</h2>
+
+            <h4>Are You Sure you want to delete this playlist?</h4>
             <div className="btns">
+
+
               <Button iconOnly onClick={() => deleteHandler()}>
                 Delete
               </Button>

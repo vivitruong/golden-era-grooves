@@ -27,10 +27,11 @@ const PlayLists = () => {
       <div
         key={index}
         // className={`playListName ${isActive ? "active" : ""}`}
-        className={`playListName `}
+        className={`playListName talble-row class="sunken-panel`}
+
         onClick={() => handlePlaylistClick(playlist)}
       >
-        {playlist?.name}
+        <div className="table-cell">{playlist?.name}</div>
       </div>
     );
   });

@@ -1,11 +1,17 @@
 const LOAD_ALLSONGS = 'songs/loadAll';
 const LOAD_ONESONG = 'songs/loadOneSong';
-
+const ADD_SONG = 'songs/addSong';
 export function loadAllSongs (songs) {
     return {
         type: LOAD_ALLSONGS,
         songs
     };
+}
+export function addSong(song) {
+    return {
+        type: ADD_SONG,
+        song
+    }
 }
 
 
@@ -29,46 +35,21 @@ export const fetchAllSongs = () => async dispatch => {
 
 
 export const createSong = (song) => async dispatch => {
-    const { name, artist_name, genre, cover_photo, file_path } = song;
-    const response = await fetch(`/api/songs`, {
+    console.log(song.cover_photo, '--coverphoto here')
+    const response = await fetch(`/api/songs/`, {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ name, artist_name, genre, cover_photo, file_path })
+        body: song
     });
 
     console.log('!!!CREATE', response);
     if (response.ok) {
         const resPost = await response.json();
-        dispatch(createSong(resPost));
+        dispatch(addSong(resPost));
     } else {
         console.log("There was an error making your post!");
     }
 
-    // try {
-    //     const response = await fetch(`/api/songs`, {
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-Type': 'application/json'
-    //         },
-    //         body: JSON.stringify({ name, artist_name, genre, cover_photo, file_path })
-    //     });
-    //     if (response.ok) {
-    //         const data = await response.json();
-    //         dispatch(addSong(data));
-    //         return null;
-    //     } else {
-    //         const data = await response.json();
-    //         if (data) {
-    //             throw data.error;
-    //         } else {
-    //             return { 'error': 'An error occured. Please try again' };
-    //         }
-    //     }
-    // } catch (err) {
-    //     throw (err);
-    // }
+
 };
 
 // export const updateASong = (payload, songId) => async dispatch => {
@@ -150,9 +131,15 @@ function deepCopy (value) {
 const initialState = [];
 
 const songReducer = (state = initialState, action) => {
+    let newState
     switch (action.type) {
         case LOAD_ALLSONGS:
             return action.songs || [];
+        case ADD_SONG:
+            if (action.song && action.song.id) {
+                return [...state, action.song];
+            }
+            return newState
 
         default:
             return state;

@@ -9,6 +9,7 @@ import './app.css';
 import SplashScreen from './components/SplashScreen'
 import { Login } from "./pages/login";
 import '98.css'
+// import './index.css'
 function App () {
   const dispatch = useDispatch();
   const [ isLoaded, setIsLoaded ] = useState(false);
