@@ -1,10 +1,10 @@
 import { useState } from "react"; // Import useState
 import { useDispatch } from "react-redux";
-// import { addSongToSelectedPlayList } from "../../slices/playlistsSlice";
+
 import Button from "../Button";
 import { addSongsToPlaylist } from "../../store/playlist";
 
-const SongsModal = ({ songs, playlistId }) => {
+const SongsModal = ({ songs, playlistId, songsInPlayList }) => {
   console.log(playlistId);
   const dispatch = useDispatch();
 
@@ -32,15 +32,17 @@ const SongsModal = ({ songs, playlistId }) => {
           iconOnly
           onClick={() => {
             const addSong = {
+              id: Math.random(),
+              song,
               playlistId,
-              song_Id: song?.id,
+              songId: song?.id,
             };
-            dispatch(addSongsToPlaylist({ playlistId, song_Id: song?.id }));
+            dispatch(addSongsToPlaylist({  playlistId, song_Id: song?.id, addSong  }));
 
-            // setAddedSongs([...addedSongs, song.id]);
+
           }}
         >
-          {/* {isSongAdded ? "Added" : "Add"} */}
+
           Add
         </Button>
       </div>

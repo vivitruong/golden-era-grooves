@@ -39,6 +39,22 @@ export const fetchUserSongs = () => async dispatch => {
     }
 };
 
+export const createUserSong = (song) => async dispatch => {
+    console.log(song.cover_photo, '--coverphoto here');
+    const response = await fetch(`/api/songs/`, {
+        method: 'POST',
+        body: song
+    });
+
+    console.log('!!!CREATE', response);
+    if (response.ok) {
+        const resPost = await response.json();
+        dispatch(addSong(resPost));
+    } else {
+        console.log("There was an error making your post!");
+    }
+};
+
 export const updateASong = (updatedSong) => async dispatch => {
     const response = await fetch(`/api/songs/${ updatedSong.id }`, {
         method: 'PUT',

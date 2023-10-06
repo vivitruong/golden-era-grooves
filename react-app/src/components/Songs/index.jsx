@@ -1,7 +1,5 @@
 import { useDispatch } from "react-redux";
-// import { playSong, playAudio } from "../../slices/songsSlice";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
-
 import "./style.css";
 import Button from "../Button";
 import { removeSongFromPlaylist } from "../../store/playlist";
@@ -23,7 +21,8 @@ const Songs = ({ songs }) => {
         className={`song-row songs `}
         key={index}
         onClick={() => {
-          // dispatch(currentPlayListSongs({ songs }));
+          const queueSongs = songs.map((song) => song.song);
+          dispatch(currentPlayListSongs({ songs: queueSongs }));
           dispatch(playSong({ song: song?.song, index }));
           dispatch(playAudio());
         }}

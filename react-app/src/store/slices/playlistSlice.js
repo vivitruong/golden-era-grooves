@@ -31,18 +31,7 @@ const playSongSlice = createSlice({
     pauseAudio: (state) => {
       state.isPlaying = false;
     },
-
     nextSong: (state, action) => {
-      // const { currentSongIndex } = state;
-      // const nextIndex = currentSongIndex + 1;
-
-      // if (nextIndex < action.payload.songs.length) {
-      //   state.currentSongIndex = nextIndex;
-      //   state.playSong = action.payload.songs[ nextIndex ];
-      // } else {
-      //   state.currentSongIndex = 0;
-
-      // }
       const { currentSongIndex } = state;
       const nextIndex = currentSongIndex + 1;
 
@@ -54,17 +43,9 @@ const playSongSlice = createSlice({
       state.playSong = action.payload.songs[ state.currentSongIndex ];
     },
 
-    pervSong: (state, action) => {
-      // const { currentSongIndex } = state;
-      // const nextIndex = currentSongIndex - 1;
 
-      // if (nextIndex >= 0) {
-      //   state.currentSongIndex = nextIndex;
-      //   state.playSong = action.payload.songs[ nextIndex ];
-      // } else {
-      //   state.currentSongIndex = 0;
-      //   state.playSong = action.payload.songs[ 0 ];
-      // }
+
+    pervSong: (state, action) => {
       const { currentSongIndex } = state;
       const prevIndex = currentSongIndex - 1;
 
@@ -77,6 +58,7 @@ const playSongSlice = createSlice({
     }
   }
 });
+
 
 
 export const { currentPlayListSongs } = songsSlice.actions;

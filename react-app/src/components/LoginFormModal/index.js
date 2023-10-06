@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { login } from "../../store/session";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
 import "./LoginForm.css";
 

@@ -2,10 +2,13 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import './style.css';
+import { useSelector } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 function SplashScreen() {
     const history = useHistory();
     const [isLoading, setIsLoading] = useState(true);
+    const sessionUser = useSelector((state) => state.session.user);
     useEffect(() => {
 
         const delay = setTimeout(() => {
@@ -24,6 +27,10 @@ function SplashScreen() {
     const redirectToLoginPage = () => {
       history.push("/login");
     };
+    // if (sessionUser) return <Redirect to='/'>;
+    if(sessionUser){
+      return <Redirect to='/welcome'></Redirect>
+    }
 
     return (
         <div
@@ -49,5 +56,6 @@ function SplashScreen() {
         </div>
       );
     }
+
 
     export default SplashScreen;

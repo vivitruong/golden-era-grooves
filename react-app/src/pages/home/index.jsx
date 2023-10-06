@@ -39,11 +39,9 @@ export const Home = () => {
 
   const togglePlayPause = () => {
     if (isPlaying) {
-      console.log("pause");
       dispatch(pauseAudio());
       audioRef?.current?.pause();
     } else {
-      console.log("play");
       dispatch(playAudio(playSong?.filePath));
       audioRef?.current?.play();
     }

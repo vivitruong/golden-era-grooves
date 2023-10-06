@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-// import { playSong, playAudio, getSongs } from "../slices/songsSlice";
+
 import Button from "../components/Button";
 import Modal from "../components/Modal";
 import Overlay from "../components/Overlay";
 import SongsModal from "../components/SongsModel";
-// import { removeSongToSelectedPlayList } from "../slices/playlistsSlice";
+
 import PlayListForm from "../components/PlayListForm";
 
 const SelectedPlaylistPage = () => {
@@ -29,39 +29,23 @@ const SelectedPlaylistPage = () => {
   };
 
   const [showDeleteModal, setDeleteModal] = useState(false);
-  // const [addedSongs, setAddedSongs] = useState(playlist?.playlist_songs);
+
   const { allSongs: songs } = useSelector((state) => state.songs);
 
   const dispatch = useDispatch();
-
-  // if (playlist?.playlist_songs?.length === 0) {
-  //   return (
-  //     <div className="add_songs">
-  //       <h2>NO SONGS</h2>
-  //       <Button iconOnly onClick={() => setAddedSongs(true)}>
-  //         ADD SONGS
-  //       </Button>
-  //     </div>
-  //   );
-  // }
 
   const deleteHandler = () => {
     setDeleteModal(false);
   };
 
   const renderList = playlist?.playlist_songs?.map((song, index) => {
-    // const active = currentSongIndex === index;
+
     return (
       <div
         className={`song-row songs `}
         key={song?.id}
         onClick={() => {
           dispatch();
-          // getSongs({
-          //   songs: playlist?.playlist_songs?.map((song) => song.song),
-          // })
-          // dispatch(playSong({ song: song?.song, index }));
-          // dispatch(playAudio());
         }}
       >
         <span className="song-column id-column">{index + 1}</span>
@@ -106,8 +90,7 @@ const SelectedPlaylistPage = () => {
             <SongsModal
               songs={songs}
               playlist={playlist}
-              // addedSongs={addedSongs}
-              // setAddedSongs={setAddedSongs}
+
             />
           </Modal>
         </>

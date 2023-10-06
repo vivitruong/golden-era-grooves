@@ -22,8 +22,8 @@ function App () {
     <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-           <Route exact path="/">
-          {/* <SplashScreen /> */}
+           <Route exact path="/welcome">
+          <SplashScreen />
         </Route>
           <Route path="/login">
 

@@ -16,7 +16,7 @@ import { updatePlaylist } from "../../store/playlist";
 import Modal from "../Modal";
 import SongsModal from "../SongsModel";
 
-const PlayListHeader = ({ playlistName = "My Heart Will Go On" }) => {
+const PlayListHeader = ({ songsInPlayList }) => {
   const [showDeleteModal, setDeleteModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [addSongModal, setAddSongModal] = useState(false);
@@ -71,6 +71,7 @@ const PlayListHeader = ({ playlistName = "My Heart Will Go On" }) => {
             {/* <p>Playlist</p> */}
             <h2>{currentPlayList?.name}</h2>
             <p>{currentPlayList?.description}</p>
+            <p>{`${currentPlayList?.playlist_songs?.length} songs`}</p>
             {/* <p>{`${currentPlayList?.playlist_songs?.length} songs`}</p> */}
           </div>
         </div>
@@ -135,6 +136,7 @@ const PlayListHeader = ({ playlistName = "My Heart Will Go On" }) => {
             <SongsModal
               songs={songs}
               playlistId={id}
+              songsInPlayList={songsInPlayList}
               // addedSongs={addedSongs}
               // setAddedSongs={setAddedSongs}
             />

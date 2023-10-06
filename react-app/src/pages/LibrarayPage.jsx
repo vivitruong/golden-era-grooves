@@ -4,8 +4,12 @@ import Button from "../components/Button";
 import Overlay from "../components/Overlay";
 import Modal from "../components/Modal";
 import CreateSong from "../components/CreateSong";
-import { updateASong, deleteSong } from "../store/userSong";
-import { playAudio, playSong } from "../store/slices/playlistSlice";
+import { updateASong, deleteSong, createUserSong } from "../store/userSong";
+import {
+  currentPlayListSongs,
+  playAudio,
+  playSong,
+} from "../store/slices/playlistSlice";
 import EditSong from "../components/EditSong";
 const LibrarayPage = () => {
   const [showModal, setShowModal] = useState(false);
@@ -42,6 +46,9 @@ const LibrarayPage = () => {
 
     try {
       dispatch(updateASong(songToEdit));
+      setSongToEditOrDelete(null);
+      reset();
+
       setShowModal(false);
       setEditModal(false);
     } catch (error) {
@@ -50,19 +57,18 @@ const LibrarayPage = () => {
   };
 
   const createSong = () => {
-    const songToCreate = {
-      name,
-      artist,
-      cover_photo,
-      file_path,
-      genre,
-      id: songId,
-    };
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("genre", genre);
+    formData.append("cover_photo", coverPhoto);
+    formData.append("file_path", filePath);
+    formData.append("artist", artist);
 
     try {
-      // Create your song here.... import the create funtion and dispatch it
+      dispatch(createUserSong(formData));
       setShowModal(false);
       setEditModal(false);
+      reset();
     } catch (error) {
       console.log(error);
     }
@@ -91,9 +97,9 @@ const LibrarayPage = () => {
       className={`song-row songs`}
       key={song?.id}
       onClick={() => {
-        // dispatch(getSongs({ songs: allSongs }));
-        // dispatch(playSong({ song: song, index }));
-        // dispatch(playAudio());
+        dispatch(currentPlayListSongs({ songs: userSongs }));
+        dispatch(playSong({ song: song, index }));
+        dispatch(playAudio());
       }}
     >
       <span className="song-column id-column">{index + 1}</span>
@@ -178,15 +184,9 @@ const LibrarayPage = () => {
               Are You Sure you want to delete "{songToEditOrDelete?.name}" song ?
             </h4>
             <div className="btns">
-              <Button
+            <Button
                 iconOnly
-                onClick={() => {
-                  deleteSongHandler(songToEditOrDelete);
-
-                }
-
-                }
-
+                onClick={() => deleteSongHandler(songToEditOrDelete)}
               >
                 Delete
               </Button>

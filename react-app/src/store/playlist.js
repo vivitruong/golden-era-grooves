@@ -266,24 +266,22 @@ const playlistReducer = (state = initialState, action) => {
 
         case REMOVE_SONG:
             return state.map((playlist) => {
-
+                console.log(playlist);
+                console.log(action.payload);
                 console.log(parseInt(playlist.id) === parseInt(action.payload.playlistId));
                 if (parseInt(playlist.id) === parseInt(action.payload.playlistId)) {
                     // Remove the song from the specific playlist.
                     return {
                         ...playlist,
-                        playlist_songs: playlist.playlist_songs.filter(
+                        playlist_songs: playlist.playlist_songs?.filter(
                             (song) => {
-                                console.log(parseInt(song?.songId));
-                                console.log(parseInt(action.payload.songId));
-                                return parseInt(song?.id) !== parseInt(action.payload.songId);
+                                return parseInt(song?.songId) !== parseInt(action.payload?.songId);
                             }
                         ),
                     };
                 }
                 return playlist;
             });
-
         case REMOVE_PLAYLIST:
             return state.filter((playlist) => parseInt(playlist.id) !== parseInt(action.payload));
 
@@ -319,4 +317,3 @@ export default playlistReducer;
 //             return state;
 //     }
 // };
-

@@ -82,15 +82,15 @@ const Navbar = () => {
             <Link to="/game">
               <Button onClick={onClickHandler}>
                 <img style={{width: '20px'}} src='https://win98icons.alexmeub.com/icons/png/game_freecell-1.png' alt="" />
-                Games
+                Solitaire
               </Button>
             </Link>
           </li>
           <li>
             <Link to="/webamp">
               <Button onClick={onClickHandler}>
-                <img style={{width: '20px'}} src='https://win98icons.alexmeub.com/icons/png/cd_audio_cd_a-1.png' alt="" />
-                Webamp
+                <img style={{width: '20px'}} src='https://win98icons.alexmeub.com/icons/png/game_mine_2-0.png' alt="" />
+                Minesweeper
               </Button>
             </Link>
           </li>
