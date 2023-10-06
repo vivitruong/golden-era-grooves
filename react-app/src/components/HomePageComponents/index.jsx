@@ -133,7 +133,11 @@ const HomePageComponents = ({ allPlaylists }) => {
       <div className="conn">
 
         <div className="create">
+<<<<<<< HEAD
+          <h4>Browse All New Music Today 🎶 </h4>
+=======
         <h3>Browse All New Music Today <img src="https://win98icons.alexmeub.com/icons/png/netshow-1.png"></img></h3>
+>>>>>>> game
           {/* <Button iconOnly onClick={() => setShowModal(true)}>
               Create Song
             </Button> */}

@@ -21,11 +21,15 @@ import SelectedPlaylistPage from "../SelectedPlaylistPage";
 import { pauseAudio, playAudio } from "../../store/slices/playlistSlice";
 import TopNav from "../../components/TopNav";
 import Footer from "../../components/Footer";
+<<<<<<< HEAD
+// import CustomMediaPlayer from "../../components/Window-media/media";
+=======
 import UserPage from "../../components/UserPage";
 import Paint from "../../components/Paint";
 import MinesweeperEmbed from "../../components/MineSweeper";
 import Solitaire from "../../components/Game";
 
+>>>>>>> game
 export const Home = () => {
   // const { selectedPlayListSongs } = useSelector((state) => state?.playlists);
 
@@ -114,6 +118,12 @@ export const Home = () => {
             <Paint />
             <Footer/>
           </Route>
+<<<<<<< HEAD
+          <ProtectedRoute path='/profile'>
+            <UserPage />
+            <Footer/>
+          </ProtectedRoute>
+=======
           <Route path='/game'>
             <Solitaire />
             <Footer/>
@@ -123,6 +133,7 @@ export const Home = () => {
         <MinesweeperEmbed/>
         <Footer />
           </Route>
+>>>>>>> game
         </Switch>
       </div>
       <div className="bottom_control_board">

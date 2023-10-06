@@ -24,8 +24,13 @@
   cursor: pointer;
 }
 
+<<<<<<< HEAD
+.song-row:hover {
+  background-color: #2b3dff;
+=======
 .songs:hover {
   background-color: #000a71;
+>>>>>>> game
   color: white;
 }
 
