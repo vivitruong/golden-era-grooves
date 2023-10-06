@@ -13,7 +13,7 @@ const PlaylistsPage = () => {
       <ActionBar />
       <Divider />
       {currentPlayListSongs?.length === 0 ? (
-        <h2>No songs yet</h2>
+        <h4>You don't have any songs in this playlist yet 😕 </h4>
       ) : (
         <Songs songs={currentPlayListSongs} />
       )}

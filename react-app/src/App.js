@@ -23,7 +23,7 @@ function App () {
       {isLoaded && (
         <Switch>
            <Route exact path="/">
-          <SplashScreen />
+          {/* <SplashScreen /> */}
         </Route>
           <Route path="/login">
 
