@@ -2,14 +2,11 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import SignupFormPage from "./components/SignupFormPage";
-import LoginFormPage from "./components/LoginFormPage";
+import { LoginFormPage } from "./pages/login";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import './app.css';
-import SplashScreen from './components/SplashScreen'
-import { Login } from "./pages/login";
 import '98.css'
-// import './index.css'
 function App () {
   const dispatch = useDispatch();
   const [ isLoaded, setIsLoaded ] = useState(false);
@@ -19,23 +16,17 @@ function App () {
 
   return (
     <>
-    <Navigation isLoaded={isLoaded} />
+      <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-           <Route exact path="/">
-          {/* <SplashScreen /> */}
-        </Route>
-          <Route path="/login">
-
-            {/* <LoginFormPage /> */}
-            <Login />
-
+          <Route path="/login" >
+            <LoginFormPage />
           </Route>
           <Route path="/signup">
             <SignupFormPage />
           </Route>
         </Switch>
-       )}
+      )}
     </>
   );
 }

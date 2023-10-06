@@ -22,13 +22,16 @@ function Navigation ({ isLoaded }) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const userPlaylists = fetchUserList();
-    const userSongs = fetchUserSongs();
-    const allSongs = fetchAllSongs();
-    dispatch(userPlaylists);
-    dispatch(userSongs);
-    dispatch(allSongs);
-  }, [ dispatch ]);
+    if (sessionUser) {
+      const userPlaylists = fetchUserList();
+      const userSongs = fetchUserSongs();
+      const allSongs = fetchAllSongs();
+      dispatch(userPlaylists);
+      dispatch(userSongs);
+      dispatch(allSongs);
+    }
+
+  }, [ dispatch, sessionUser ]);
 
 
   if (!sessionUser) return <Redirect to="/login" />;

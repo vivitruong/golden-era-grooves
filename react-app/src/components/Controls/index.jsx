@@ -19,7 +19,9 @@ const Controls = ({
   volume,
 }) => {
   const dispatch = useDispatch();
-  const songs = useSelector((state) => state.songs);
+  const { currentPlayListSongs: songs } = useSelector(
+    (state) => state.playlistSongs
+  );
   // const { selectedPlayListSongs } = useSelector((state) => state.playlists);
   // const audioRef = useRef(null);
   const [progressPercent, setProgressPercent] = useState(0);
@@ -38,7 +40,7 @@ const Controls = ({
 
   // Update progress bar and skip to clicked position
   function updateProgress(e) {
-    const audioElement = e.currentTarget;
+    const audioElement = e?.currentTarget;
     const { duration, currentTime } = audioElement;
     setDuration(formatTime(duration));
     const progressPercent = (currentTime / duration) * 100;
@@ -49,16 +51,23 @@ const Controls = ({
 
   // Set progress bar and skip audio when clicked
   function setProgress(e) {
-    const width = e.currentTarget.clientWidth;
-    const clickX = e.nativeEvent.offsetX;
-    const duration = audioRef.current.duration;
+    const width = e?.currentTarget?.clientWidth;
+    const clickX = e?.nativeEvent?.offsetX;
+    const duration = audioRef?.current?.duration;
 
-    const skipTime = (clickX / width) * duration;
-    audioRef.current.currentTime = skipTime;
+    if (audioRef?.current) {
+      const skipTime = (clickX / width) * duration;
+      if(!audioRef?.current?.currentTime){
+        return;
+      }
+      audioRef.current.currentTime = skipTime
 
-    // Update progress bar width as well
-    const progressPercent = (skipTime / duration) * 100;
-    setProgressPercent(progressPercent);
+      // Update progress bar width as well
+      const progressPercent = (skipTime / duration) * 100;
+      setProgressPercent(progressPercent);
+    } else {
+      return;
+    }
   }
 
   return (

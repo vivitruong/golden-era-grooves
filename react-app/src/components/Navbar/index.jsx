@@ -68,12 +68,29 @@ const Navbar = () => {
               </Button>
             </Link>
           </li>
+          <Divider />
 
           <li>
             <Link to="/paint">
               <Button onClick={onClickHandler}>
-                <img style={{width: '20px'}} src='https://goldeneragrooves.s3.us-east-2.amazonaws.com/jspaint.svg' alt="" />
+                <img src='https://win98icons.alexmeub.com/icons/png/paint_file-1.png' alt="" />
                 Paint
+              </Button>
+            </Link>
+          </li>
+          <li>
+            <Link to="/game">
+              <Button onClick={onClickHandler}>
+                <img style={{width: '20px'}} src='https://win98icons.alexmeub.com/icons/png/game_freecell-1.png' alt="" />
+                Solitaire
+              </Button>
+            </Link>
+          </li>
+          <li>
+            <Link to="/mine">
+              <Button onClick={onClickHandler}>
+                <img style={{width: '20px'}} src='https://win98icons.alexmeub.com/icons/png/game_mine_2-0.png' alt="" />
+                Minesweeper
               </Button>
             </Link>
           </li>

@@ -33,16 +33,6 @@ const playSongSlice = createSlice({
     },
 
     nextSong: (state, action) => {
-      // const { currentSongIndex } = state;
-      // const nextIndex = currentSongIndex + 1;
-
-      // if (nextIndex < action.payload.songs.length) {
-      //   state.currentSongIndex = nextIndex;
-      //   state.playSong = action.payload.songs[ nextIndex ];
-      // } else {
-      //   state.currentSongIndex = 0;
-
-      // }
       const { currentSongIndex } = state;
       const nextIndex = currentSongIndex + 1;
 
@@ -55,16 +45,6 @@ const playSongSlice = createSlice({
     },
 
     pervSong: (state, action) => {
-      // const { currentSongIndex } = state;
-      // const nextIndex = currentSongIndex - 1;
-
-      // if (nextIndex >= 0) {
-      //   state.currentSongIndex = nextIndex;
-      //   state.playSong = action.payload.songs[ nextIndex ];
-      // } else {
-      //   state.currentSongIndex = 0;
-      //   state.playSong = action.payload.songs[ 0 ];
-      // }
       const { currentSongIndex } = state;
       const prevIndex = currentSongIndex - 1;
 

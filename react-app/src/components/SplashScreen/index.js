@@ -7,12 +7,12 @@ function SplashScreen() {
     const history = useHistory();
     const [isLoading, setIsLoading] = useState(true);
     useEffect(() => {
-
+        // Simulate a delay (e.g., 3 seconds) for the splash screen
         const delay = setTimeout(() => {
           setIsLoading(false);
-        }, 10000); //
+        }, 10000); // Adjust the delay to match the animation duration
 
-
+        // Clean up the timeout when the component unmounts
         return () => clearTimeout(delay);
       }, []);
     //   useEffect(() => {
