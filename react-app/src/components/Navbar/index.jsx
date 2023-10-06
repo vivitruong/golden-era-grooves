@@ -73,7 +73,7 @@ const Navbar = () => {
           <li>
             <Link to="/paint">
               <Button onClick={onClickHandler}>
-                <img style={{width: '20px'}} src='https://goldeneragrooves.s3.us-east-2.amazonaws.com/jspaint.svg' alt="" />
+                <img src='https://win98icons.alexmeub.com/icons/png/paint_file-1.png' alt="" />
                 Paint
               </Button>
             </Link>
@@ -81,7 +81,7 @@ const Navbar = () => {
           <li>
             <Link to="/game">
               <Button onClick={onClickHandler}>
-                <img style={{width: '20px'}} src='https://win98icons.alexmeub.com/icons/png/game_freecell-2.png' alt="" />
+                <img style={{width: '20px'}} src='https://win98icons.alexmeub.com/icons/png/game_freecell-1.png' alt="" />
                 Games
               </Button>
             </Link>
@@ -89,7 +89,7 @@ const Navbar = () => {
           <li>
             <Link to="/webamp">
               <Button onClick={onClickHandler}>
-                <img style={{width: '20px'}} src='https://win98icons.alexmeub.com/icons/png/cd_audio_cd_a-2.png' alt="" />
+                <img style={{width: '20px'}} src='https://win98icons.alexmeub.com/icons/png/cd_audio_cd_a-1.png' alt="" />
                 Webamp
               </Button>
             </Link>
