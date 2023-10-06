@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 * {
   padding: 0;
   margin: 0;
@@ -12,3 +13,71 @@ body {
   padding: 10px;
   overflow: hidden;
 }
+=======
+/* /* TODO Add site wide styles
+body {
+    background-image: url('https://goldeneragrooves.s3.us-east-2.amazonaws.com/cloudscreen.jpg'); /* Replace with the path to your image */
+    /* background-size: cover;
+    background-repeat: no-repeat;
+    font-family: 'ms-sans-serif', sans-serif; */
+    /* Add other styles as needed */
+
+/* @font-face {
+  font-family: 'ms-sans-serif-bold ';
+  src: url('./ms-sans-serif-bold.otf/ms-sans-serif-bold.otf')  format('truetype');
+}
+:root {
+  --melodify-gray:#8e8e93;
+  --melodify-banerDarkGray: #444;
+  --melodify-dropdown-background: #575757;
+  --melodify-dropdown-light-gray: #707070;
+  --melodify-playerBackground:hsla(0,0%,100%,.88);
+  --melodify-red-close:#fa233b;
+  --melodify-footer-gray: #fbfbfb;
+  --melodify-red-key: #d60017;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  box-sizing: border-box;
+  /* font-size: 1rem; */
+  /* position: relative;
+  margin:0px;
+}
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+-webkit-appearance: none;
+margin: 0;
+} */
+
+/* Firefox */
+/* input[type=number] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+input, textarea {
+  outline: none;
+  border: none;
+  border-width: 0;
+  box-shadow: none;
+}  */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  border: none;
+  list-style-type: none;
+}
+
+body {
+  background-color: #c0c0c0;
+  padding: 10px;
+  overflow: hidden;
+  background-image: url('https://goldeneragrooves.s3.us-east-2.amazonaws.com/cloudscreen.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+>>>>>>> f812e48879173f209e965f16dcc727c15b858ea0
