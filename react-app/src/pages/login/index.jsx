@@ -48,16 +48,14 @@ export const LoginFormPage = () => {
     }
   };
 
-  // useEffect(() => {
-  //   console.log("email:", email);
-  //   console.log("password:", password);
-  // }, [email, password]);
 
   if (sessionUser) return <Redirect to="/" />;
 
   return (
     <>
+
   <div class='centered-container'>
+
     <div class="title-bar loginmodal">
     <div class="title-bar-text">Log in</div>
     <div className="title-bar-controls">

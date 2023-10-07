@@ -5,8 +5,9 @@ from app.models import Song
 import os
 
 class SongForm(FlaskForm):
-  user_id = IntegerField('User Id', validators=[DataRequired()])
+  # user_id = IntegerField('User Id', validators=[DataRequired()])
   name = StringField('Title', validators=[DataRequired()])
   genre = StringField('Genre', validators=[DataRequired()])
-  cover_photo  = StringField('Cover Photo')
-  file_path = FileField('File Path')
+  artist = StringField('Artist', validators=[DataRequired()])
+  # cover_photo  = FileField('Cover Photo')
+  # file_path = FileField('File Path')

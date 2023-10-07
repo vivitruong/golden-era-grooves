@@ -1,9 +1,8 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, FileField
 from wtforms.validators import DataRequired
-
-from flask_wtf.file import FileAllowed, FileField
-from flask_wtf.file import FileField, FileAllowed, FileRequired
+from app.aws import ALLOWED_EXTENSIONS
+from flask_wtf.file import FileAllowed, FileField, FileRequired
 
 class UploadSongForm(FlaskForm):
     name = StringField('Name', validators=[DataRequired()])

@@ -19,8 +19,9 @@ const Songs = ({ songs }) => {
   const renderList = songs?.map((song, index) => {
     // const active = currentSongIndex === index;
     return (
+
       <div
-        // className={`song-row songs ${active ? "active" : ""}`}
+
         className={`song-row songs`}
         key={index}
         onClick={() => {
@@ -59,12 +60,13 @@ const Songs = ({ songs }) => {
           Remove
         </Button>
       </div>
+
     );
   });
 
   return (
     <>
-      <div>
+
         <div className="song-row header-row">
           <span className="song-column id-column">#</span>
           <span className="song-column title-column">Title</span>
@@ -73,7 +75,8 @@ const Songs = ({ songs }) => {
           <span className="song-column duration-column">Duration</span>
         </div>
         <div className="table">{renderList}</div>
-      </div>
+
+
     </>
   );
 };

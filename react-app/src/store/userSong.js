@@ -39,11 +39,11 @@ export const fetchUserSongs = () => async dispatch => {
     }
 };
 
-export const updateASong = (updatedSong) => async dispatch => {
-    const response = await fetch(`/api/songs/${ updatedSong.id }`, {
+export const updateASong = (payload, songId) => async dispatch => {
+    const response = await fetch(`/api/songs/${songId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: updatedSong
+        body: JSON.stringify(payload)
     });
     if (response.ok) {
         const editedSong = await response.json();
@@ -64,6 +64,24 @@ export const deleteSong = ({ songId }) => async dispatch => {
         return deletionResponse;
     }
 };
+export const createSong = (song) => async dispatch => {
+    console.log(song,'this is song')
+    console.log(song.cover_photo, '--coverphoto here')
+    const response = await fetch(`/api/songs/`, {
+        method: 'POST',
+        body: song
+    });
+
+    console.log('!!!CREATE', response);
+    if (response.ok) {
+        const resPost = await response.json();
+        dispatch(addSong(resPost));
+    } else {
+        console.log("There was an error making your post!");
+    }
+
+
+};
 
 
 const initialState = [];
@@ -76,8 +94,10 @@ const userSongReducer = (state = initialState, action) => {
             return action.songs || []; // Replace the existing state with the new songs array.
 
         case ADD_SONG:
-            newState.push(action.payload);
-            return newState;
+            if (action.song && action.song.id) {
+                return [...state, action.song];
+                }
+            return newState
 
         case UPDATE_SONG:
             return newState.map((song) => {
@@ -86,7 +106,7 @@ const userSongReducer = (state = initialState, action) => {
             );
 
         case REMOVE_SONG:
-            return newState.filter((song) => parseInt(song.id) !== parseInt(action.payload));
+            return newState.filter((song) => parseInt(song?.id) !== parseInt(action.payload));
 
         default:
             return state;

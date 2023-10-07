@@ -32,6 +32,10 @@ const DeletePlaylistForm = ({ playlist, onClose }) => {
     };
 
     return (
+        <>
+        <div class="title-bar inactive">
+        <div class="title-bar-text">Delete</div>
+        <div class="title-bar-controls">
         <div className='deleteplaylist-container'>
             <div className='deleteplaylist-btncontainer'>
                 <button className='deleteplaylist-btn-close' onClick={handleClosebtn}>
@@ -55,6 +59,9 @@ const DeletePlaylistForm = ({ playlist, onClose }) => {
                 </div>
             </div>
         </div>
+        </div>
+        </div>
+        </>
     );
 }
 

@@ -34,7 +34,7 @@ function Navigation ({ isLoaded }) {
   }, [ dispatch, sessionUser ]);
 
 
-  if (!sessionUser) return <Redirect to="/login" />;
+  if (!sessionUser) return <Redirect to="/welcome" />;
 
   return (
     <main>

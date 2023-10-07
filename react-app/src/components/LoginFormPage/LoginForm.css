@@ -176,20 +176,23 @@ padding: 0;
 .window-body {
   background-color: #dfdfdf;
   margin: 0;
-  padding: 0;
+  padding: 10px;
   /* box-sizing: border-box; */
   display: flex;
   justify-content: center;
   width: 20%;
 }
 .centered-container {
-  background-color: #c0c0c0;
+  background-image:url('https://casacloudpics.s3.us-east-2.amazonaws.com/background2.jpg');
   display: flex;
-  flex-direction: column; /* Stack elements vertically */
-  justify-content: center; /* Center vertically */
-  align-items: center; /* Center horizontally */
-  height: 100vh; /* 100% of viewport height */
-  /* Add width and other styles as needed for the container */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
 }
 .down-login > span {
   font-family: Microsoft Sans Serif;
@@ -219,4 +222,12 @@ padding: 0;
 .login-password,
 .login-username {
   margin-bottom: 10px; /* Add margin to create spacing between the components */
+}
+
+.title-bar.loginmodal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 10px; /* Adjust the padding as needed */
 }

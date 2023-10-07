@@ -21,11 +21,21 @@ def seed_playlist_songs():
         playlist_id=2,
         song_id=1,
     )
+    playlist_songs6 = Playlist_Song(
+        playlist_id=1,
+        song_id=4,
+    )
+    playlist_songs7 = Playlist_Song(
+        playlist_id=1,
+        song_id=5,
+    )
     db.session.add(playlist_songs1)
     db.session.add(playlist_songs2)
     db.session.add(playlist_songs3)
     db.session.add(playlist_songs4)
     db.session.add(playlist_songs5)
+    db.session.add(playlist_songs6)
+    db.session.add(playlist_songs7)
 
     db.session.commit()
 

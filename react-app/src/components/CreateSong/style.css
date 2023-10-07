@@ -1,1 +1,73 @@
 
+.page-container{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   text-align: left;
+   transition: all 0.3s;
+   max-width: calc(100% - 10%);
+   margin-left: 10%;
+
+}
+
+.error-message {
+   color: red;
+   display: flex;
+   justify-content: left;
+   width: 100%;
+   margin: 5px 0px;
+   font-size: 8pt;
+}
+
+.form-create {
+   display: grid;
+   place-items: center; /* Center both horizontally and vertically */
+   padding: 5px;
+}
+
+.organize-create {
+   display: grid;
+   grid-template-areas:
+   'a b';
+}
+
+.city {
+   grid-area: a;
+   width: 150px;
+}
+
+.state {
+   grid-area: b;
+   width: 150px;
+}
+
+.text {
+   font-weight: bold;
+   margin-bottom: 0px;
+}
+
+.intro-text {
+   margin-top: 0px;
+}
+
+.align-create {
+   display: grid;
+   justify-items: center;
+}
+
+.label-create {
+   display: flex;
+   flex-direction: column;
+   width: 300px;
+   padding: 5px;
+}
+
+.border-create {
+   border-top: 1px solid black;
+   margin: 10px;
+}
+
+.align-create-button {
+   display: grid;
+   justify-items: left;
+}

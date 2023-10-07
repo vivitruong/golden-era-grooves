@@ -22,26 +22,18 @@ import {
 // import { useCreateSongMutation } from "../../slices/songsApiSlice";
 import Divider from '../../components/Divider'
 const HomePageComponents = ({ allPlaylists }) => {
-  // const [showModal, setShowModal] = useState(false);
-  // const [showDeleteModal, setDeleteModal] = useState(false);
-  // const [showEditModal, setEditModal] = useState(false);
-  // const [songToEditOrDelete, setSongToEditOrDelete] = useState(null);
-
-  // const [artist, setArtist] = useState("");
-  // const [coverPhoto, setCoverPhoto] = useState("");
-  // const [filePath, setFilePath] = useState("");
-  // const [genre, setGenre] = useState("");
-  // const [name, setName] = useState("");
 
   const allSongs = useSelector((state) => state.songs);
-  // const [deleteSong] = useDeleteSongMutation();
-  // const [createUserSong] = useCreateSongMutation();
+
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // dispatch(selectedPlayListSongs([]));
-  }, []);
 
+  }, []);
+  const dateString = "June.15.1998";
+  const date = new Date(dateString);
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  const formattedDate = date.toLocaleDateString(undefined, options);
   const renderPlayList = allPlaylists?.map((playlist) => {
     return (
       <Link
@@ -54,52 +46,7 @@ const HomePageComponents = ({ allPlaylists }) => {
     );
   });
 
-  // const deleteSongHandler = async (song) => {
-  //   // const res = await deleteSong({ songId: song?.id });
-  //   // dispatch();
-  //   // removeSongToSelectedPlayList({ playlist, removeSong: song })
-  // };
 
-  // const createOrEditSong = async () => {
-  //   const songToCreateOrEdit = {
-  //     name,
-  //     artist,
-  //     coverPhoto,
-  //     filePath,
-  //     genre,
-  //   };
-  //   setShowModal(false);
-  //   setEditModal(false);
-  //   try {
-  //     // const res = await createUserSong({
-  //     //   song: JSON.stringify(songToCreateOrEdit),
-  //     // }).unwrap();
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
-  // const reset = () => {
-  //   setArtist("");
-  //   setCoverPhoto("");
-  //   setFilePath("");
-  //   setGenre("");
-  //   setName("");
-  // };
-
-  // useEffect(() => {
-  //   if (songToEditOrDelete) {
-  //     setArtist(songToEditOrDelete.artist || "");
-  //     setCoverPhoto(songToEditOrDelete.coverPhoto || "");
-  //     setFilePath(songToEditOrDelete.filePath || "");
-  //     setGenre(songToEditOrDelete.genre || "");
-  //     setName(songToEditOrDelete.name || "");
-  //   }
-  // }, [songToEditOrDelete]);
-
-  // useEffect(() => {
-  //   dispatch(getSongs({ songs: allSongs }));
-  // }, [dispatch, allSongs]);
 
   const renderAllSong = allSongs?.map((song, index) => {
     return (
@@ -118,7 +65,10 @@ const HomePageComponents = ({ allPlaylists }) => {
           <span className=" artist-column">{song?.artist}</span>
 
         </div>
-        <span className=" duration-column">{song?.duration}</span>
+        <span style={{marginLeft: '200px'}} className=" duration-column">Gegrooves</span>
+        <span style={{marginLeft: '500px'}} className=" duration-column">{formattedDate}</span>
+        <span style={{marginLeft: '250px'}} className=" duration-column">3.30</span>
+
       </div>
     );
   });
@@ -133,7 +83,7 @@ const HomePageComponents = ({ allPlaylists }) => {
       <div className="conn">
 
         <div className="create">
-        <h3>Browse All New Music Today <img src="https://win98icons.alexmeub.com/icons/png/netshow-1.png"></img></h3>
+        <h3>Browse All New Music Today With Golden Era Grooves <img src="https://win98icons.alexmeub.com/icons/png/netshow-1.png"></img></h3>
           {/* <Button iconOnly onClick={() => setShowModal(true)}>
               Create Song
             </Button> */}
@@ -143,8 +93,8 @@ const HomePageComponents = ({ allPlaylists }) => {
           <span className="song-column id-column">#</span>
           <span className="song-column title-column">Title</span>
           <span className="song-column album-column">Album</span>
-          <span className="song-column date-added-column">Date Added</span>
-          <span className="song-column duration-column">Duration</span>
+          <span style={{ marginRight: '100px', textAlign: 'center' }} className="song-column date-added-column">Date Added</span>
+          <span style={{ marginLeft: '0px', textAlign: 'center' }} className="song-column duration-column">Duration</span>
         </div>
         <div className="allsongs">{renderAllSong}</div>
       </div>

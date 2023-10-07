@@ -117,7 +117,7 @@ const SelectedPlaylistPage = () => {
         <>
           <Overlay onClose={() => setDeleteModal(false)} />
           <div className="deleteModal">
-            <h2>Are You Sure you want to delete? {playlist?.name} playlist</h2>
+            <h2>Are you sure you want to delete {playlist?.name} playlist?</h2>
             <div className="btns">
               <Button iconOnly onClick={deleteHandler}>
                 Delete
@@ -190,7 +190,7 @@ const SelectedPlaylistPage = () => {
         <>
           <Overlay onClose={() => setDeleteModal(false)} />
           <div className="deleteModal">
-            <h2>Are You Sure you want to delete? {playlist?.name} playlist</h2>
+            <h2>Are you sure you want to delete {playlist?.name} playlist?</h2>
             <div className="btns">
               <Button iconOnly onClick={deleteHandler}>
                 Delete

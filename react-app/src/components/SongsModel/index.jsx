@@ -11,6 +11,7 @@ const SongsModal = ({ songs, playlistId, songsInPlayList }) => {
     // const isSongAdded = songsInPlayList[index]?.song?.includes(song.id);
 
     return (
+
       <div
         className={`song-row songs `}
         key={song?.id}
@@ -24,6 +25,7 @@ const SongsModal = ({ songs, playlistId, songsInPlayList }) => {
           <span className=" title-column">{song?.name}</span>
           <span className=" artist-column">{song?.artist}</span>
         </div>
+
         <Button
           iconOnly
           onClick={() => {
@@ -41,6 +43,7 @@ const SongsModal = ({ songs, playlistId, songsInPlayList }) => {
           Add
         </Button>
       </div>
+
     );
   });
   return (
