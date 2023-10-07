@@ -1,42 +1,50 @@
 const LOAD_ALLSONGS = 'songs/loadAll';
 const LOAD_ONESONG = 'songs/loadOneSong';
-const ADD_SONG = 'songs/addSong';
+// const ADD_SONG = 'songs/addSong';
+const SEARCH_SONG ='songs/searchSong';
 export function loadAllSongs (songs) {
     return {
         type: LOAD_ALLSONGS,
         songs
     };
 }
-export function addSong(song) {
+// export function addSong(song) {
+//     return {
+//         type: ADD_SONG,
+//         song
+//     }
+// }
+export function searchSong(song){
     return {
-        type: ADD_SONG,
-        song
+        type: SEARCH_SONG,
+        payload: song
     }
 }
-
 // export function removeSong(songId) {
 //     return {
 //         type: REMOVE_SONG,
 //         songId
 //     }
 // }
-
-// export function loadOneSong(song) {
-//     return {
-//         type: LOAD_ONESONG,
-//         song
-//     }
+// export const search = (song) => async(dispatch) => {
+//     const response = await fetch(``)
 // }
-// export const getOneSong = (id) => async(dispatch) => {
-//     const response = await fetch(`/api/songs/${id}`)
+export function loadOneSong(song) {
+    return {
+        type: LOAD_ONESONG,
+        song
+    }
+}
+export const getOneSong = (id) => async(dispatch) => {
+    const response = await fetch(`/api/songs/${id}`)
 
-//     if(response.ok){
-//         const song = await response.json()
-//         dispatch(loadOneSong(song))
-//         return song
-//     }
-//     return response
-// }
+    if(response.ok){
+        const song = await response.json()
+        dispatch(loadOneSong(song))
+        return song
+    }
+    return response
+}
 
 export const fetchAllSongs = () => async dispatch => {
     const response = await fetch(`/api/songs`);
@@ -57,24 +65,24 @@ export const fetchAllSongs = () => async dispatch => {
 // };
 
 
-export const createSong = (song) => async dispatch => {
-    console.log(song,'this is song')
-    console.log(song.cover_photo, '--coverphoto here')
-    const response = await fetch(`/api/songs/`, {
-        method: 'POST',
-        body: song
-    });
+// export const createSong = (song) => async dispatch => {
+//     console.log(song,'this is song')
+//     console.log(song.cover_photo, '--coverphoto here')
+//     const response = await fetch(`/api/songs/`, {
+//         method: 'POST',
+//         body: song
+//     });
 
-    console.log('!!!CREATE', response);
-    if (response.ok) {
-        const resPost = await response.json();
-        dispatch(addSong(resPost));
-    } else {
-        console.log("There was an error making your post!");
-    }
+//     console.log('!!!CREATE', response);
+//     if (response.ok) {
+//         const resPost = await response.json();
+//         dispatch(addSong(resPost));
+//     } else {
+//         console.log("There was an error making your post!");
+//     }
 
 
-};
+// };
 
 // export const updateASong = (payload, songId) => async dispatch => {
 //     const response = await fetch(`/api/songs/${ songId }`, {
@@ -159,10 +167,14 @@ const songReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD_ALLSONGS:
             return action.songs || [];
-        case ADD_SONG:
-            if (action.song && action.song.id) {
-                return [...state, action.song];
-            }
+        // case ADD_SONG:
+        //     if (action.song && action.song.id) {
+        //         return [...state, action.song];
+        //     }
+        //     return newState
+
+        case LOAD_ONESONG:
+            newState[action.song.id] = {...newState[action.song.id], ...action.song};
             return newState
 
         default:

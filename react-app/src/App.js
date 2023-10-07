@@ -5,6 +5,7 @@ import SignupFormPage from "./components/SignupFormPage";
 import { LoginFormPage } from "./pages/login";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
+import SplashScreen from './components/SplashScreen'
 import './app.css';
 import '98.css'
 function App () {
@@ -18,7 +19,11 @@ function App () {
     <>
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
+
         <Switch>
+          <Route path='/welcome'>
+            <SplashScreen />
+          </Route>
           <Route path="/login" >
             <LoginFormPage />
           </Route>

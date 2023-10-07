@@ -1,137 +1,4 @@
-/* * {
-margin: 0;
-padding: 0;
-}
 
-.login-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #77AFD4;
-    background-repeat: repeat-x;
-
-}
-
-.login-box {
-    background-color: #C0C0C0;
-
-    border: 1px solid #000;
-    padding: 0;
-    box-shadow: 0px 0px 10px #000;
-    width: 350px;
-}
-
-.login-title-bar {
-    background-color: #094CAE;
-
-    color: #fff;
-    display: flex;
-    align-items: center;
-    padding: 5px 10px;
-    cursor: move;
-}
-
-.logo img {
-    width: 24px;
-    height: 24px;
-    margin-right: 50px;
-}
-
-.login-title {
-    font-weight: bold;
-    font-size: 18px;
-}
-
-.window-controls {
-    display: flex;
-    gap: 15px;
-    margin-left: 30px;
-}
-
-.minimize-button,
-.maximize-button,
-.close-button {
-    background-color: transparent;
-    border: none;
-    color: #fff;
-    font-size: 18px;
-    cursor: pointer;
-    outline: none;
-}
-
-.login-content {
-    padding: 20px;
-}
-
-.welcome-message {
-    text-align: center;
-    font-size: 16px;
-    margin-bottom: 20px;
-}
-
-.input-group {
-    margin-bottom: 15px;
-}
-
-.input-group label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-.input-group input {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-}
-
-.login-button {
-    width: 100%;
-    padding: 10px;
-    background-color: #008080;
-
-    color: #fff;
-    font-weight: bold;
-    border: none;
-    cursor: pointer;
-}
-
-.login-button:hover {
-    background-color: #006666;
-
-}
-
-.signup-button {
-    width: 100%;
-    padding: 10px;
-    background-color: #C0C0C0;
-
-    color: black;
-    font-weight: bold;
-    border: none;
-    cursor: pointer;
-}
-
-.minimize-button:hover,
-.maximize-button:hover,
-.close-button:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-    border-radius: 50%;
-    transition: background-color 0.2s ease-in-out;
-}
-
-.maximized .login-box {
-    width: 100vw;
-    height: 100vh;
-    border-radius: 0;
-}
-
-.maximized .login-title-bar {
-    border-radius: 0;
-}
-*/
 
 .maximized .window-controls {
     gap: 10px;
@@ -172,25 +39,29 @@ align-self: stretch;
     width: 20%;
     height: auto;
     margin: 0;
-    padding: 0
+
+
 }
 .window-body{
     background-color: #DFDFDF;
     margin: 0;
-     padding: 0;
+     padding: 10px;
      /* box-sizing: border-box; */
     display:flex;
     justify-content: center;
     width: 20%;
 }
 .centered-container {
-    background-color: #c0c0c0;
+    /* background-color: #018282; */
+    background-image: url('https://goldeneragrooves.s3.us-east-2.amazonaws.com/cloudscreen.jpg');
     display: flex;
     flex-direction: column; /* Stack elements vertically */
     justify-content: center; /* Center vertically */
     align-items: center; /* Center horizontally */
     height: 100vh; /* 100% of viewport height */
-    /* Add width and other styles as needed for the container */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
   }
 .down-login >span{
 font-family: Microsoft Sans Serif;

@@ -2,7 +2,8 @@ import { useState } from "react";
 import PlayListForm from "../components/PlayListForm";
 import { createNewPLaylist } from "../store/playlist";
 import { useDispatch } from "react-redux";
-
+import ActionBar from "../components/ActionBar";
+import Divider from '../components/Divider'
 const CreatePlayList = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -23,12 +24,13 @@ const CreatePlayList = () => {
   };
 
   return (
+    <>
+
     <div>
-<<<<<<< HEAD
-      CreatePlayList
-=======
-       <h3>Hooray! Let's create a new playlist</h3>
->>>>>>> game
+      <ActionBar />
+      <Divider />
+       <h4 style={{padding:'10px'}}>Hooray! Let's create your new playlist</h4>
+       <Divider />
       <PlayListForm
         submitHandler={submitHandler}
         name={name}
@@ -38,6 +40,7 @@ const CreatePlayList = () => {
         btnText={"Create PlayList"}
       />
     </div>
+    </>
   );
 };
 

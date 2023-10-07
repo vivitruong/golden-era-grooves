@@ -61,24 +61,23 @@ const Navbar = () => {
             </Link>
           </li>
           <li>
-            <Link to="/">
+            <Link to="/comments">
               <Button onClick={onClickHandler}>
                 <img src={iconEpisode} alt="" />
-                Your Episodes
+                Your Comments
               </Button>
             </Link>
           </li>
+          <Divider />
 
           <li>
             <Link to="/paint">
               <Button onClick={onClickHandler}>
-                <img style={{width: '20px'}} src='https://goldeneragrooves.s3.us-east-2.amazonaws.com/jspaint.svg' alt="" />
+                <img src='https://win98icons.alexmeub.com/icons/png/paint_file-1.png' alt="" />
                 Paint
               </Button>
             </Link>
           </li>
-<<<<<<< HEAD
-=======
           <li>
             <Link to="/game">
               <Button onClick={onClickHandler}>
@@ -95,7 +94,6 @@ const Navbar = () => {
               </Button>
             </Link>
           </li>
->>>>>>> game
 
         </ul>
         <Divider />

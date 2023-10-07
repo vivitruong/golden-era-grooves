@@ -1,181 +1,13 @@
-// import { useState } from "react";
-// import InputField from "../InputField";
-// import Button from "../Button";
-// // import { useCreateSongMutation } from "../../slices/songsApiSlice";
-// // import { useDispatch } from "react-redux";
 
-// const CreateSong = ({
-//   artist,
-//   coverPhoto,
-//   filePath,
-//   genre,
-//   name,
-//   setArtist,
-//   setCoverPhoto,
-//   setFilePath,
-//   setGenre,
-//   setName,
-//   onSubmitHandler,
-//   btnText,
-// }) => {
-//   // const [createUserSong] = useCreateSongMutation();
-
-//   // const dispatch = useDispatch();
-
-//   const submitHandler = async function (e) {
-//     e.preventDefault();
-//     onSubmitHandler();
-//   };
-
-//   return (
-//     <form action="" onSubmit={submitHandler} className="form">
-//       <InputField
-//         name="artist"
-//         value={artist}
-//         onChange={(e) => setArtist(e.target.value)}
-//         id="artist"
-//         type="text"
-//         placeholder="Artist"
-//       />
-//       <InputField
-//         className="input"
-//         required
-//         name="coverPhoto"
-//         value={coverPhoto}
-//         onChange={(e) => setCoverPhoto(e.target.value)}
-//         id="coverPhoto"
-//         type="text"
-//         placeholder="CoverPhoto"
-//       />
-//       <InputField
-//         className="input"
-//         required
-//         name="filePath"
-//         value={filePath}
-//         onChange={(e) => setFilePath(e.target.value)}
-//         id="filePath"
-//         type="text"
-//         placeholder="FilePath"
-//       />
-//       <InputField
-//         className="input"
-//         required
-//         name="genre"
-//         value={genre}
-//         onChange={(e) => setGenre(e.target.value)}
-//         id="genre"
-//         type="text"
-//         placeholder="Genre"
-//       />
-//       <InputField
-//         className="input"
-//         required
-//         name="name"
-//         value={name}
-//         onChange={(e) => setName(e.target.value)}
-//         id="name"
-//         type="text"
-//         placeholder="Song Name"
-//       />
-//       <Button iconOnly>{btnText}</Button>
-//     </form>
-//   );
-// };
-
-// export default CreateSong;
-// import { useState } from "react";
-// import InputField from "../InputField";
-// import Button from "../Button";
-// // import { useCreateSongMutation } from "../../slices/songsApiSlice";
-// // import { useDispatch } from "react-redux";
-
-// const CreateSong = ({
-//   artist,
-//   coverPhoto,
-//   filePath,
-//   genre,
-//   name,
-//   setArtist,
-//   setCoverPhoto,
-//   setFilePath,
-//   setGenre,
-//   setName,
-//   onSubmitHandler,
-//   btnText,
-// }) => {
-//   // const [createUserSong] = useCreateSongMutation();
-
-//   // const dispatch = useDispatch();
-
-//   const submitHandler = async function (e) {
-//     e.preventDefault();
-//     onSubmitHandler();
-//   };
-
-//   return (
-//     <form action="" onSubmit={submitHandler} className="form">
-//       <InputField
-//         name="artist"
-//         value={artist}
-//         onChange={(e) => setArtist(e.target.value)}
-//         id="artist"
-//         type="text"
-//         placeholder="Artist"
-//       />
-//       <InputField
-//         className="input"
-//         required
-//         name="coverPhoto"
-//         value={coverPhoto}
-//         onChange={(e) => setCoverPhoto(e.target.value)}
-//         id="coverPhoto"
-//         type="text"
-//         placeholder="CoverPhoto"
-//       />
-//       <InputField
-//         className="input"
-//         required
-//         name="filePath"
-//         value={filePath}
-//         onChange={(e) => setFilePath(e.target.value)}
-//         id="filePath"
-//         type="text"
-//         placeholder="FilePath"
-//       />
-//       <InputField
-//         className="input"
-//         required
-//         name="genre"
-//         value={genre}
-//         onChange={(e) => setGenre(e.target.value)}
-//         id="genre"
-//         type="text"
-//         placeholder="Genre"
-//       />
-//       <InputField
-//         className="input"
-//         required
-//         name="name"
-//         value={name}
-//         onChange={(e) => setName(e.target.value)}
-//         id="name"
-//         type="text"
-//         placeholder="Song Name"
-//       />
-//       <Button iconOnly>{btnText}</Button>
-//     </form>
-//   );
-// };
-
-// export default CreateSong;
 import React, { useState } from "react";
 import InputField from "../InputField";
 import Button from "../Button";
-import { useCreateSongMutation } from "../../slices/songsApiSlice";
+// import { useCreateSongMutation } from "../../slices/songsApiSlice";
 import { useDispatch } from "react-redux";
-import * as songActions from '../../store/song';
+
 import { useHistory } from "react-router-dom";
-import './style.css'
+import './style.css';
+import { createSong } from "../../store/userSong";
 
 const CreateSong = () => {
   const [artist, setArtist] = useState("");
@@ -194,7 +26,6 @@ const CreateSong = () => {
   const handleSubmit = async (e) => {
   e.preventDefault();
 
-  console.log('-------------------------------' , cover_photo[0])
   const errors = {};
 
   if(!name) errors.name = 'Song name is required';
@@ -234,7 +65,6 @@ const CreateSong = () => {
   if (Object.keys(error).length === 0) {
 
 
-    console.log('------------2' , file_path)
   const formData = new FormData();
   formData.append("name", name);
   formData.append("genre", genre);
@@ -248,7 +78,7 @@ const CreateSong = () => {
 
   try {
 
-      await dispatch(songActions.createSong(formData));
+      await dispatch(createSong(formData));
       history.push("/");
   } catch (err){
       setErrors({});
@@ -260,27 +90,6 @@ const CreateSong = () => {
   }
 
 
-  // const submitHandler = async function (e) {
-  //   e.preventDefault();
-
-  //   const songToCreate = {
-  //     name,
-  //     artist,
-  //     coverPhoto,
-  //     filePath,
-  //     genre,
-  //   };
-  //   console.log(songToCreate);
-  //   try {
-  //     const res = await createUserSong({
-  //       song: JSON.stringify(songToCreate),
-  //     }).unwrap();
-  //     console.log(res);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
   return (
     <>
     <div class="title-bar">
@@ -291,7 +100,7 @@ const CreateSong = () => {
 </div>
     <div className="page-container">
         <div className="form-create">
-            {/* <h1>Create a New Song</h1> */}
+
             <form
                 onSubmit={handleSubmit}
 
@@ -331,8 +140,8 @@ const CreateSong = () => {
                         onChange={(e) => setGenre(e.target.value)}
                     />
                 </label> */}
-                 <label >Genre <span style={{color:"red", fontSize:"1rem"}}>*</span> </label>
-                        <select style={{ margin: 'auto' }} value={genre} onChange={e => setGenre(e.target.value)} >
+                 <label style={{padding: '20px 10px 10px 12px'}} className="input-create">Genre <span style={{color:"red", fontSize:"1rem"}}>*</span> </label>
+                        <select className="" style={{ margin: 'auto'}} value={genre} onChange={e => setGenre(e.target.value)} >
                             <option value="pop">Pop</option>
                             <option value="rnb">R&B</option>
                             <option value="rock">Rock</option>
@@ -346,7 +155,9 @@ const CreateSong = () => {
                 <div className="error-message">{error.cover_photo && <p className="">{error.cover_photo}</p>}</div>
                 {(imageLoading)&& <p>Image Uploading...</p>}
                 <label className="label-create">
+
                     Select Cover Photo
+                    <span style={{color:"red", fontSize:"1rem"}}>*</span>
                     <input
                         className="input-create"
                         type="file"
@@ -362,6 +173,7 @@ const CreateSong = () => {
                 {(songLoading)&& <p>Song Uploading...</p>}
                 <label className="label-create">
                     Select Song
+                    <span style={{color:"red", fontSize:"1rem"}}>*</span>
                     <input
                         className="input-create"
                         type="file"
@@ -370,9 +182,10 @@ const CreateSong = () => {
                     />
                 </label>
                 </div>
-                <div className="align-create-button">
-                <button className='create-button test' type="submit">UPLOAD</button>
+                <div style={{padding:'10px'}} className="align-create-button">
+                <button  className='create-button test' type="submit">UPLOAD</button>
                 </div>
+                <p>By uploading, you confirm that your file comply with our Terms of Use.</p>
             </form>
         </div>
         </div>

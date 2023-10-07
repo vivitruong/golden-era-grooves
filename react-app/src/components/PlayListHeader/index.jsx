@@ -85,6 +85,10 @@ const PlayListHeader = ({ songsInPlayList }) => {
       </div>
       {showDeleteModal && (
         <>
+            <div class="title-bar inactive">
+        <div class="title-bar-text">Delete</div>
+        <div class="title-bar-controls"></div>
+        </div>
           <Overlay onClose={() => setDeleteModal(false)} />
           <div className="deleteModal">
             <h4> <img src="https://win98icons.alexmeub.com/icons/png/recycle_bin_empty-0.png"></img> Are You Sure you want to delete this playlist?</h4>
@@ -103,13 +107,14 @@ const PlayListHeader = ({ songsInPlayList }) => {
               </Button>
             </div>
           </div>
+
         </>
       )}
       {showEditModal && (
         <div className="deleteModal">
           <Overlay onClose={() => setShowEditModal(false)} />
           <>
-            <p style={{fontSize:'20px'}}>Let's Edit This Playlist <img src="https://win98icons.alexmeub.com/icons/png/directory_control_panel-2.png"></img></p>
+            <p style={{fontSize:'20px', padding:'5px', marginLeft:'30%'}}>Let's Edit This Playlist <img src="https://win98icons.alexmeub.com/icons/png/directory_control_panel-2.png"></img></p>
             <PlayListForm
               submitHandler={submitHandler}
               name={name}
@@ -117,7 +122,9 @@ const PlayListHeader = ({ songsInPlayList }) => {
               setName={setName}
               setDescription={setDescription}
               btnText={"Edit PlayList"}
+
             />
+
           </>
         </div>
       )}

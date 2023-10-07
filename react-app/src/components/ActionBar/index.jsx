@@ -8,14 +8,8 @@ import iconDate from "../../assets/time_and_date.svg";
 import "./style.css";
 
 const ActionBar = () => {
-<<<<<<< HEAD:react-app/src/components/ActionBar/index.js
-  const dispatch = useDispatch();
-  const { playSong } = useSelector((state) => state.playSong);
-  console.log(playSong);
-=======
   // const dispatch = useDispatch();
   // const { playSong } = useSelector((state) => state.playSong);
->>>>>>> game:react-app/src/components/ActionBar/index.jsx
   return (
     <div className="actionBar">
       <div className="btns">
@@ -24,7 +18,7 @@ const ActionBar = () => {
         </Button>
         <Button
           iconOnly
-          onClick={() => dispatch(likeSong({ ...playSong, isLiked: true }))}
+          // onClick={() => dispatch(likeSong({ ...playSong, isLiked: true }))}
         >
           <img src={iconHeart} alt="" />
         </Button>

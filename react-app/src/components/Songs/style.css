@@ -9,7 +9,12 @@
   border-left-color: #424242;
   border-top-color: #424242;
 }
-
+.scroll-container{
+  width: 200px;
+  height: 300px;
+  overflow: auto;
+  border:1px solid #ccc
+}
 .header-row {
   background-color: #c0c0c0 !important;
 }
@@ -24,13 +29,8 @@
   cursor: pointer;
 }
 
-<<<<<<< HEAD
-.song-row:hover {
-  background-color: #2b3dff;
-=======
 .songs:hover {
   background-color: #000a71;
->>>>>>> game
   color: white;
 }
 
