@@ -122,18 +122,18 @@ input[type="range"]::-moz-range-track {
   width: 100%;
 }
 
-/* body {
+body {
   background-color: #c0c0c0;
   padding: 0px 5px 0px 5px;
   overflow: hidden;
   font-family: 'Ms-Sans-Serif', sans-serif !important;
 
 }
-@font-face {
+/* @font-face {
   font-family: 'Ms-Sans-Serif';
-  src: url('./assets/fonts/ms-sans-serif.otf/ms_sans_serif.woff') format('woff'),
-       url('./assets/fonts/ms-sans-serif.otf/ms_sans_serif.woff2') format('woff2'),
-       url('./assets/fonts/ms-sans-serif-bold.otf/ms_sans_serif_bold.woff') format('bold.woff'),
-       url('./assets/fonts/ms-sans-serif-bold.otf/ms_sans_serif_bold.woff2') format('bold.woff2')
+  src: url('./assets/fonts/ms-sans-serif.otf') format('woff'),
+
+       url('./assets/fonts/ms-sans-serif-bold.otf') format('bold.woff'),
+
   ;
 } */
