@@ -14,7 +14,6 @@ const rootReducer = combineReducers({
   userPlaylists: playlistReducer,
   songs: songReducer,
   userSongs: userSongReducer,
-  // player: playerReducer,
   queue: queueReducer,
   playlistSongs: songsSliceReducer,
   playSong: playSongSliceRducer,
