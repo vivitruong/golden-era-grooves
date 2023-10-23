@@ -7,6 +7,7 @@ import userSongReducer from './userSong';
 import queueReducer from './queue';
 import { playSongSliceRducer, songsSliceReducer } from './slices/playlistSlice';
 // import playerReducer from './player';
+import likesReducer from './likes';
 
 const rootReducer = combineReducers({
   session,
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   queue: queueReducer,
   playlistSongs: songsSliceReducer,
   playSong: playSongSliceRducer,
+  likes: likesReducer
 
 });
 
