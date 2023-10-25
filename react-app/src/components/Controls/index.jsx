@@ -8,6 +8,7 @@ import iconPause from "../../assets/playIcon.svg";
 import iconNext from "../../assets/next.svg";
 import iconPrev from "../../assets/next.svg";
 import iconRepeat from "../../assets/repeat.svg";
+import iconHeart from '../../assets/heart.svg';
 import "./styles.css";
 import { nextSong, pervSong } from "../../store/slices/playlistSlice";
 
@@ -99,6 +100,7 @@ const Controls = ({
           className={`${loop ? "btnActive" : ""}`}
         >
           <img src={iconRepeat} alt="" />
+          <img src={iconHeart} alt="" />
         </Button>
       </div>
       <div className="ctrl">
