@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 
 const HomePage = () => {
 
-  const dispatch = useDispatch();
+
 
 
 
