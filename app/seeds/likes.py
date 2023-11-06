@@ -1,14 +1,33 @@
-from app.models import db, likes, environment, SCHEMA
+from app.models import db, Like, environment, SCHEMA
 
 def seed_likes():
-    likes_data = [
-        {"users": 1, "songs": 2},
-        {"users": 2, "songs": 3},
-        {"users": 3, "songs": 1},
-        {"users": 2, "songs": 1},
-        {"users": 1, "songs": 3},
-    ]
-    db.session.execute(likes.insert().values(likes_data))
+    like1 = Like(
+        user_id=1, song_id=2
+    )
+
+    like2 = Like(
+        user_id=2, song_id=3
+    )
+    like3 = Like(
+        user_id=3, song_id=1
+    )
+    like4= Like(
+        user_id=2, song_id=1
+    )
+    like5 = Like(
+        user_id=1, song_id=3
+    )
+    like6 = Like(
+        user_id=1, song_id=4
+    )
+
+    db.session.add(like1)
+    db.session.add(like2)
+    db.session.add(like3)
+    db.session.add(like4)
+    db.session.add(like5)
+    db.session.add(like6)
+    db.session.commit()
 
 def undo_likes():
     if environment == "production":
