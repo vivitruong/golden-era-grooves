@@ -1,68 +1,108 @@
-const GET_LIKES = 'likes/GET_LIKES'
-const POST_LIKE = 'likes/POST_LIKE'
+export const SET_LIKES = 'likes/SET_LIKES';
+export const ADD_LIKE = 'likes/ADD_LIKE';
+export const DELETE_LIKE = 'likes/DELETE_LIKE';
 
-const getLikes = (likes) => ({
-    type:GET_LIKES,
-    likes
-})
+export const likeSelector = (state) => {
+    if(!state.session.user) return null;
 
-const postLike = (like) => ({
-    type: POST_LIKE,
-    like
-})
+    return state.likes[state.session.user.id]
+}
+
+export function setLikeAction(userId, songIds){
+    return {
+        type: SET_LIKES,
+        userId,
+        songIds
+    }
+}
+
+export function addLikeAction (userId, songId) {
+    return {
+        type: ADD_LIKE,
+        userId,
+        songId
+    }
+}
+
+export function deleteLikeAction (userId, songId) {
+    return {
+        type: DELETE_LIKE,
+        userId,
+        songId
+    }
+}
+export const fetchLikes = () => async (dispatch, getState) => {
+    const user = getState().session.user;
+
+    if(!user) return;
+
+    const res = await fetch('/api/likes');
+
+    if (res.ok) {
+        const data = await res.json();
+        dispatch(setLikeAction(data.user_id, data.song_id))
+    }
+}
+export const addLike = (songId) => async(dispatch, getState) => {
+    const state = getState();
 
 
-export const postALike = (payload, id) => async dispatch => {
-    const response = await fetch(`/api/songs/${id}/likes`, {
+    if (!state.session.user) return;
+    //already like it
+    if (state.likes[state.session.user.id]?.includes(songId)) return;
+    const res = await fetch('/api/likes', {
         method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(payload)
-    });
-    if (response.ok){
-        const newLikes = await response.json()
-        newLikes['likes'] = newLikes.likes
-        dispatch(postLike(newLikes))
-        return newLikes
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            song_id: songId
+        })
+    })
+
+    if (res.ok) {
+        dispatch(addLikeAction(getState().session.user.id, songId))
     }
-
-
 }
 
+export const deleteLike = (songId) => async(dispatch, getState) => {
+    const state = getState();
 
-export const getLikesBySongId = (id) => async(dispatch) => {
-    const response = await fetch(`/api/songs/${id}/likes`)
+    if(!state.session.user) return;
+        //song doesnt exsit in likes
+    if(!state.likes[state.session.user.id].includes(songId)) return;
 
-    if(response.ok){
-        const likes = await response.json()
+    const res = await fetch(`/api/likes/${songId}`, {
+        method: 'DELETE'
+    })
 
-        dispatch(getLikes(likes))
+    if (res.ok) {
+        dispatch(deleteLikeAction(getState().session.user.id, songId))
     }
-    return response
 }
 
-const initialState = {likes: {}}
+export default function likeReducer(state = {}, action) {
+    const newState = {...state};
+    const {songId, songIds, userId} = action;
+    newState[userId] = newState[userId] || []
+    switch(action.type) {
+        case SET_LIKES:
+            newState[userId] = songIds;
+            break;
+        case ADD_LIKE:
+            if(newState[userId] && !newState[userId].includes(songId))
+            newState[userId] = [ ...newState[userId], songId];
+            break;
 
-const likesReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case GET_LIKES: {
-
-          const newState = { ...state }
-          const updated_likes =  {}
-          updated_likes["totalLikes"] = action.likes.likes
-          newState.likes = updated_likes
-         return newState
-        }
-        case POST_LIKE: {
-            const newState = {...state}
-            const updated_likes = {}
-            updated_likes['totalLikes'] = action.like.likes
-            newState.likes = updated_likes
-            return newState
-          }
+        case DELETE_LIKE:
+            if(newState[userId] && newState[action.userId].includes(songId))
+            newState[action.userId].splice(
+                newState[action.userId].indexOf(songId),
+                1
+        );
+            break;
         default:
-          return state
-
-      }
-
+            break;
+    }
+    return newState;
 }
-export default likesReducer
