@@ -291,13 +291,7 @@ def all_like(song_id):
     valuesI = dict_version.values()
     total_likes = len(list(valuesI))
     return {'likes': total_likes}, 200
-    # all_like = db.session.execute(db.select(likes).fetchall())
-    # filtered = filter(lambda like: like[1] == song_id, all_like)
-    # dict_version = dict(filtered)
 
-    # valuesI = dict_version.values()
-    # total_likes = len(list(valuesI))
-    # return {'likes': total_likes}, 200
 
 #create like for a song by song-id(maybe) will check back when test with react.
 @song_routes.route('<int:song_id>/likes', methods=['POST'])
