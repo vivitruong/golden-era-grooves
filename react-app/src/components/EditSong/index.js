@@ -46,7 +46,6 @@ const EditSong = ({song_id, setEditModal }) => {
   try {
 
       await dispatch(updateASong(formData, songId));
-      // history.push("/library");
       setEditModal(false)
   } catch (err){
       setErrors({});

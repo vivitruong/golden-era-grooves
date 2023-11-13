@@ -1,8 +1,7 @@
-import iconHeart from '../../assets/heart.svg'
+
 import { fetchLikes, likeSelector, addLike, deleteLike } from "../../store/like";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from 'react-router-dom';
 import heartfavred from '../../assets/heartfavred.png';
 import heartfavblack from '../../assets/heartfavblack.png'
 const LikeButton = ({songId}) => {

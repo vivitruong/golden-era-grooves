@@ -73,7 +73,7 @@ const Controls = ({
       }
       audioRef.current.currentTime = skipTime
 
-      // Update progress bar width as well
+
       const progressPercent = (skipTime / duration) * 100;
       setProgressPercent(progressPercent);
     } else {
@@ -114,16 +114,11 @@ const Controls = ({
         >
           <img src={iconRepeat} alt="" />
         </Button>
-        {/* <LikeButton iconOnly onClick={() => {}}>
-          <img src={iconHeart} alt="" />
-          <span> </span>
 
-
-        </LikeButton> */}
 
       </div>
       <div className="ctrl">
-        {/* {playSong?.duration} */}
+
         {duration}
         <div
           className="progressContainer"

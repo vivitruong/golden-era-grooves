@@ -1,25 +1,15 @@
 import { Link } from "react-router-dom";
-// import { selectedPlayListSongs } from "../../slices/playlistsSlice";
 import { useDispatch, useSelector } from "react-redux";
 import "./style.css";
-import Button from "../Button";
-// import {
-//   getAllSongs,
-//   getSongs,
-//   playAudio,
-//   playSong,
-// } from "../../slices/songsSlice";
+
 import { useEffect, useState } from "react";
-import Modal from "../Modal";
-import Overlay from "../Overlay";
-import CreateSong from "../CreateSong";
+
 import {
   currentPlayListSongs,
   playAudio,
   playSong,
 } from "../../store/slices/playlistSlice";
-// import { useDeleteSongMutation } from "../../slices/songsApiSlice";
-// import { useCreateSongMutation } from "../../slices/songsApiSlice";
+
 import Divider from '../../components/Divider'
 const HomePageComponents = ({ allPlaylists }) => {
 
@@ -38,7 +28,6 @@ const HomePageComponents = ({ allPlaylists }) => {
     return (
       <Link
         to={`/playlist/${playlist.name}`}
-        // onClick={() => dispatch(selectedPlayListSongs(playlist))}
         key={playlist.id}
       >
         <div className="playlist">{playlist.name}</div>
@@ -77,16 +66,12 @@ const HomePageComponents = ({ allPlaylists }) => {
     <div>
 
       <div className="conn">
-        {/* <h2>PlayLists</h2>
-        <div className="pList">{renderPlayList}</div> */}
       </div>
       <div className="conn">
 
         <div className="create">
         <h3>Browse All New Music Today With Golden Era Grooves <img src="https://win98icons.alexmeub.com/icons/png/netshow-1.png"></img></h3>
-          {/* <Button iconOnly onClick={() => setShowModal(true)}>
-              Create Song
-            </Button> */}
+
         </div>
         <Divider />
         <div className="song-row header-row">
