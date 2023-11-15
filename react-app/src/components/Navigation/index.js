@@ -15,6 +15,7 @@ import { deleteSong, fetchUserSongs, updateASong } from "../../store/userSong";
 import { Home } from "../../pages/home";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import React from "react";
+import { fetchLikes } from "../../store/like";
 
 function Navigation ({ isLoaded }) {
   const sessionUser = useSelector((state) => state.session.user);
@@ -29,6 +30,7 @@ function Navigation ({ isLoaded }) {
       dispatch(userPlaylists);
       dispatch(userSongs);
       dispatch(allSongs);
+      dispatch(fetchLikes())
     }
 
   }, [ dispatch, sessionUser ]);

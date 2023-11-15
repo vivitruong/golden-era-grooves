@@ -22,17 +22,23 @@ def seed():
         # the schema name (see comment in users.py undo_users function).
         # Make sure to add all your other model's undo functions below
         undo_users()
+        undo_songs()
         undo_playlists()
-        undo_comments()
-        undo_likes()
         undo_playlist_songs()
-        undo_songs
+        undo_likes()
+        undo_comments()
+
+
+
     seed_users()
-    seed_playlists()
-    seed_comments()
-    seed_likes()
-    seed_playlist_songs()
     seed_songs()
+    seed_playlists()
+    seed_playlist_songs()
+    seed_likes()
+    seed_comments()
+
+
+
     # Add other seed functions here
 
 
@@ -40,9 +46,12 @@ def seed():
 @seed_commands.command('undo')
 def undo():
     undo_users()
-    undo_playlists()
-    undo_comments()
-    undo_likes()
-    undo_playlist_songs()
     undo_songs()
+    undo_playlists()
+    undo_playlist_songs()
+    undo_likes()
+    undo_comments()
+
+
+
     # Add other undo functions here

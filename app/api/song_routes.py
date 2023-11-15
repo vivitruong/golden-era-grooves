@@ -100,65 +100,6 @@ def get_song(song_id):
 @song_routes.route('/', methods=['POST'])
 @login_required
 def upload_song():
-    # form = UploadSongForm()
-    # form['csrf_token'].data = request.cookies['csrf_token']
-    # print('made it here')
-
-
-    # if "file_path" not in request.files:
-    #     print('song file took an L')
-    #     return {"errors": "song required"}, 400
-
-    # if "cover_photo" not in request.files:
-    #     print("!!!!", request.files)
-    #     print('cover photo took an L')
-    #     return {"errors": "photo required"}, 400
-
-    # print('hello')
-    # cover_photo = request.files["coverphoto"]
-    # file_path = request.files["songfile"]
-
-    # if not allowed_file(file_path.filename):
-    #     return {"errors": "file type not permitted"}, 400
-
-    # if not allowed_file(cover_photo.filename):
-    #     return {"errors": "file type not permitted"}, 400
-
-    # print('pre validation--------')
-
-    # if form.validate_on_submit():
-    #     print('past validation--------')
-    #     cover_photo.filename = get_unique_filename(cover_photo.filename)
-    #     file_path.filename = get_unique_filename(file_path.filename)
-
-    #     # print('str version' , str(songfile))
-    #     # print('file', songfile)
-    #     upload2 = upload_file_to_s3(cover_photo)
-    #     upload = upload_file_to_s3(file_path)
-    #     print('upload--------', upload)
-    #     if "url" not in upload:
-    #         # if the dictionary doesn't have a url key
-    #         # it means that there was an error when we tried to upload
-    #         # so we send back that error message
-    #         return upload, 400
-
-    #     url = upload["url"]
-    #     url2 = upload2["url"]
-    #     # flask_login allows us to get the current user from the request
-    #     new_song = Song()
-    #     form.populate_obj(new_song)
-    #     new_song.song_file = url
-    #     new_song.cover_photo = url2
-
-    #     db.session.add(new_song)
-    #     db.session.commit()
-    #     return new_song.to_dict(), 201
-    # if form.errors:
-    #     return {
-    #         "errors": form.errors
-    #     }, 400
-
-
     current_user_info = current_user.to_dict()
     current_user_info = current_user.to_dict()
     current_user_id = current_user_info['id']
@@ -350,13 +291,7 @@ def all_like(song_id):
     valuesI = dict_version.values()
     total_likes = len(list(valuesI))
     return {'likes': total_likes}, 200
-    # all_like = db.session.execute(db.select(likes).fetchall())
-    # filtered = filter(lambda like: like[1] == song_id, all_like)
-    # dict_version = dict(filtered)
 
-    # valuesI = dict_version.values()
-    # total_likes = len(list(valuesI))
-    # return {'likes': total_likes}, 200
 
 #create like for a song by song-id(maybe) will check back when test with react.
 @song_routes.route('<int:song_id>/likes', methods=['POST'])

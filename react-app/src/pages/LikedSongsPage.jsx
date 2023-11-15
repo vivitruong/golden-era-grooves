@@ -1,23 +1,26 @@
 import ActionBar from "../components/ActionBar";
-import PlayListHeader from "../components/PlayListHeader";
-import Songs from "../components/Songs";
+import SongsLike from "../components/SongsLike";
 import Divider from "../components/Divider";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const LikedSongsPage = () => {
-  // const { likedSong } = useSelector((state) => state.likedSongs);
+  const songs = useSelector((state)=>state.songs)
+  const userId = useSelector(state => state.session.user.id)
+  const likedSongIds  = useSelector((state) => state?.likes[userId]) || [];
+
+  const likedSongs = songs.filter(song=>likedSongIds.includes(song.id))
 
   return (
     <div style={{ width: "100%" }}>
-      {/* <PlayListHeader /> */}
       <Divider />
       <ActionBar />
       <Divider />
-      {/* {likedSong.length === 0 ? ( */}
-      <h4>You don't have any liked songs yet 😁</h4>
-      {/* ) : ( */}
-      {/* <Songs songs={likedSong} /> */}
-      {/* )} */}
+      {likedSongs.length === 0 ? (
+        <h4>You don't have any liked songs yet 😁</h4>
+      ) : (
+        <SongsLike songs={likedSongs} />
+      )}
+
     </div>
   );
 };

@@ -2,12 +2,15 @@ import { useState } from "react";
 // import { nextSong, pervSong } from "../../slices/songsSlice";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "../Button";
-import iconShuffle from "../../assets/shuffle.svg";
+
 import iconPlay from "../../assets/play.svg";
 import iconPause from "../../assets/playIcon.svg";
 import iconNext from "../../assets/next.svg";
 import iconPrev from "../../assets/next.svg";
 import iconRepeat from "../../assets/repeat.svg";
+import iconShufflee from '../../assets/shufflee.svg';
+import iconHeart from '../../assets/heart.svg'
+import LikeButton from "../LikeSongButton";
 import "./styles.css";
 import { nextSong, pervSong } from "../../store/slices/playlistSlice";
 
@@ -17,6 +20,8 @@ const Controls = ({
   playSong,
   isPlaying,
   volume,
+
+
 }) => {
   const dispatch = useDispatch();
   const { currentPlayListSongs: songs } = useSelector(
@@ -24,10 +29,16 @@ const Controls = ({
   );
   // const { selectedPlayListSongs } = useSelector((state) => state.playlists);
   // const audioRef = useRef(null);
+
+  // const getIsLike = () => likes && likes.includes(id)
+
+
+  // const [isLike, setIsLike ] = useState(getIsLike())
   const [progressPercent, setProgressPercent] = useState(0);
   const [remainingDuration, setRemainingDuration] = useState(null);
   const [duration, setDuration] = useState(null);
   const [loop, setLoop] = useState(false);
+  const [shuffle, setShuffle] = useState(false)
 
   function formatTime(timeInSeconds) {
     const minutes = Math.floor(timeInSeconds / 60);
@@ -62,7 +73,7 @@ const Controls = ({
       }
       audioRef.current.currentTime = skipTime
 
-      // Update progress bar width as well
+
       const progressPercent = (skipTime / duration) * 100;
       setProgressPercent(progressPercent);
     } else {
@@ -73,8 +84,11 @@ const Controls = ({
   return (
     <>
       <div className="controls">
-        <Button iconOnly onClick={() => {}}>
-          <img src={iconShuffle} alt="" />
+
+        <Button iconOnly onClick={() => setShuffle(!shuffle)}
+        className={`${shuffle ? 'btnActive' : ''}`}
+        >
+          <img src={iconShufflee} alt="" />
         </Button>
         <Button iconOnly onClick={() => dispatch(pervSong({ songs }))}>
           <img src={iconPrev} alt="" style={{ rotate: "180deg" }} />
@@ -100,9 +114,11 @@ const Controls = ({
         >
           <img src={iconRepeat} alt="" />
         </Button>
+
+
       </div>
       <div className="ctrl">
-        {/* {playSong?.duration} */}
+
         {duration}
         <div
           className="progressContainer"
@@ -117,6 +133,7 @@ const Controls = ({
         </div>
         {remainingDuration}
       </div>
+
       <div style={{ display: "none", pointerEvents: "none" }}>
         {playSong && (
           <div>
@@ -134,6 +151,7 @@ const Controls = ({
           </div>
         )}
       </div>
+
     </>
   );
 };

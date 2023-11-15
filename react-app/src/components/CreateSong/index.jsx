@@ -50,16 +50,12 @@ const CreateSong = () => {
       const allowedExtensions = ['mp3'];
       let fileExtension = file_path.name.split('.')
       fileExtension = fileExtension[fileExtension.length-1]
-
-
       if (!allowedExtensions.includes(fileExtension)) {
         errors.file_path = 'Song file must have a valid extension: .mp3';
       }
     } else {
       errors.file_path = 'Song file is required';
     }
-
-
   setErrors(errors);
 
   if (Object.keys(error).length === 0) {
@@ -71,10 +67,6 @@ const CreateSong = () => {
   formData.append("cover_photo", cover_photo[0]);
   formData.append("file_path", file_path)
   formData.append('artist', artist)
-
-  // setImageLoading(true);
-  // setSongLoading(true);
-  console.log(formData.cover_photo, 'this is new')
 
   try {
 
@@ -129,17 +121,7 @@ const CreateSong = () => {
                 </label>
                 </div>
                 <div>
-                {/* <div className="error-message">{error.genre && <p className="">{error.genre}</p>}</div> */}
-                {/* <label className="label-create">
-                    Song Genre
-                    <input
-                        className="input-create"
-                        type='text'
-                        placeholder="Genre"
-                        value={genre}
-                        onChange={(e) => setGenre(e.target.value)}
-                    />
-                </label> */}
+
                  <label style={{padding: '20px 10px 10px 12px'}} className="input-create">Genre <span style={{color:"red", fontSize:"1rem"}}>*</span> </label>
                         <select className="" style={{ margin: 'auto'}} value={genre} onChange={e => setGenre(e.target.value)} >
                             <option value="pop">Pop</option>
