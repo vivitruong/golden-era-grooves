@@ -22,8 +22,11 @@ This is my final project that associated with App Academy. Golden Era Grooves is
 
  ![createpl](/react-app/src/assets/createplaylistgeg.PNG)
 
+- Like song feature
+
+ ![likesong](/react-app/src/assets/likesonggeg.PNG)
+
 ## Upcoming features:
 
 - Shuffle music in player
-- User can Like and unlike a song
 - Recommend

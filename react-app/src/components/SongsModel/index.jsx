@@ -1,6 +1,5 @@
-import { useState } from "react"; // Import useState
+
 import { useDispatch } from "react-redux";
-// import { addSongToSelectedPlayList } from "../../slices/playlistsSlice";
 import Button from "../Button";
 import { addSongsToPlaylist } from "../../store/playlist";
 
@@ -8,7 +7,7 @@ const SongsModal = ({ songs, playlistId, songsInPlayList }) => {
   const dispatch = useDispatch();
 
   const renderList = songs?.map((song, index) => {
-    // const isSongAdded = songsInPlayList[index]?.song?.includes(song.id);
+
 
     return (
 
@@ -16,8 +15,7 @@ const SongsModal = ({ songs, playlistId, songsInPlayList }) => {
         className={`song-row songs `}
         key={song?.id}
         onClick={() => {
-          // dispatch(playSong({ song: song?.song, index }));
-          // dispatch(playAudio());
+
         }}
       >
         <span className="song-column id-column">{song?.id}</span>
@@ -55,8 +53,6 @@ const SongsModal = ({ songs, playlistId, songsInPlayList }) => {
   </div>
 </div>
     <div>
-
-      {/* <h4>Add any song into your playlist</h4> */}
       <div>{renderList}</div>
     </div>
     </>

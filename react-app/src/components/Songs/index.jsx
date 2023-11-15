@@ -1,7 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-// import { playSong, playAudio } from "../../slices/songsSlice";
 import { useParams } from "react-router-dom";
-
 import "./style.css";
 import Button from "../Button";
 import { removeSongFromPlaylist } from "../../store/playlist";
@@ -12,12 +10,12 @@ import {
 } from "../../store/slices/playlistSlice";
 
 const Songs = ({ songs }) => {
-  // const { currentSongIndex } = useSelector((state) => state.playSong);
+
   const dispatch = useDispatch();
   const { id } = useParams();
 
   const renderList = songs?.map((song, index) => {
-    // const active = currentSongIndex === index;
+
     return (
 
       <div
@@ -53,8 +51,6 @@ const Songs = ({ songs }) => {
                 playlist_id: id,
               })
             );
-            // dispatch();
-            // removeSongToSelectedPlayList({ playlist, removeSong: song })
           }}
         >
           Remove

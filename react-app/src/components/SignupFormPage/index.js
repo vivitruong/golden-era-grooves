@@ -26,28 +26,6 @@ function SignupFormPage() {
     return <Redirect to='/' />;
   }
 
-// 	const handleSubmit = async (e) => {
-//     e.preventDefault();
-// 		if (password === confirmPassword) {
-//       console.log('Password:', password);
-// console.log('Confirm Password:', confirmPassword);
-//       const formData = new FormData();
-//       formData.append('username', username);
-//       formData.append('email', email);
-//       formData.append('password', password);
-//       formData.append('first_name', first_name);
-//       formData.append('last_name', last_name);
-
-//     try {
-//       await dispatch(signUp(formData));
-//     }
-//     catch(err) {
-//       console.error('Error:', err); // Log the error for debugging
-//       setErrors(["An error occurred. Please try again."]);
-
-//     }
-//   }
-// }
 console.log(username , 'this is username')
 const handleSubmit = async (e) => {
   e.preventDefault();
@@ -171,7 +149,6 @@ const handleSubmit = async (e) => {
         <div className="down-login">
         <button type="submit">Sign Up</button>
         <div>
-      {/* Use the Link component to navigate to the login page */}
       <Link to="/login">Already have an account? Login instead</Link>
     </div>
 

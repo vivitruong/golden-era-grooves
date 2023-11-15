@@ -12,12 +12,10 @@ function SplashScreen() {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        // Simulate a delay (e.g., 3 seconds) for the splash screen
+
         const delay = setTimeout(() => {
           setIsLoading(false);
-        }, 10000); // Adjust the delay to match the animation duration
-
-        // Clean up the timeout when the component unmounts
+        }, 10000);
         return () => clearTimeout(delay);
       }, []);
 
@@ -39,7 +37,7 @@ function SplashScreen() {
 
           }}
         >
-          {/* <h3 style={{color:'Navy'}}>Welcome to</h3> */}
+
           <img
             className="splash-screen-image"
             src="https://goldeneragrooves.s3.us-east-2.amazonaws.com/splash_logo-removebg.png"

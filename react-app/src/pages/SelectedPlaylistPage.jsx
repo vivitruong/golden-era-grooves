@@ -30,39 +30,24 @@ const SelectedPlaylistPage = () => {
   };
 
   const [showDeleteModal, setDeleteModal] = useState(false);
-  // const [addedSongs, setAddedSongs] = useState(playlist?.playlist_songs);
+
   const { allSongs: songs } = useSelector((state) => state.songs);
 
   const dispatch = useDispatch();
-
-  // if (playlist?.playlist_songs?.length === 0) {
-  //   return (
-  //     <div className="add_songs">
-  //       <h2>NO SONGS</h2>
-  //       <Button iconOnly onClick={() => setAddedSongs(true)}>
-  //         ADD SONGS
-  //       </Button>
-  //     </div>
-  //   );
-  // }
 
   const deleteHandler = () => {
     setDeleteModal(false);
   };
 
   const renderList = playlist?.playlist_songs?.map((song, index) => {
-    // const active = currentSongIndex === index;
+
     return (
       <div
         className={`song-row songs `}
         key={song?.id}
         onClick={() => {
           dispatch();
-          // getSongs({
-          //   songs: playlist?.playlist_songs?.map((song) => song.song),
-          // })
-          // dispatch(playSong({ song: song?.song, index }));
-          // dispatch(playAudio());
+
         }}
       >
         <span className="song-column id-column">{index + 1}</span>
@@ -75,7 +60,7 @@ const SelectedPlaylistPage = () => {
           onClick={(e) => {
             e.stopPropagation();
             dispatch();
-            // removeSongToSelectedPlayList({ playlist, removeSong: song })
+
           }}
         >
           Remove
@@ -107,8 +92,7 @@ const SelectedPlaylistPage = () => {
             <SongsModal
               songs={songs}
               playlist={playlist}
-              // addedSongs={addedSongs}
-              // setAddedSongs={setAddedSongs}
+
             />
           </Modal>
         </>
@@ -180,8 +164,7 @@ const SelectedPlaylistPage = () => {
             <SongsModal
               songs={songs}
               playlist={playlist}
-              // addedSongs={addedSongs}
-              // setAddedSongs={setAddedSongs}
+
             />
           </Modal>
         </>
