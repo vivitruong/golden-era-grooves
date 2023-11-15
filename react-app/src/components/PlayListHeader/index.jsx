@@ -7,38 +7,41 @@ import Overlay from "../Overlay";
 import {
   useParams,
   useHistory,
-} from "react-router-dom/cjs/react-router-dom.min";
+} from "react-router-dom";
 import { deletePlaylist } from "../../store/playlist";
 import { useDispatch, useSelector } from "react-redux";
 import "./style.css";
 import PlayListForm from "../PlayListForm";
-import { updatePlaylist } from "../../store/playlist";
+import { updatePlaylist, fetchUserList } from "../../store/playlist";
 import Modal from "../Modal";
 import SongsModal from "../SongsModel";
 
 const PlayListHeader = ({ songsInPlayList }) => {
+  const { id } = useParams();
+  const history = useHistory();
   const [showDeleteModal, setDeleteModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [addSongModal, setAddSongModal] = useState(false);
   const [currentPlayList, setCurrentPlaylist] = useState({});
   const dispatch = useDispatch();
   const playlists = useSelector((state) => state.userPlaylists);
-  const songs = useSelector((state) => state.songs);
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
 
-  const { id } = useParams();
-  const history = useHistory();
+  const songs = useSelector((state) => state.songs);
+  const [name, setName] = useState("")
+  const [description, setDescription] = useState("");
 
   const deleteHandler = () => {
     dispatch(deletePlaylist(id));
     setDeleteModal(false);
     history.push("/");
   };
+  useEffect(()=>{
+    setName(currentPlayList.name)
+    setDescription(currentPlayList.description)
+  },[currentPlayList])
 
   useEffect(() => {
-    const list = playlists.filter((pl) => parseInt(pl?.id) === parseInt(id));
-    setCurrentPlaylist(...list);
+    setCurrentPlaylist(playlists.find((pl) => parseInt(pl?.id) === parseInt(id)));
   }, [playlists, id]);
 
   const submitHandler = (e) => {
@@ -49,13 +52,14 @@ const PlayListHeader = ({ songsInPlayList }) => {
       playlistId: id,
     };
 
+
     dispatch(updatePlaylist(playListToBeEdited));
     // dispatch(createNewPLaylist(playListToBeEdited));
 
-    setDescription("");
+    setDescription('');
     setShowEditModal(false);
     setDeleteModal(false);
-    setName("");
+    setName('');
   };
 
   return (
@@ -66,9 +70,9 @@ const PlayListHeader = ({ songsInPlayList }) => {
             <img src={icon} alt="" />
           </div>
           <div>
-          <h2>{currentPlayList?.name}</h2>
-            <p>{currentPlayList?.description}</p>
-            <p>{`${currentPlayList?.playlist_songs?.length} songs`}</p>
+          <h2 style={{padding: '5px'}}>{currentPlayList?.name}</h2>
+            <p style={{fontWeight:'600'}}>{currentPlayList?.description}</p>
+            <p >{`${currentPlayList?.playlist_songs?.length} songs`}</p>
           </div>
         </div>
         <div className="btns">
@@ -85,13 +89,14 @@ const PlayListHeader = ({ songsInPlayList }) => {
       </div>
       {showDeleteModal && (
         <>
-            <div class="title-bar inactive">
+
+          <Overlay onClose={() => setDeleteModal(false)} />
+          <div className="deleteModal">
+          <div class="title-bar inactive">
         <div class="title-bar-text">Delete</div>
         <div class="title-bar-controls"></div>
         </div>
-          <Overlay onClose={() => setDeleteModal(false)} />
-          <div className="deleteModal">
-            <h4> <img src="https://win98icons.alexmeub.com/icons/png/recycle_bin_empty-0.png"></img> Are You Sure you want to delete this playlist?</h4>
+            <h4> Are You Sure you want to delete this playlist?  <img alt="" src="https://win98icons.alexmeub.com/icons/png/recycle_bin_empty-0.png"></img></h4>
             <div className="btns">
               <Button iconOnly onClick={() => deleteHandler()}>
                 Delete
@@ -112,16 +117,20 @@ const PlayListHeader = ({ songsInPlayList }) => {
       )}
       {showEditModal && (
         <div className="deleteModal">
+           <div class="title-bar">
+        <div class="title-bar-text">Edit</div>
+        <div class="title-bar-controls"></div>
+        </div>
           <Overlay onClose={() => setShowEditModal(false)} />
           <>
-            <p style={{fontSize:'20px', padding:'5px', marginLeft:'30%'}}>Let's Edit This Playlist <img src="https://win98icons.alexmeub.com/icons/png/directory_control_panel-2.png"></img></p>
+            <p style={{fontSize:'20px', padding:'5px', marginLeft:'30%'}}>Let's Edit This Playlist <img src="https://win98icons.alexmeub.com/icons/png/directory_control_panel-2.png" alt=""></img></p>
             <PlayListForm
               submitHandler={submitHandler}
               name={name}
               description={description}
               setName={setName}
               setDescription={setDescription}
-              btnText={"Edit PlayList"}
+              btnText={"Edit Playlist"}
 
             />
 

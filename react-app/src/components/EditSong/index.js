@@ -8,20 +8,18 @@ import {updateASong} from '../../store/userSong';
 import { useHistory, useParams } from "react-router-dom";
 import './style.css'
 
-const EditSong = ({song_id, setEditModal }) => {
-  console.log(song_id)
-  const [artist, setArtist] = useState("");
-  const [genre, setGenre] = useState("");
-  const [name, setName] = useState("");
+const EditSong = ({song, setEditModal }) => {
+  const {user } = useSelector((state) => state.session)
+  const [artist, setArtist] = useState(song?.artist);
+
+  const [genre, setGenre] = useState(song?.genre);
+
+  const [name, setName] = useState(song?.name);
   const [songLoading, setSongLoading] = useState(false)
   const [imageLoading, setImageLoading] = useState(false);
   const [error, setErrors] = useState({});
   const history = useHistory()
-  const songId = song_id
-  console.log(songId)
-  const userSongs = useSelector((state) => state.userSongs);
-  const user= useSelector((state) => state.session.user)
-  console.log('this is song id Obj', userSongs)
+
   const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
@@ -45,7 +43,7 @@ const EditSong = ({song_id, setEditModal }) => {
 
   try {
 
-      await dispatch(updateASong(formData, songId));
+      await dispatch(updateASong(formData, song.id));
       setEditModal(false)
   } catch (err){
       setErrors({});
