@@ -30,3 +30,4 @@ This is my final project that associated with App Academy. Golden Era Grooves is
 
 - Shuffle music in player
 - Recommend
+- Search feature using SPOTifyAPI
