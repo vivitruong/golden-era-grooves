@@ -16,7 +16,7 @@ const PlayLists = () => {
   // const navigate = useNavigate();
 
   const handlePlaylistClick = (playlist) => {
-    console.log(playlist);
+
     dispatch(currentPlayListSongs({ songs: playlist?.playlist_songs }));
     history.push(`/playlists/${playlist.id}`);
   };

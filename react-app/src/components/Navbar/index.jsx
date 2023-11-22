@@ -11,7 +11,7 @@ import "./style.css";
 
 const Navbar = () => {
   const onClickHandler = () => {
-    console.log("hi");
+
   };
   return (
     <header>

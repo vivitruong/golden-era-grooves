@@ -37,7 +37,7 @@ const CreateSong = () => {
 
       let fileExtension = cover_photo[0].name.split('.')
       fileExtension = fileExtension[fileExtension.length-1]
-      console.log(fileExtension)
+
 
       if (!allowedExtensions.includes(fileExtension)) {
         errors.cover_photo = 'Image file must have a valid extension: .png, .jpg, .jpeg';
@@ -45,7 +45,7 @@ const CreateSong = () => {
     } else {
       errors.cover_photo = 'Image is required';
     }
-    console.log(file_path)
+
     if (file_path  && file_path.name) {
       const allowedExtensions = ['mp3'];
       let fileExtension = file_path.name.split('.')

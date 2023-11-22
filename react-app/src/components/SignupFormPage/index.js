@@ -26,7 +26,7 @@ function SignupFormPage() {
     return <Redirect to='/' />;
   }
 
-console.log(username , 'this is username')
+
 const handleSubmit = async (e) => {
   e.preventDefault();
   if (password === confirmPassword) {
