@@ -19,8 +19,7 @@ class User(db.Model, UserMixin):
     bio = db.Column(db.String(2000), nullable=True)
     image_url = db.Column(db.String(1000), nullable=True)
     hashed_password = db.Column(db.String(255), nullable=False)
-    # created_at = db.Column(db.DateTime, default=datetime.now)
-    # updated_at = db.Column(db.DateTime, default=datetime.now)
+
 
     playlists = db.relationship('Playlist', back_populates='user', cascade='all, delete-orphan')
     songs = db.relationship('Song', back_populates='user', cascade='all, delete-orphan')
